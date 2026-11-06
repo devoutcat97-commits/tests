@@ -35,10 +35,10 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 #app{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
-#app.has-bar{padding-bottom:150px}
+#app.has-bar{padding-bottom:calc(var(--barh,150px) + 40px)}
 #app{overflow-x:clip}
 html{overflow-x:clip}
-.view{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+.view{animation:rise .45s cubic-bezier(.2,.7,.2,1) backwards}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -310,7 +310,7 @@ h1 .ch{display:inline-block;animation:drop .6s cubic-bezier(.2,.9,.3,1.3) both;a
 .tab:hover{color:var(--ink)}
 .tab.on{color:var(--ink);border-color:var(--accent)}
 .tab.on.b{border-color:var(--p2)}
-.tabp{animation:rise .4s ease both}
+.tabp{animation:rise .4s ease backwards}
 .rhero{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:28px;align-items:center;margin-bottom:28px}
 @media (max-width:600px){.rhero{grid-template-columns:1fr;gap:10px}.rhero .rill{max-width:200px}}
 .rhead{display:grid;gap:10px;justify-items:start;min-width:0}
@@ -418,8 +418,10 @@ details.method div{display:grid;gap:10px;margin-top:12px;font-size:15px;color:va
   .lead{font-size:17px}
   .sec{margin:30px 0 18px}
   .bar{padding-top:10px}
-  .bar-in{gap:6px 12px}
-  .bar .btn.link{padding:8px 2px;font-size:12px}
+  .bar-in{gap:4px 14px}
+  .bar-t{order:-1;flex-basis:100%;text-align:center;font-size:16px}
+  .bar .btn.link{padding:10px 2px;font-size:12px}
+  .bar .btn:not(.link){padding:12px 20px}
   .sw{height:300px}
   .swb{width:68px;height:68px}
   .story{border-radius:18px}
@@ -1205,6 +1207,11 @@ function confetti(){if(RM)return;const fx=document.getElementById("fx"),cols=["v
   s.animate([{transform:"translate(0,0) rotate(0)",opacity:1},{transform:`translate(${dx}px,${innerHeight+60}px) rotate(${rot}deg)`,opacity:.9}],{duration:dur,delay:Math.random()*400,easing:"cubic-bezier(.3,.6,.5,1)",fill:"forwards"}).onfinish=()=>s.remove()}}
 
 /* ================= отрисовка ================= */
+/* место под нижней панелью = её настоящая высота (на телефоне она бывает в две строки) */
+let barH=150,barRO=null;
+function watchBar(){const bar=app.querySelector(".bar");if(!bar)return;
+ const set=()=>{barH=bar.offsetHeight;app.style.setProperty("--barh",barH+"px")};set();
+ if(window.ResizeObserver){if(barRO)barRO.disconnect();barRO=new ResizeObserver(set);barRO.observe(bar)}}
 function fit(){document.querySelectorAll(".res-t,.st-t,#app h1,.done-h").forEach(el=>{el.style.fontSize="";let fs=parseFloat(getComputedStyle(el).fontSize),n=0;while(el.scrollWidth>el.clientWidth+1&&fs>13&&n++<60){fs-=1;el.style.fontSize=fs+"px"}})}
 let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(fit,150)});
 function render(){
@@ -1217,9 +1224,11 @@ function render(){
  else if(ui.view==="result")h=resultHTML(t);
  else if(ui.view==="summary")h=summaryHTML();
  const anim=ui.view!=="quiz"||!one(t);
- app.innerHTML=(DEMO&&ui.view!=="quiz"?demoBar():"")+`<div class="${anim&&!ui.noAnim?"view":""}">${h}</div>`+(ui.story?storyHTML():"")+(ui.sync?syncHTML():"");
+ // нижнюю панель держим вне анимированного блока: анимация transform «привязывает» position:fixed к блоку, а не к экрану
+ let barHTML="";const bi=h.indexOf('<div class="bar">');if(bi>=0){barHTML=h.slice(bi);h=h.slice(0,bi)}
+ app.innerHTML=(DEMO&&ui.view!=="quiz"?demoBar():"")+`<div class="${anim&&!ui.noAnim?"view":""}">${h}</div>`+barHTML+(ui.story?storyHTML():"")+(ui.sync?syncHTML():"");
  ui.noAnim=false;
- if(isQ)updBar();
+ if(isQ){updBar();watchBar()}
  fit();countUp();
  if(ui.celebrate){ui.celebrate=false;setTimeout(confetti,250)}
 }
@@ -1238,7 +1247,7 @@ app.addEventListener("click",e=>{
   if(el.classList.contains("hrt"))q.querySelectorAll(".hrt.on").forEach(b=>{b.style.animation="none";void b.offsetWidth;b.style.animation=""});
   saveDraft();updBar();
   const t=tById(ui.test),items=t.parts[ui.part].items,curIt=items.find(x=>x.id===q.dataset.q);
-  if(curIt&&ansOK(curIt)){const nx=q.nextElementSibling;if(nx){const nIt=items.find(x=>x.id===nx.dataset.q);if(nIt&&!ansOK(nIt)){const r=nx.getBoundingClientRect();if(r.bottom>innerHeight-120)nx.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}}}
+  if(curIt&&ansOK(curIt)){const nx=q.nextElementSibling;if(nx){const nIt=items.find(x=>x.id===nx.dataset.q);if(nIt&&!ansOK(nIt)){const r=nx.getBoundingClientRect();if(r.bottom>innerHeight-barH-20)nx.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}}}
   return}
  if(el.hasAttribute("data-tick")){setPoints(document.getElementById("r-"+el.dataset.tick),+el.dataset.v);return}
  if(el.hasAttribute("data-rank")){const t=tById(ui.test),p=t.parts[ui.part],id=el.dataset.rank;
