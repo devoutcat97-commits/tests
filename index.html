@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тесты на двоих</title>
+<meta name="description" content="Психологические тесты для пары: языки любви, привязанность, темперамент, стиль в конфликте и другие. Проходите по очереди и сравнивайте результаты.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Тесты на двоих">
+<meta property="og:description" content="Психологические тесты для пары: языки любви, привязанность, темперамент, стиль в конфликте и другие. Проходите по очереди и сравнивайте результаты.">
+<meta name="theme-color" content="#5b3fe0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235b3fe0'/%3E%3Cpath d='M32 50C14 38 12 26 20 20c5-4 10-2 12 3 2-5 7-7 12-3 8 6 6 18-12 30z' fill='%23ff5a36'/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: одна колонка как в тесте Белбина — огромный заголовок, вопросы списком, панель «Далее» внизу; результаты — рисунок «от руки» + разбор по вкладкам */
+:root{
+  --bg:#ffffff; --ink:#0b0a10; --soft:#55525f; --muted:#a3a0ad; --line:#e8e6ef;
+  --track:#d8d2f8; --accent:#5b3fe0; --accent-ink:#ffffff; --accent-soft:#f0edff;
+  --p1:#5b3fe0; --p2:#ff5a36; --p2-soft:#fff0eb; --bar:#ffffff; --shadow:rgba(30,15,80,.10); --card:#ffffff;
+  --display:"Unbounded","Arial Black","Segoe UI",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e0d13; --ink:#f3f2f8; --soft:#b9b6c6; --muted:#6f6c7d; --line:#262430;
+  --track:#3a3462; --accent:#8e7bff; --accent-ink:#0e0d13; --accent-soft:#1c1935;
+  --p1:#8e7bff; --p2:#ff7a59; --p2-soft:#2b1913; --bar:#15141b; --shadow:rgba(0,0,0,.55); --card:#17161e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e0d13; --ink:#f3f2f8; --soft:#b9b6c6; --muted:#6f6c7d; --line:#262430;
+  --track:#3a3462; --accent:#8e7bff; --accent-ink:#0e0d13; --accent-soft:#1c1935;
+  --p1:#8e7bff; --p2:#ff7a59; --p2-soft:#2b1913; --bar:#15141b; --shadow:rgba(0,0,0,.55); --card:#17161e; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#app{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+#app.has-bar{padding-bottom:150px}
+#app{overflow-x:clip}
+html{overflow-x:clip}
+.view{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+p{margin:0}
+.kicker{font:800 clamp(17px,3.1vw,28px)/1.1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0 0 6px}
+h1{font:900 clamp(30px,8.4vw,84px)/.98 var(--display);text-transform:uppercase;margin:0 0 28px;text-wrap:balance;hyphens:auto;overflow-wrap:break-word}
+h1.sm{font-size:clamp(26px,6vw,52px);margin-bottom:18px}
+h1 .ch{display:inline-block;animation:drop .6s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:calc(var(--i)*35ms)}
+@keyframes drop{from{opacity:0;transform:translateY(-.4em) rotate(-8deg)}}
+.lead{display:grid;gap:14px;max-width:66ch;font-size:18px}
+.meta{color:var(--muted);font-weight:600;font-size:15px}
+.note{font-size:14px;color:var(--soft)}
+.back{background:none;border:0;padding:0;color:var(--soft);font-weight:600;font-size:15px;margin-bottom:22px;display:inline-flex;gap:6px}
+.back:hover{color:var(--accent)}
+.sec{font:800 clamp(18px,2.6vw,23px)/1.25 var(--body);text-transform:uppercase;letter-spacing:.01em;text-align:center;padding-bottom:10px;border-bottom:2px solid var(--accent);margin:36px 0 22px;text-wrap:balance}
+.sec.left{text-align:left}
+.partno{font:800 26px/1 var(--body);color:var(--muted);margin:40px 0 0}
+.who{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--accent-soft);margin-bottom:14px}
+.who.b{background:var(--p2-soft)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;flex:none}
+.dot.a{background:var(--p1)} .dot.b{background:var(--p2)}
+.hint{color:var(--soft);font-size:15px}
+
+/* кнопки */
+.btn{border:0;border-radius:4px;background:var(--accent);color:var(--accent-ink);font:700 13px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:14px 22px;transition:transform .15s,opacity .15s,background .15s}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn:active:not(:disabled){transform:translateY(0) scale(.97)}
+.btn:disabled{background:var(--line);color:var(--muted);cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.b{background:var(--p2);color:#fff}
+.btn.link{background:none;color:var(--soft);padding:14px 4px;letter-spacing:.04em}
+.btn.sm{padding:10px 14px;font-size:12px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:26px}
+
+/* иллюстрации «от руки» */
+.ill{display:block;width:100%;height:auto;overflow:visible}
+.ill .bgc{fill:var(--ill-bg,var(--accent-soft));transform-origin:80px 84px;animation:pop .6s cubic-bezier(.2,.9,.3,1.3) both}
+.ill .ln{fill:none;stroke:var(--ill,var(--ink));stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s cubic-bezier(.6,0,.2,1) forwards;animation-delay:calc(var(--i)*60ms + .15s)}
+.ill .ln.th{stroke-width:7}
+.ill .ln.sp{stroke-width:2.2}
+.ill .fl{fill:var(--ill-acc,var(--accent));opacity:0;animation:fadein .6s ease forwards;animation-delay:.6s}
+.ill .ilt{font:900 22px var(--display);fill:var(--ill,var(--ink));opacity:0;animation:fadein .4s ease forwards .9s}
+.ill.stat .ln,.ill.stat .fl,.ill.stat .bgc,.ill.stat .ilt{animation:none;stroke-dashoffset:0;opacity:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadein{to{opacity:1}}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+
+/* главная */
+.names{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:30px 0 8px;max-width:620px}
+.field{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--line);padding:6px 0;transition:border-color .2s}
+.field:focus-within{border-color:var(--accent)}
+.field input{border:0;background:transparent;color:var(--ink);font:600 20px var(--body);width:100%;min-width:0;padding:6px 0;outline:none}
+.field input::placeholder{color:var(--muted)}
+.list{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:8px 18px;align-items:center;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:18px 0;width:100%}
+.row .ill{width:64px;transition:transform .3s cubic-bezier(.2,.9,.3,1.4)}
+.row:hover .ill{transform:rotate(-6deg) scale(1.08)}
+.row:hover .row-t{color:var(--accent)}
+.row-t{font:800 clamp(17px,2.6vw,22px)/1.15 var(--display);text-transform:uppercase;transition:color .15s}
+.row-d{color:var(--soft);font-size:16px;margin-top:6px;max-width:58ch}
+.row-m{color:var(--muted);font-size:14px;font-weight:600;margin-top:6px}
+.row-s{display:flex;flex-direction:column;gap:6px;align-items:flex-start;font-size:14px;font-weight:600;min-width:0}
+.st{display:flex;align-items:center;gap:7px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.st.ok{color:var(--ink)}
+.ring{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 2px var(--line)}
+.st.ok .ring.a{background:var(--p1);box-shadow:none}.st.ok .ring.b{background:var(--p2);box-shadow:none}
+.st.go .ring.a{box-shadow:inset 0 0 0 2px var(--p1)}.st.go .ring.b{box-shadow:inset 0 0 0 2px var(--p2)}
+.tag-new{display:inline-block;font:800 10px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;background:var(--p2);color:#fff;padding:4px 6px;border-radius:3px;vertical-align:middle;margin-left:8px;transform:translateY(-2px)}
+@media (max-width:560px){.row{grid-template-columns:48px 1fr}.row .ill{width:48px;align-self:start}.row-s{grid-column:2;flex-direction:row;flex-wrap:wrap;gap:6px 16px}}
+.cta{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;background:var(--accent-soft);border-radius:10px;padding:20px;margin-top:8px;text-align:left;border:0;width:100%}
+.cta:hover .ill{transform:scale(1.06) rotate(4deg)}
+.cta .ill{transition:transform .3s}
+.cta-t{font:800 clamp(20px,3vw,28px)/1.1 var(--display);text-transform:uppercase}
+@media (max-width:480px){.cta{grid-template-columns:80px 1fr;gap:14px}}
+.prof{width:100%;border-collapse:collapse;font-size:15px}
+.prof th,.prof td{text-align:left;padding:12px 10px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.prof th{font-weight:700;color:var(--soft);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.prof td:first-child{font-weight:700}
+.prof tr[data-act]{cursor:pointer}.prof tr[data-act]:hover td:first-child{color:var(--accent)}
+.scroll{overflow-x:auto}
+.foot{margin-top:56px;color:var(--muted);font-size:14px;display:grid;gap:12px;max-width:66ch}
+
+/* вступление */
+.intro-top{display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:start}
+@media (max-width:640px){.intro-top{grid-template-columns:1fr}.intro-top .ill{max-width:150px}}
+.pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px;max-width:640px}
+.pk{display:grid;gap:6px;text-align:left;border:2px solid var(--line);background:var(--bg);border-radius:6px;padding:18px;transition:border-color .15s,transform .15s}
+.pk:hover{border-color:var(--p1);transform:translateY(-2px)}.pk.b:hover{border-color:var(--p2)}
+.pk-n{display:flex;align-items:center;gap:10px;font:800 19px/1.2 var(--display);text-transform:uppercase;min-width:0;overflow-wrap:anywhere}
+.pk-s{color:var(--soft);font-size:15px}
+
+/* вопросы — общее */
+.qs{display:grid;gap:34px}
+.q{display:grid;gap:12px}
+.q-t{font-size:17px}
+.q-n{color:var(--soft)}
+@keyframes popsel{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.pop{animation:popsel .3s ease}
+.anch{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:13px;font-weight:600;max-width:440px}
+.anch span:last-child{text-align:right}
+
+/* ползунок */
+.rng{padding-top:4px}
+.rng input{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;margin:0;display:block;--v:0%}
+.rng input::-webkit-slider-runnable-track{height:2px;background:linear-gradient(to right,var(--accent) var(--v),var(--track) var(--v))}
+.rng input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);margin-top:-8px;border:0;box-shadow:0 0 0 5px var(--accent-soft);transition:transform .15s}
+.rng input:active::-webkit-slider-thumb{transform:scale(1.3)}
+.rng input::-moz-range-track{height:2px;background:var(--track)}
+.rng input::-moz-range-progress{height:2px;background:var(--accent)}
+.rng input::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:0;box-shadow:0 0 0 5px var(--accent-soft)}
+.ticks{display:flex;justify-content:space-between;padding:0 9px;margin-top:4px}
+.ticks button{width:0;display:flex;justify-content:center;background:none;border:0;padding:4px 0;font-size:14px;color:var(--soft);font-variant-numeric:tabular-nums}
+.ticks button.on{color:var(--accent);font-weight:800}
+
+/* ранжирование */
+.rk{display:grid;gap:10px}
+.rk-i{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:8px;padding:12px 16px;transition:border-color .15s,background .15s,transform .2s}
+.rk-i:hover{border-color:var(--accent);transform:translateX(4px)}
+.rk-b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:2px dashed var(--track);font:900 16px var(--display);color:var(--accent-ink)}
+.rk-i.on{border-color:var(--accent);background:var(--accent-soft)}
+.rk-i.on .rk-b{background:var(--accent);border:0;animation:popsel .35s ease}
+.rk-i.r1 .rk-b{background:var(--p2)}
+
+/* кружки разного размера */
+.dots{display:flex;align-items:center;gap:clamp(6px,2vw,14px);max-width:440px;justify-content:space-between}
+.dt{width:var(--s);height:var(--s);flex:none;border-radius:50%;border:2.5px solid var(--c);background:transparent;padding:0;transition:background .15s,transform .15s}
+.dt.neg{--c:var(--p2)}.dt.mid{--c:var(--muted)}.dt.pos{--c:var(--accent)}
+.dt:hover{transform:scale(1.1)}
+.dt.on{background:var(--c)}
+
+/* смайлики */
+.faces{display:flex;gap:clamp(6px,2vw,14px);max-width:440px;justify-content:space-between}
+.fc{width:52px;height:52px;border:0;background:none;padding:0;border-radius:50%;transition:transform .15s}
+.fc svg{width:100%;height:100%;display:block}
+.fc circle.f{fill:var(--card);stroke:var(--muted);stroke-width:2.5;transition:fill .15s,stroke .15s}
+.fc .fm{fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}
+.fc .fe{fill:var(--muted)}
+.fc:hover{transform:scale(1.1) rotate(-5deg)}
+.fc.on circle.f{fill:var(--accent);stroke:var(--accent)}
+.fc.on .fm{stroke:var(--accent-ink)}.fc.on .fe{fill:var(--accent-ink)}
+
+/* сердечки */
+.hearts{display:flex;gap:8px}
+.hrt{width:46px;height:46px;border:0;background:none;padding:2px;transition:transform .15s}
+.hrt svg{width:100%;height:100%;display:block}
+.hrt path{fill:transparent;stroke:var(--p2);stroke-width:2.2;transition:fill .2s}
+.hrt:hover{transform:scale(1.12)}
+.hrt.on path{fill:var(--p2)}
+.hrt.on{animation:popsel .35s ease both;animation-delay:calc(var(--k)*40ms)}
+
+/* плитки 1–9 */
+.tiles{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;max-width:460px}
+.tl{aspect-ratio:1;max-width:100%;border:2px solid var(--line);background:var(--card);border-radius:6px;font:800 16px var(--body);font-variant-numeric:tabular-nums;padding:0;transition:background .15s,border-color .15s,transform .15s;color:var(--soft)}
+.tl:hover{border-color:var(--accent);transform:translateY(-2px)}
+.tl.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tl.lo{background:var(--accent-soft);border-color:var(--track);color:var(--accent)}
+
+/* это или то */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.vs-or{align-self:center;font:900 13px var(--display);color:var(--muted);text-transform:uppercase}
+.vt{text-align:left;border:2px solid var(--line);background:var(--card);border-radius:10px;padding:16px;font-size:16px;line-height:1.4;transition:transform .2s,border-color .2s,background .2s,opacity .2s;display:grid;gap:8px;align-content:start}
+.vt b{font:900 22px var(--display);color:var(--accent)}
+.vt:hover{border-color:var(--accent);transform:translateY(-3px)}
+.vt.on{border-color:var(--accent);background:var(--accent);color:var(--accent-ink);transform:scale(1.02)}
+.vt.on b{color:var(--accent-ink)}
+.vt.off{opacity:.45}
+@media (max-width:560px){.vs{grid-template-columns:1fr}.vs-or{justify-self:center}}
+
+/* биполярная шкала */
+.bp{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center}
+.bp-l{text-align:right;font-weight:600}.bp-r{font-weight:600}
+.bps{display:flex;gap:10px;align-items:center}
+.bp .opt{flex:none;padding:0;border-radius:50%;border:2.5px solid var(--line);background:var(--card);transition:background .15s,border-color .15s,transform .15s}
+.bp .opt:hover{border-color:var(--accent);transform:scale(1.1)}
+.bp .opt.on{background:var(--accent);border-color:var(--accent)}
+.bp .s1,.bp .s5{width:40px;height:40px}.bp .s2,.bp .s4{width:31px;height:31px}.bp .s3{width:24px;height:24px}
+@media (max-width:600px){.bp{grid-template-columns:1fr 1fr}.bp-l{text-align:left;order:1}.bp-r{text-align:right;order:2}.bps{order:3;grid-column:1/-1;justify-content:space-between;max-width:320px;width:100%;margin:0 auto}}
+
+/* угадайка */
+.gq{display:grid;gap:12px;border:2px solid var(--line);border-radius:12px;padding:18px;background:var(--card)}
+.gq-t{font:800 18px/1.3 var(--body)}
+.gr{display:grid;gap:8px}
+.gr-l{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:600;transition:all .15s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.gr.g .chip.on{background:var(--p2);border-color:var(--p2);color:#fff}
+.gr.g .chip:hover{border-color:var(--p2)}
+
+/* нижняя панель */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--bar);box-shadow:0 -10px 30px var(--shadow);animation:barin .4s ease both;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+@keyframes barin{from{transform:translateY(100%)}}
+.bar-in{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.bar-t{font:800 clamp(16px,2.4vw,21px)/1.2 var(--body);font-variant-numeric:tabular-nums}
+.bar .btn.link{padding:12px 4px}
+.bar .btn:not(:disabled){animation:ready .5s ease}
+@keyframes ready{40%{transform:scale(1.12)}}
+
+/* по одной карточке */
+.prog{height:6px;border-radius:999px;background:var(--line);overflow:hidden;margin:8px 0 6px}
+.prog-f{height:100%;background:var(--accent);border-radius:999px;transition:width .35s ease}
+.prog-t{font-weight:700;color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.sw{position:relative;height:340px;max-width:420px;margin:26px auto 18px}
+.sw-card{position:absolute;inset:0;border-radius:18px;background:var(--card);border:2px solid var(--line);box-shadow:0 18px 40px var(--shadow);padding:28px;display:grid;align-content:center;gap:14px;text-align:center;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.sw-top{cursor:grab;z-index:2;animation:cardin .35s cubic-bezier(.2,.9,.3,1.2) both}
+.sw-top.drag{cursor:grabbing;transition:none}
+.sw-next{transform:scale(.93) translateY(18px);opacity:.7}
+@keyframes cardin{from{transform:scale(.93) translateY(18px);opacity:.7}}
+.sw-n{font:800 13px var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.sw-q{font:800 clamp(20px,4.6vw,26px)/1.3 var(--body);text-wrap:balance}
+.sw-y,.sw-x{position:absolute;top:22px;font:900 22px var(--display);padding:6px 12px;border:3px solid;border-radius:8px;opacity:0;text-transform:uppercase}
+.sw-y{left:22px;color:var(--accent);transform:rotate(-12deg)}
+.sw-x{right:22px;color:var(--p2);transform:rotate(12deg)}
+.sw-was{font-size:14px;color:var(--soft)}
+.swbs{display:flex;justify-content:center;gap:22px}
+.swb{width:76px;height:76px;border-radius:50%;border:3px solid;background:var(--card);font:900 13px var(--body);text-transform:uppercase;letter-spacing:.06em;display:grid;place-items:center;transition:transform .15s,background .15s}
+.swb.no{border-color:var(--p2);color:var(--p2)}.swb.yes{border-color:var(--accent);color:var(--accent)}
+.swb:hover{transform:scale(1.1)}
+.swb.no:hover{background:var(--p2);color:#fff}.swb.yes:hover{background:var(--accent);color:var(--accent-ink)}
+.stk{max-width:560px;margin:26px auto 0}
+.stk-card{border-radius:18px;background:var(--card);border:2px solid var(--line);box-shadow:0 18px 40px var(--shadow);padding:28px;display:grid;gap:22px;animation:slidein .4s cubic-bezier(.2,.9,.3,1.1) both}
+.stk-card .dots{margin:0 auto;width:100%}
+.stk-card .anch{margin:-10px auto 0;width:100%}
+@keyframes slidein{from{opacity:0;transform:translateX(60px) rotate(2deg)}}
+.out-l{animation:outl .3s ease forwards!important}.out-r{animation:outr .3s ease forwards!important}
+@keyframes outl{to{opacity:0;transform:translateX(-120%) rotate(-14deg)}}
+@keyframes outr{to{opacity:0;transform:translateX(120%) rotate(14deg)}}
+.one-back{display:flex;justify-content:center;margin-top:18px}
+
+/* результаты */
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-weight:700;margin:0 0 10px}
+.legend span{display:flex;align-items:center;gap:8px}
+.bars{display:grid;gap:18px}
+.brow{display:grid;gap:6px}
+.bl{font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.bl small{font-weight:500;color:var(--muted);font-size:14px}
+.bt{display:grid;grid-template-columns:1fr 64px;gap:12px;align-items:center}
+.track{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.track.big{height:16px}
+.fill{height:100%;border-radius:999px;transform-origin:left;animation:grow 1s cubic-bezier(.2,.8,.2,1) both;animation-delay:.15s}
+@keyframes grow{from{transform:scaleX(0)}}
+.fill.a{background:var(--p1)}.fill.b{background:var(--p2)}
+.fill.pair{background:linear-gradient(90deg,var(--p1),var(--p2))}
+.bv{font-weight:700;font-variant-numeric:tabular-nums;font-size:15px;text-align:right}
+.bip{position:relative;height:10px;border-radius:999px;background:var(--line);margin:10px 0}
+.bip::after{content:"";position:absolute;left:50%;top:-5px;bottom:-5px;width:2px;background:var(--muted);transform:translateX(-1px)}
+.bip i{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%);border:3px solid var(--bg);z-index:1;animation:slidedot 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slidedot{from{left:50%}}
+.bip i.a{background:var(--p1)}.bip i.b{background:var(--p2)}
+.bip-l{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:15px}
+.bip-l span:last-child{text-align:right}
+.map{max-width:420px;width:100%;margin:0 auto 20px;display:block}
+.map text{font:600 12px var(--body);fill:var(--soft)}
+.map .ql{font:800 12px var(--body);fill:var(--muted);text-transform:uppercase}
+.map .ax{stroke:var(--muted);stroke-width:1.5}
+.map .grid{stroke:var(--line);stroke-width:1.5;fill:none}
+.map .dash{stroke:var(--line);stroke-width:1.5;fill:none;stroke-dasharray:4 4}
+.map .pa{fill:var(--p1)}.map .pb{fill:var(--p2)}
+.map .pt{font:800 12px var(--body);fill:#fff}
+.map .pin{transform-box:fill-box;transform-origin:center;animation:pop .6s cubic-bezier(.2,.9,.3,1.4) both;animation-delay:.4s}
+.map .tri{transform-origin:160px 170px;animation:pop .8s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:.2s}
+.map .tri.a{fill:var(--p1);fill-opacity:.22;stroke:var(--p1);stroke-width:3}
+.map .tri.b{fill:var(--p2);fill-opacity:.22;stroke:var(--p2);stroke-width:3;animation-delay:.45s}
+
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin:38px 0 26px;overflow-x:auto}
+.tab{background:none;border:0;padding:12px 16px;font-weight:700;font-size:16px;color:var(--soft);display:flex;align-items:center;gap:8px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .2s}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink);border-color:var(--accent)}
+.tab.on.b{border-color:var(--p2)}
+.tabp{animation:rise .4s ease both}
+.rhero{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:28px;align-items:center;margin-bottom:28px}
+@media (max-width:600px){.rhero{grid-template-columns:1fr;gap:10px}.rhero .rill{max-width:200px}}
+.rhead{display:grid;gap:10px;justify-items:start;min-width:0}
+.pc-n{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--soft);overflow-wrap:anywhere}
+.res-t{font:900 clamp(26px,5vw,44px)/1.02 var(--display);text-transform:uppercase;margin:0;overflow-wrap:anywhere;hyphens:auto;text-wrap:balance}
+.res-tag{font-size:19px;font-weight:600;color:var(--accent)}
+.rhead.b .res-tag{color:var(--p2)}
+.pc-big{font:900 clamp(40px,8vw,64px)/1 var(--display);margin:0;font-variant-numeric:tabular-nums}
+.secs{display:grid;grid-template-columns:1fr 1fr;gap:26px 32px}
+.secs section{display:grid;gap:8px;align-content:start;min-width:0}
+.secs .w{grid-column:1/-1}
+@media (max-width:640px){.secs{grid-template-columns:1fr}}
+.secs h3,.pair h3,.blk h3{font:800 14px/1.3 var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--soft);margin:0}
+.secs p{max-width:68ch}
+.secs ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.secs ul li{padding-left:26px;position:relative}
+.secs ul.plus li::before{content:"+";position:absolute;left:0;top:-1px;font:900 18px var(--display);color:var(--accent)}
+.secs ul.minus li::before{content:"↗";position:absolute;left:0;top:0;font-weight:800;color:var(--p2)}
+.secs ul.tips li::before{content:"♥";position:absolute;left:2px;color:var(--p2)}
+.trait{display:grid;gap:6px;padding:16px 0;border-bottom:1px solid var(--line)}
+.trait-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:800}
+.chipl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.pair{display:grid;gap:14px;max-width:72ch}
+.pair ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.callout{border-left:4px solid var(--accent);padding:6px 0 6px 16px;font-size:18px}
+.simm{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-bottom:26px;max-width:640px}
+.simm-n{font:900 clamp(40px,8vw,60px)/1 var(--display);font-variant-numeric:tabular-nums}
+.simm-l{font-size:14px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+.talk{display:grid;gap:10px;margin-top:4px}
+.tq{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:10px;padding:14px 16px;font-size:16px;transition:border-color .15s,opacity .2s}
+.tq:hover{border-color:var(--accent)}
+.tq-c{width:24px;height:24px;border-radius:6px;border:2px solid var(--track);display:grid;place-items:center;font-weight:900;color:var(--accent-ink);font-size:14px;margin-top:1px}
+.tq.on{opacity:.6}.tq.on span:last-child{text-decoration:line-through}
+.tq.on .tq-c{background:var(--accent);border-color:var(--accent);animation:popsel .3s}
+.wait{border:2px dashed var(--line);border-radius:10px;padding:20px;display:grid;gap:12px;justify-items:start;margin-top:26px}
+.diff{display:grid;gap:12px}
+.diff div{border-bottom:1px solid var(--line);padding-bottom:12px}
+.diff p:first-child{font-weight:600;margin-bottom:4px}
+.diff span{display:inline-flex;align-items:center;gap:6px;margin-right:16px;font-size:15px;color:var(--soft)}
+.gtab{display:grid;gap:10px}
+.gt{display:grid;gap:6px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.gt-q{font-weight:700}
+.gt-r{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px;color:var(--soft)}
+.ok-y{color:var(--accent);font-weight:800}.ok-n{color:var(--p2);font-weight:800}
+.score2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.sc2{border-radius:12px;padding:20px;background:var(--accent-soft);display:grid;gap:6px}
+.sc2.b{background:var(--p2-soft)}
+.sc2 .pc-big{font-size:clamp(44px,8vw,64px)}
+details.method{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;max-width:72ch}
+details.method summary{cursor:pointer;font-weight:700;color:var(--soft)}
+details.method div{display:grid;gap:10px;margin-top:12px;font-size:15px;color:var(--soft)}
+.done-wrap{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:center}
+@media (max-width:600px){.done-wrap{grid-template-columns:1fr}.done-wrap .ill{max-width:170px}}
+.done-h{font:900 clamp(30px,7vw,64px)/1 var(--display);text-transform:uppercase;margin:20px 0 18px;overflow-wrap:anywhere}
+
+/* итог пары */
+.sum-hero{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center;margin-bottom:10px}
+@media (max-width:600px){.sum-hero{grid-template-columns:1fr}.sum-hero .ill{max-width:170px}}
+.srow{display:grid;grid-template-columns:1fr 1fr 1fr 120px;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-align:left;background:none;border-left:0;border-right:0;border-top:0;width:100%}
+.srow:hover .srow-t{color:var(--accent)}
+.srow-t{font-weight:800}
+.srow span{min-width:0;overflow-wrap:anywhere;font-size:15px}
+.srow .sv{display:grid;gap:4px;font-size:13px;font-weight:700;color:var(--soft);font-variant-numeric:tabular-nums}
+@media (max-width:640px){.srow{grid-template-columns:1fr 1fr}.srow-t{grid-column:1/-1}.srow .sv{grid-column:1/-1}}
+.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:22px 0}
+.hl div{border-radius:10px;padding:16px;background:var(--card);border:2px solid var(--line);display:grid;gap:4px}
+.hl b{font:800 18px/1.2 var(--display);text-transform:uppercase}
+.hl small{color:var(--soft);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* карточка для сторис — единый фирменный вид в обеих темах */
+.ov{position:fixed;inset:0;z-index:20;display:grid;place-items:center;align-content:center;gap:14px;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.ov-bg{position:absolute;inset:0;background:rgba(10,8,20,.72);animation:fadein2 .25s ease both;border:0;padding:0;cursor:default}
+@keyframes fadein2{from{opacity:0}}
+.story{position:relative;height:min(74vh,660px);aspect-ratio:9/16;max-width:calc(100vw - 32px);background:#5b3fe0;color:#fff;border-radius:22px;padding:clamp(18px,4vh,30px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;animation:storyin .5s cubic-bezier(.2,.9,.3,1.2) both;--ill:#fff;--ill-acc:#ff5a36;--ill-bg:rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+@keyframes storyin{from{opacity:0;transform:scale(.85) rotate(-3deg)}}
+.story::before{content:"";position:absolute;width:140%;aspect-ratio:1;border-radius:50%;background:#ff5a36;opacity:.18;right:-70%;bottom:-55%}
+.story>*{position:relative}
+.st-k{font:800 clamp(11px,1.6vh,14px)/1.2 var(--display);text-transform:uppercase;letter-spacing:.06em;opacity:.85}
+.st-ill{width:62%;margin:0 auto}
+.st-n{font-weight:700;font-size:clamp(13px,2vh,16px);opacity:.9}
+.st-t{font:900 clamp(20px,4.4vh,38px)/1 var(--display);text-transform:uppercase;overflow-wrap:anywhere;hyphens:auto}
+.st-g{font-size:clamp(13px,2vh,17px);font-weight:600;opacity:.9}
+.st-f{font:800 clamp(10px,1.4vh,12px) var(--display);text-transform:uppercase;letter-spacing:.1em;opacity:.7;display:flex;justify-content:space-between}
+.st-two{display:grid;gap:clamp(8px,1.6vh,14px)}
+.st-two div{border-top:1px solid rgba(255,255,255,.3);padding-top:8px}
+.st-big{font:900 clamp(40px,9vh,80px)/1 var(--display)}
+.ov-b{position:relative;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;color:#fff;font-weight:600}
+.ov-b .btn{background:#fff;color:#0b0a10}
+.sheet{position:relative;background:var(--bg);color:var(--ink);border-radius:16px;padding:22px;width:min(560px,100%);max-height:calc(100dvh - 40px);overflow:auto;display:grid;gap:14px;animation:storyin .35s cubic-bezier(.2,.9,.3,1.2) both;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.sh-t{font:900 clamp(20px,5vw,26px)/1.1 var(--display);text-transform:uppercase;margin:0}
+.code{width:100%;min-height:120px;font:500 16px/1.4 ui-monospace,Consolas,monospace;border:2px solid var(--line);border-radius:8px;padding:10px;background:var(--card);color:var(--ink);word-break:break-all;resize:vertical}
+.code:focus{outline:none;border-color:var(--accent)}
+.err{color:var(--p2);font-weight:600}
+.pk:disabled{opacity:.45;cursor:default;transform:none;border-color:var(--line)}
+.flash{background:var(--accent-soft);border-radius:10px;padding:14px 16px;font-weight:600;margin:20px 0 0;animation:rise .4s ease both}
+
+.res-t,.st-t,h1,.done-h{overflow-wrap:normal!important;hyphens:manual!important}
+*{-webkit-tap-highlight-color:transparent}
+@media (hover:none){
+  .btn:hover:not(:disabled),.pk:hover,.rk-i:hover,.vt:hover:not(.on),.tl:hover,.dt:hover,.fc:hover,.hrt:hover,.swb:hover,.bp .opt:hover,.row:hover .ill,.cta:hover .ill{transform:none}
+  .swb.no:hover{background:var(--card);color:var(--p2)}.swb.yes:hover{background:var(--card);color:var(--accent)}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .lead{font-size:17px}
+  .sec{margin:30px 0 18px}
+  .bar{padding-top:10px}
+  .bar-in{gap:6px 12px}
+  .bar .btn.link{padding:8px 2px;font-size:12px}
+  .sw{height:300px}
+  .swb{width:68px;height:68px}
+  .story{border-radius:18px}
+  .tabs{margin:30px 0 20px}
+  .tab{padding:10px 12px;font-size:15px}
+  .gq{padding:14px}
+  .chip{padding:8px 12px;font-size:14px}
+}
+.demo{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;background:var(--p2-soft);border:2px dashed var(--p2);border-radius:10px;padding:14px 16px;margin-bottom:24px;font-size:15px;animation:rise .4s ease both}
+.demo>span:first-child{flex:1 1 320px;min-width:0}
+.demo-cta{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;border:2px dashed var(--track);border-radius:10px;padding:16px 18px;margin:22px 0 8px;max-width:760px}
+.demo-cta>div{flex:1 1 300px;min-width:0}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+#fx span{position:absolute;top:-30px;font-size:22px;will-change:transform}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}
+  .ill .ln{stroke-dashoffset:0}.ill .fl,.ill .ilt{opacity:1}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
+</defs></svg>
+<div id="app" lang="ru"></div>
+<div id="fx" aria-hidden="true"></div>
+
+<script>
+(()=>{
+"use strict";
+/* ================= хранилище и утилиты ================= */
+const KEY="duo-tests-v1";
+let S={names:{a:"",b:""},res:{},drafts:{},talk:{}};
+try{const o=JSON.parse(localStorage.getItem(KEY)||"null");if(o&&o.names){S.names=o.names;S.res=o.res||{};S.drafts=o.drafts||{};S.talk=o.talk||{};}}catch(e){}
+let DEMO=false,REAL=null;
+const save=()=>{if(DEMO)return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nm=w=>(S.names[w]||"").trim()||(w==="a"?"Партнёр 1":"Партнёр 2");
+const oth=w=>w==="a"?"b":"a";
+const plural=(n,f)=>{const a=Math.abs(n)%100,b=a%10;if(a>10&&a<20)return f[2];if(b>1&&b<5)return f[1];if(b===1)return f[0];return f[2]};
+const r1=x=>(Math.round(x*10)/10).toFixed(1).replace(".",",");
+const rot=(arr,n)=>{n%=arr.length;return arr.slice(n).concat(arr.slice(0,n))};
+const rng=seed=>()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const chunk=(items,size,title)=>{const parts=[];for(let i=0;i<items.length;i+=size)parts.push({title,items:items.slice(i,i+size)});return parts};
+const pairKey=(x,y,ord)=>[x,y].sort((p,q)=>ord.indexOf(p)-ord.indexOf(q)).join("");
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const avg=a=>a.reduce((s,x)=>s+x,0)/a.length;
+const RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const li=a=>a.map(x=>`<li>${x}</li>`).join("");
+
+/* ================= иллюстрации «от руки» ================= */
+let I=0;
+const n2=v=>Math.round(v*10)/10;
+const E=(tag,a,c="")=>`<${tag} ${a} pathLength="1" class="ln ${c}" style="--i:${I++}"/>`;
+const P=(d,c)=>E("path",`d="${d}"`,c);
+const C=(x,y,r,c)=>E("circle",`cx="${x}" cy="${y}" r="${r}"`,c);
+const L=(a,b,x,y,c)=>E("line",`x1="${a}" y1="${b}" x2="${x}" y2="${y}"`,c);
+const R=(x,y,w,h,r,c)=>E("rect",`x="${x}" y="${y}" width="${w}" height="${h}" rx="${r||0}"`,c);
+const F=d=>`<path class="fl" d="${d}"/>`;
+const HD=(x,y,s)=>`M${x} ${n2(y+.9*s)}C${n2(x-1.6*s)} ${n2(y-.1*s)} ${n2(x-.9*s)} ${n2(y-1.3*s)} ${x} ${n2(y-.45*s)}C${n2(x+.9*s)} ${n2(y-1.3*s)} ${n2(x+1.6*s)} ${n2(y-.1*s)} ${x} ${n2(y+.9*s)}Z`;
+const CD=(x,y,r)=>`M${x-r} ${y}a${r} ${r} 0 1 0 ${2*r} 0a${r} ${r} 0 1 0 ${-2*r} 0Z`;
+const SP=(x,y,r)=>P(`M${x} ${y-r}Q${x} ${y} ${x+r} ${y}Q${x} ${y} ${x} ${y+r}Q${x} ${y} ${x-r} ${y}Q${x} ${y} ${x} ${y-r}Z`,"sp");
+const sparks=()=>SP(132,34,7)+SP(26,48,5)+SP(138,110,4)+C(28,112,1.5,"sp");
+const rays=(cx,cy,a,b,n,off=0)=>{let s="";for(let i=0;i<n;i++){const t=i/n*Math.PI*2+off;s+=L(n2(cx+a*Math.cos(t)),n2(cy+a*Math.sin(t)),n2(cx+b*Math.cos(t)),n2(cy+b*Math.sin(t)))}return s};
+const starD=(cx,cy,ro,ri,n)=>{let d="";for(let i=0;i<n*2;i++){const r=i%2?ri:ro,t=-Math.PI/2+i*Math.PI/n;d+=(i?"L":"M")+n2(cx+r*Math.cos(t))+" "+n2(cy+r*Math.sin(t))}return d+"Z"};
+const steam=(x)=>P(`M${x} 70q-6 -8 0 -16q6 -8 0 -16`);
+const ILL={
+ words:()=>F(HD(80,66,11))+R(36,38,88,56,16)+P("M58 94L50 116L76 94")+P(HD(80,66,11))+sparks(),
+ time:()=>F(HD(80,30,8))+C(80,84,36)+L(80,84,80,62)+L(80,84,97,92)+C(80,84,3)+L(80,52,80,56)+L(112,84,108,84)+L(80,116,80,112)+L(48,84,52,84)+P(HD(80,30,8))+SP(132,40,6)+SP(28,60,5),
+ gift:()=>F("M42 60h76v16h-76Z")+R(48,76,64,46,3)+R(42,60,76,16,3)+L(80,60,80,122)+P("M80 60C66 38 48 50 80 60")+P("M80 60C94 38 112 50 80 60")+sparks(),
+ help:()=>F(HD(80,102,8))+P("M46 86h68v20a14 14 0 0 1 -14 14h-40a14 14 0 0 1 -14 -14Z")+L(38,86,122,86)+P("M72 86v-6h16v6")+P("M46 94h-8")+P("M114 94h8")+steam(66)+steam(94)+P(HD(80,102,8))+SP(132,40,6)+SP(26,60,4),
+ touch:()=>F(HD(80,34,9))+C(60,66,14)+C(100,66,14)+P("M34 128C34 102 46 88 60 88C74 88 84 98 106 108")+P("M126 128C126 102 114 88 100 88C86 88 76 98 54 108")+P(HD(80,34,9))+SP(130,40,6)+SP(28,46,5),
+ secure:()=>F(HD(80,80,9))+P("M42 120V78L80 46L118 78V120Z")+R(70,98,20,22,2)+P(HD(80,80,9))+L(28,120,132,120)+P("M100 62V48h10v22")+sparks(),
+ anxious:()=>F(HD(80,100,9))+R(56,34,48,92,9)+L(74,42,86,42)+R(64,54,32,22,8)+C(72,65,1.5)+C(80,65,1.5)+C(88,65,1.5)+P(HD(80,100,9))+P("M118 42q6 -10 13 -2q5 7 -6 12v6")+C(125,66,1.5)+P("M38 54q-6 10 0 13q6 -3 0 -13"),
+ avoid:()=>F(HD(80,78,7))+P("M70 122V58a10 10 0 0 1 20 0V122")+P("M70 96H60a8 8 0 0 1 -8 -8V76")+P("M90 88H100a8 8 0 0 0 8 -8V68")+P("M58 122h44l-5 16h-34Z")+L(66,68,61,66)+L(94,64,99,62)+L(66,110,61,110)+L(94,104,99,106)+P(HD(80,78,7))+SP(130,40,6),
+ fearful:()=>F(HD(80,84,9))+L(38,36,122,36)+L(60,36,60,100)+L(100,36,100,100)+R(52,100,56,8,3)+P(HD(80,84,9))+P("M36 92q-8 10 0 20")+P("M124 92q8 10 0 20")+P("M26 86q-11 16 0 32")+P("M134 86q11 16 0 32"),
+ trophy:()=>F("M60 46h40v18a20 20 0 0 1 -40 0Z")+P("M58 42h44v22a22 22 0 0 1 -44 0Z")+P("M58 50h-10a10 10 0 0 0 10 20")+P("M102 50h10a10 10 0 0 1 -10 20")+L(80,86,80,104)+R(62,104,36,12,3)+L(50,124,110,124)+sparks(),
+ bulb:()=>F("M68 96C52 86 54 50 80 48C106 50 108 86 92 96Z")+P("M68 96C52 86 54 50 80 48C106 50 108 86 92 96Z")+L(70,104,90,104)+L(72,112,88,112)+P("M74 84l3 -10l3 8l3 -8l3 10")+L(80,28,80,36)+L(118,44,112,50)+L(42,44,48,50)+L(126,74,118,74)+L(34,74,42,74),
+ scales:()=>F("M30 86a16 8 0 0 0 32 0Z")+F("M98 86a16 8 0 0 0 32 0Z")+L(80,44,80,118)+L(60,118,100,118)+L(40,56,120,56)+C(80,42,4)+L(46,56,34,86)+L(46,56,58,86)+P("M30 86a16 8 0 0 0 32 0Z")+L(114,56,102,86)+L(114,56,126,86)+P("M98 86a16 8 0 0 0 32 0Z"),
+ turtle:()=>F("M42 104a38 34 0 0 1 76 0Z")+P("M42 104a38 34 0 0 1 76 0Z")+P("M60 104l8 -18h24l8 18")+C(128,96,8)+C(130,94,1.2)+P("M118 100q4 -4 2 -6")+L(52,104,48,116)+L(70,104,68,116)+L(92,104,94,116)+L(110,104,114,116)+P("M42 102l-8 4")+L(26,118,136,118),
+ flag:()=>F("M56 44C76 36 88 52 112 44V76C88 84 76 68 56 76Z")+L(56,38,56,128)+P("M56 44C76 36 88 52 112 44V76C88 84 76 68 56 76Z")+C(56,34,4)+L(40,128,72,128)+SP(130,100,6)+SP(30,60,5),
+ gauge:(k=2)=>{const ang=[160,118,72,28][k]*Math.PI/180,nx=n2(80+40*Math.cos(ang)),ny=n2(100-40*Math.sin(ang));
+   return F(HD(80,126,9))+P("M30 100A50 50 0 0 1 130 100")+L(30,100,38,100)+L(122,100,130,100)+L(80,50,80,58)+L(45,65,51,71)+L(115,65,109,71)+L(80,100,nx,ny)+C(80,100,5)+P(HD(80,126,9))+SP(132,40,6)},
+ party:()=>F("M46 124L66 70L100 104Z")+P("M46 124L66 70L100 104Z")+L(72,62,80,44)+L(96,70,116,56)+L(106,96,126,96)+C(88,36,3)+C(124,44,3)+C(132,78,3)+P("M58 42q6 -8 12 0")+P("M112 114q8 4 4 12")+SP(28,60,6),
+ care:()=>F(HD(80,58,15))+P(HD(80,58,15))+P("M34 104C48 100 60 104 72 108H94a6 6 0 0 1 0 12H76")+P("M34 126H84C98 126 112 116 126 104a6 6 0 0 0 -8 -9L98 108")+SP(130,36,6)+SP(28,50,5),
+ clip:()=>F("M66 32h28v14h-28Z")+R(50,40,60,84,6)+R(66,32,28,14,4)+P("M60 64l5 5l9 -10")+L(80,62,100,62)+P("M60 84l5 5l9 -10")+L(80,82,100,82)+P("M60 104l5 5l9 -10")+L(80,102,100,102)+SP(130,40,6),
+ mountain:()=>F(CD(112,46,10))+C(112,46,10)+P("M28 118L64 58L80 82L94 66L132 118Z")+P("M56 71L64 58L72 71l-4 4l-4 -4l-4 4Z")+L(22,118,138,118)+SP(28,46,5),
+ planet:()=>F(CD(80,80,24))+C(80,80,24)+E("ellipse",`cx="80" cy="80" rx="48" ry="12" transform="rotate(-20 80 80)"`)+C(124,38,5)+sparks(),
+ flame:()=>F("M80 128C54 128 44 100 60 78C62 90 70 92 72 88C66 66 78 48 90 38C90 58 118 72 110 102C106 118 94 128 80 128Z")+P("M80 128C54 128 44 100 60 78C62 90 70 92 72 88C66 66 78 48 90 38C90 58 118 72 110 102C106 118 94 128 80 128Z")+P("M80 122C70 122 66 110 74 100C76 106 80 106 82 102C80 94 86 88 90 84C94 98 100 106 94 116C92 120 86 122 80 122Z")+SP(130,40,6)+SP(28,56,5),
+ sun:()=>F(CD(80,80,24))+C(80,80,24)+rays(80,80,32,44,10,.3)+P("M70 86q10 10 20 0")+C(72,74,2)+C(88,74,2),
+ tea:()=>F("M50 78h56v14a24 24 0 0 1 -24 24h-8a24 24 0 0 1 -24 -24Z")+P("M50 78h56v14a24 24 0 0 1 -24 24h-8a24 24 0 0 1 -24 -24Z")+P("M106 84a10 10 0 0 1 0 20h-4")+P("M40 120q38 12 76 0")+steam(68)+steam(88)+P("M118 40q14 0 12 14q-14 0 -12 -14Z"),
+ cloud:()=>F("M50 86a16 16 0 0 1 4 -31a22 22 0 0 1 42 -6a16 16 0 0 1 12 37Z")+P("M50 86a16 16 0 0 1 4 -31a22 22 0 0 1 42 -6a16 16 0 0 1 12 37Z")+L(58,96,54,108)+L(74,96,70,108)+L(90,96,86,108)+L(106,96,102,108)+P(HD(80,126,7))+SP(132,40,5),
+ gear:()=>F(CD(80,80,22))+C(80,80,22)+C(80,80,8)+rays(80,80,22,33,8).replace(/class="ln "/g,'class="ln th"')+SP(132,36,6),
+ star:()=>F(starD(90,72,32,13,5))+P(starD(90,72,32,13,5))+L(30,126,62,94)+L(44,132,70,106)+L(24,110,52,90)+SP(132,120,5),
+ shield:()=>F("M80 38L116 50V80C116 104 100 118 80 126C60 118 44 104 44 80V50Z")+P("M80 38L116 50V80C116 104 100 118 80 126C60 118 44 104 44 80V50Z")+P("M64 82l11 11l21 -24")+sparks(),
+ bolt:()=>F("M90 28L52 88H78L68 134L112 68H86Z")+P("M90 28L52 88H78L68 134L112 68H86Z")+sparks(),
+ eros:()=>F(HD(80,86,26))+P(HD(80,86,26))+L(34,118,126,50)+P("M126 50l-13 1m13 -1l-1 13")+P("M40 114l-12 -1m12 1l1 12")+SP(130,104,5)+SP(28,52,5),
+ dice:()=>F("M92 50h34v34h-34Z")+R(44,70,40,40,7)+C(54,80,3)+C(64,90,3)+C(74,100,3)+R(92,50,34,34,6)+C(102,60,2.5)+C(116,74,2.5)+P("M30 56l8 6")+P("M26 76l10 0")+SP(130,108,6),
+ plant:()=>F(HD(64,60,9))+F(HD(98,50,9))+P("M58 112h44l-6 24h-32Z")+L(54,112,106,112)+P("M80 112V72")+P("M80 98C74 88 68 80 64 70")+P("M80 86C86 74 92 66 98 58")+P(HD(64,60,9))+P(HD(98,50,9))+SP(130,90,5),
+ calendar:()=>F(HD(98,98,8))+R(40,46,80,74,8)+L(40,66,120,66)+L(58,38,58,54)+L(102,38,102,54)+L(52,82,64,82)+L(74,82,86,82)+L(96,82,108,82)+L(52,98,64,98)+L(74,98,86,98)+L(52,110,64,110)+P(HD(98,98,8))+SP(132,40,5),
+ mania:()=>F(HD(80,82,24))+P(HD(80,82,24))+P("M80 71l-7 12l11 6l-7 14")+P("M34 50l10 6")+P("M28 80h12")+P("M126 50l-10 6")+P("M132 80h-12")+L(80,26,80,38)+C(80,46,1.5),
+ agape:()=>F(HD(80,84,18))+P(HD(80,84,18))+rays(80,80,38,50,12,.26),
+ stern:()=>F(HD(80,90,12))+P("M80 34L128 116H32Z")+C(80,34,6)+C(128,116,6)+C(32,116,6)+P(HD(80,90,12)),
+ laugh:()=>F(HD(82,36,7))+C(56,86,22)+C(104,80,22)+P("M44 90q12 14 24 0Z")+P("M92 84q12 14 24 0Z")+P("M46 80q4 -4 8 0")+P("M58 80q4 -4 8 0")+P("M94 74q4 -4 8 0")+P("M106 74q4 -4 8 0")+P(HD(82,36,7))+SP(130,120,5),
+ umbrella:()=>F("M36 84a44 38 0 0 1 88 0q-11 -8 -22 0q-11 -8 -22 0q-11 -8 -22 0q-11 -8 -22 0Z")+P("M36 84a44 38 0 0 1 88 0q-11 -8 -22 0q-11 -8 -22 0q-11 -8 -22 0q-11 -8 -22 0Z")+P("M80 84V118a7 7 0 0 1 -14 0")+L(40,30,36,40)+L(80,22,76,32)+L(120,30,116,40)+SP(130,110,5),
+ burst:()=>F(starD(80,80,48,34,12))+P(starD(80,80,48,34,12))+`<text x="80" y="89" text-anchor="middle" class="ilt">ХА!</text>`,
+ clown:()=>F(CD(80,86,7))+P("M64 54L80 24L96 54")+C(80,22,4)+C(80,84,30)+C(80,86,7)+P("M62 98q18 18 36 0")+P("M64 68q6 -6 12 0")+P("M84 68q6 -6 12 0")+C(70,76,2)+C(90,76,2)+SP(132,44,5),
+ target:()=>F(CD(80,84,12))+C(80,84,40)+C(80,84,26)+C(80,84,12)+L(80,84,128,36)+P("M128 36l-2 12m2 -12l-12 2")+P("M120 40l10 -2")+SP(28,46,5),
+ pair:()=>F(HD(66,88,20))+P(HD(66,88,20))+P(HD(98,78,20))+sparks()
+};
+const ill=(name,arg,cls="")=>{I=0;return `<svg class="ill ${cls}" viewBox="0 0 160 160" aria-hidden="true"><circle class="bgc" cx="80" cy="84" r="56"/><g filter="url(#rough)">${ILL[name](arg)}</g></svg>`};
+
+/* ================= общие куски результатов ================= */
+const legend=sc=>`<div class="legend">${["a","b"].filter(w=>sc[w]).map(w=>`<span><i class="dot ${w}"></i>${esc(nm(w))}</span>`).join("")}</div>`;
+const bars=(rows,sc)=>`<div class="bars">${rows.map(r=>`<div class="brow"><div class="bl"><span>${r.label}</span>${r.sub?`<small>${r.sub}</small>`:""}</div>${["a","b"].filter(w=>sc[w]).map(w=>{const v=r.val(sc[w]);return `<div class="bt"><div class="track" role="img" aria-label="${esc(nm(w))}: ${esc(v.txt)}"><div class="fill ${w}" style="width:${clamp(v.pct,2,100)}%"></div></div><span class="bv">${v.txt}</span></div>`}).join("")}</div>`).join("")}</div>`;
+const dotSvg=(x,y,w)=>`<g class="pin"><circle cx="${n2(x)}" cy="${n2(y)}" r="13" class="p${w}"/><text x="${n2(x)}" y="${n2(y+4)}" text-anchor="middle" class="pt">${esc(nm(w).charAt(0).toUpperCase())}</text></g>`;
+const secs=(o,extra="")=>`<div class="secs"><section class="w"><h3>Кто вы</h3><p>${o.d}</p></section>${o.plus?`<section><h3>Сильные стороны</h3><ul class="plus">${li(o.plus)}</ul></section>`:""}${o.minus?`<section><h3>Над чем поработать</h3><ul class="minus">${li(o.minus)}</ul></section>`:""}${o.love?`<section class="w"><h3>В отношениях</h3><p>${o.love}</p></section>`:""}${extra}</div>`;
+const method=html=>`<details class="method"><summary>Откуда тест и как он считается</summary><div>${html}</div></details>`;
+
+/* =========================================================
+   1. ЯЗЫКИ ЛЮБВИ — модель Г. Чепмена
+   ========================================================= */
+const LK=["W","T","G","S","P"];
+const LN={W:"Слова поддержки",T:"Время вдвоём",G:"Подарки",S:"Помощь делом",P:"Прикосновения"};
+const LILL={W:"words",T:"time",G:"gift",S:"help",P:"touch"};
+const LTY={
+ W:{tag:"Любовь, которую слышно",d:"Для вас слова — не пустой звук. Комплимент, искреннее «спасибо» или «я тобой горжусь» способны сделать ваш день, а сообщение «думаю о тебе» посреди работы весит больше любого подарка. Вы запоминаете, что и как вам сказали, — и хорошее, и обидное.",plus:["Умеете поддержать словом и найти нужную формулировку","Замечаете и цените старания других","Легко говорите о чувствах"],minus:["Резкая критика ранит вас сильнее, чем других, — скажите об этом партнёру","Молчание партнёра можно принять за холодность, хотя он(а) просто выражает любовь иначе"],love:"Вам важно, чтобы любовь звучала вслух. Попросите партнёра хотя бы раз в день говорить, что он(а) в вас ценит: для него это маленькое усилие, а для вас огромная разница."},
+ T:{tag:"Любовь — это быть рядом по-настоящему",d:"Главный знак любви для вас — внимание без отвлечений. Не просто находиться в одной комнате, а быть вместе: разговаривать, смотреть друг на друга, делать что-то общее. Прогулка без телефонов может значить для вас больше, чем дорогой ужин.",plus:["Умеете слушать и быть в моменте","Создаёте общие воспоминания и ритуалы","Цените глубину, а не формальности"],minus:["Отменённые планы и телефон в руках партнёра задевают сильнее, чем кажется со стороны","Партнёру иногда нужно время для себя — это не отказ от вас"],love:"Договоритесь о «неприкосновенном» времени: вечер в неделю или полчаса в день только для вас двоих. Для вас это лучшее доказательство, что вы важны."},
+ G:{tag:"Любовь, которую можно подержать в руках",d:"Подарок для вас — символ: «я думал(а) о тебе, когда тебя не было рядом». Дело не в цене: открытка, любимая шоколадка или камешек с прогулки могут храниться годами. Вы и сами любите дарить и долго выбираете, чтобы попасть в точку.",plus:["Внимательны к желаниям близких","Умеете радовать сюрпризами","Храните память о важных моментах"],minus:["Забытая дата ранит сильнее, чем вы готовы признать, — лучше заранее сказать, что для вас важно","Не все умеют дарить: иногда забота приходит в другой форме"],love:"Расскажите партнёру, что подарок для вас — знак внимания, а не про деньги. Вишлист или «список маленьких радостей» сильно облегчит ему задачу."},
+ S:{tag:"Любовь — это глагол",d:"Для вас любовь доказывается поступками. Приготовить ужин, починить кран, забрать с работы в дождь, взять на себя скучное дело — вот что по-настоящему трогает. Слова без дел кажутся пустыми, а невыполненное обещание — обидным.",plus:["Надёжны: на вас можно положиться","Замечаете, где нужна помощь, раньше, чем попросят","Выражаете заботу конкретными делами"],minus:["Можете взять на себя слишком много и выгореть","Иногда партнёру нужно не решение, а чтобы его просто выслушали"],love:"Говорите прямо, какая помощь вам нужна: партнёр не всегда догадается. И замечайте его старания — «спасибо, что сделал(а)» поддерживает обмен заботой."},
+ P:{tag:"Любовь через прикосновения",d:"Физическая близость — ваш главный язык нежности. Объятия при встрече, рука в руке на прогулке, голова на плече во время фильма — так вы чувствуете связь. В трудную минуту одно объятие помогает лучше любых слов.",plus:["Рядом с вами тепло и уютно","Умеете утешить без слов","Легко создаёте ощущение близости"],minus:["Дистанция партнёра, особенно после ссоры, ощущается как отвержение","Не все тактильны в равной мере: договоритесь о том, что приятно обоим"],love:"Попросите больше «мелких» прикосновений в течение дня, не только перед сном. Объятия утром и вечером — простой ритуал, который будет вас заряжать."}};
+const LT={
+ W:["Говорите вслух, за что цените, — конкретно, а не «ты молодец»","Пишите тёплые сообщения посреди дня","Хвалите при других, критикуйте мягко и наедине"],
+ T:["Выделите вечер без телефонов и сериалов","Слушайте с вопросами: «а что ты тогда почувствовал(а)?»","Заведите общий ритуал: прогулка, завтрак, вечерний чай"],
+ G:["Маленькие сюрпризы без повода: любимый шоколад, цветок, открытка","Запоминайте, о чём партнёр мечтает вслух","Не забывайте важные даты — поставьте напоминания"],
+ S:["Возьмите на себя дело, которое партнёр не любит","Спрашивайте: «Чем я могу помочь на этой неделе?»","Выполняйте обещания, даже мелкие"],
+ P:["Обнимайте при встрече и на прощание","Касайтесь мимоходом: рука на плече, ладонь в ладони","В трудную минуту сначала обнимите, потом говорите"]};
+const LP=[
+ {t:"Мне особенно приятно, когда партнёр…",s:{W:"говорит, что гордится мной и ценит меня",T:"откладывает дела и проводит со мной вечер вдвоём",G:"приносит маленький сюрприз просто так",S:"берёт на себя дело, которое я давно откладывал(а)",P:"обнимает меня без всякого повода"}},
+ {t:"Я чувствую, что меня любят, когда…",s:{W:"слышу искренний комплимент",T:"мы долго разговариваем и меня по-настоящему слушают",G:"получаю вещь, которая показывает, что обо мне думали",S:"обо мне заботятся в быту: готовят, чинят, помогают",P:"мы держимся за руки или сидим в обнимку"}},
+ {t:"После тяжёлого дня мне больше всего хочется…",s:{W:"услышать «ты молодец, ты со всем справишься»",T:"чтобы партнёр был рядом и уделил внимание только мне",G:"найти дома что-то приятное, купленное для меня",S:"чтобы ужин был готов, а дела сделаны за меня",P:"чтобы меня обняли или сделали массаж"}},
+ {t:"Сильнее всего меня задевает, когда…",s:{W:"меня резко критикуют или не замечают моих стараний",T:"партнёр рядом, но сидит в телефоне",G:"забывают о важной для меня дате",S:"обещают помочь и не помогают",P:"партнёр долго не прикасается ко мне и держит дистанцию"}},
+ {t:"Идеальный день рождения для меня — это…",s:{W:"тёплое письмо или тост о том, что я значу",T:"целый день вместе без чужих дел и отвлечений",G:"подарок, о котором я давно мечтал(а)",S:"день, когда всё организовали и сделали за меня",P:"много объятий, поцелуев и близости"}},
+ {t:"Сам(а) я чаще всего проявляю любовь тем, что…",s:{W:"говорю приятные слова и пишу нежные сообщения",T:"зову провести время вместе и планирую совместные дела",G:"дарю подарки и приношу что-нибудь вкусное",S:"помогаю делом и решаю проблемы партнёра",P:"обнимаю, прижимаюсь, беру за руку"}}];
+const T_LOVE={
+ id:"love",group:"pair",format:"points",icon:"touch",fmtLabel:"ползунки и рейтинг",kicker:"Как вы чувствуете любовь?",title:"Языки любви",min:5,
+ short:"Слова, время, подарки, помощь или прикосновения: на каком языке вы чувствуете заботу и как говорить на языке партнёра.",
+ source:"по модели Гэри Чепмена",
+ intro:["Тест из шести частей двух видов. В одних распределите <b>10 баллов</b> ползунками: чем больше утверждение про вас, тем больше баллов. В других расставьте утверждения <b>по порядку</b>, нажимая на них от самого важного к наименее важному.","Совет для ползунков: распределение 5/3/2 или 4/3/2/1 точнее покажет ваши приоритеты.","По итогам вы узнаете свой главный язык любви, а если пройдёте оба, — как лучше заботиться друг о друге."],
+ parts:LP.map((p,i)=>({title:p.t,fmt:i%2?"rank":"points",items:rot(LK,(i*2)%5).map(k=>({id:"L"+i+k,text:p.s[k],key:k}))})),
+ score(ans){const s={};LK.forEach(k=>s[k]=0);this.parts.forEach(p=>p.items.forEach(it=>s[it.key]+=(+ans[it.id]||0)));const r={};LK.forEach(k=>r[k]=Math.round(s[k]/60*100));const o=LK.slice().sort((x,y)=>r[y]-r[x]);r.top=o[0];r.second=o[1];r.low=o[4];return r},
+ summary:r=>LN[r.top],
+ chart:sc=>legend(sc)+bars(LK.map(k=>({label:LN[k],val:r=>({pct:r[k],txt:r[k]+"%"})})),sc),
+ person(r){const two=r[r.top]-r[r.second]<=3,o=LTY[r.top];
+   return{ill:ill(LILL[r.top]),title:two?LN[r.top]+" + "+LN[r.second]:LN[r.top],tag:o.tag,
+     body:secs(o,`<section class="w"><h3>Подсказки для партнёра</h3><ul class="tips">${li(LT[r.top])}</ul></section>`)+(two?`<p class="note" style="margin-top:18px">Два языка почти на равных: вам важно и то и другое. Второй язык — «${LN[r.second]}».</p>`:"")+`<p class="note" style="margin-top:10px">Меньше всего для вас значат «${LN[r.low]}».</p>`}},
+ pair(sc){let h=sc.a.top===sc.b.top?`<p class="callout">У вас общий главный язык — <b>«${LN[sc.a.top]}»</b>. Вам проще замечать заботу друг друга: вы любите так же, как хотите, чтобы любили вас.</p>`:`<p class="callout">Ваши главные языки разные: <b>«${LN[sc.a.top]}»</b> и <b>«${LN[sc.b.top]}»</b>. Люди обычно проявляют любовь на своём языке, поэтому забота одного может «не доходить» до другого. Это легко исправить, если знать язык партнёра.</p>`;
+   ["a","b"].forEach(w=>{const k=sc[w].top;h+=`<h3>Как любить: ${esc(nm(w))}</h3><p>Главный язык — «${LN[k]}». Подсказки для: ${esc(nm(oth(w)))}</p><ul>${li(LT[k])}</ul>`});return h},
+ sim:(a,b)=>clamp(100-LK.reduce((s,k)=>s+Math.abs(a[k]-b[k]),0)/2,0,100),
+ talk:["Вспомните момент, когда вы особенно сильно почувствовали любовь партнёра. Что он(а) тогда сделал(а)?","Какой маленький жест заботы вы хотели бы получать чаще?","Как вы обычно проявляете любовь — и замечает ли это партнёр?","Что из заботы партнёра вы раньше не считали проявлением любви?","Придумайте по одному ритуалу на языке каждого из вас на следующую неделю."],
+ method:"<p>Модель «пяти языков любви» предложил семейный консультант Гэри Чепмен (книга «Пять языков любви», 1992). В оригинальной анкете нужно выбирать одно утверждение из пары; здесь используются распределение баллов (как в тесте Белбина) и ранжирование: 1-е место = 4 балла, 2-е = 3, … 5-е = 0, так что в каждой части снова 10 баллов. Вопросы составлены для этого сайта.</p><p>Результат каждого языка — доля от максимума (60 баллов = 100%).</p><p>Исследования подтверждают, что людям важны все пять видов заботы, а идея одного «главного» языка подтверждается слабее (Impett, Park, Muise, 2024). Поэтому смотрите на весь профиль, а не только на первое место.</p>"
+};
+
+/* =========================================================
+   2. ТИП ПРИВЯЗАННОСТИ — ECR-S
+   ========================================================= */
+const ECR=[["av","Мне помогает обращаться к партнёру, когда мне трудно.",1],["anx","Мне нужно много подтверждений, что партнёр меня любит.",0],["av","Я хочу сблизиться с партнёром, но всё время отстраняюсь.",0],["anx","Мне кажется, партнёр не хочет быть настолько близким, насколько хотелось бы мне.",0],["av","Я обращаюсь к партнёру за многим, в том числе за утешением и поддержкой.",1],["anx","Моё сильное желание близости иногда отталкивает людей.",0],["av","Я стараюсь не сближаться с партнёром слишком сильно.",0],["anx","Я редко переживаю, что меня бросят.",1],["av","Обычно я обсуждаю с партнёром свои проблемы и переживания.",1],["anx","Меня расстраивает, если партнёра нет рядом, когда он(а) мне нужен(на).",0],["av","Я нервничаю, когда партнёр становится слишком близким.",0],["anx","Я боюсь, что я значу для партнёра меньше, чем он(а) для меня.",0]];
+const AT={S:"Надёжный",N:"Тревожный",V:"Избегающий",F:"Тревожно-избегающий"};
+const AILL={S:"secure",N:"anxious",V:"avoid",F:"fearful"};
+const ATY={
+ S:{tag:"Близость без страха",d:"Вам комфортно и в близости, и в самостоятельности. Вы доверяете партнёру, открыто говорите о чувствах и не паникуете, если он(а) не ответил(а) на сообщение. Ссора для вас — не конец света, а повод договориться. Такой стиль встречается примерно у половины взрослых.",plus:["Умеете и просить о поддержке, и давать её","Спокойно переживаете разлуку и разногласия","Создаёте ощущение безопасности для партнёра"],minus:["Можете недооценивать, насколько тревожно бывает другим: то, что для вас мелочь, для партнёра может быть важно","Не берите на себя роль «вечного психотерапевта» в паре"],love:"Ваша надёжность — ресурс для пары. Говорите о ней вслух: «я рядом», «я никуда не денусь» — даже если вам это кажется очевидным."},
+ N:{tag:"Люблю сильно и очень боюсь потерять",d:"Близость для вас — главное, и вы чутко ловите любые сигналы: изменившийся тон, поздний ответ, усталый взгляд. Когда что-то идёт не так, тревога растёт, хочется проверить, переспросить, получить подтверждение. Это не слабость: так психика научилась беречь важную связь.",plus:["Очень внимательны к чувствам партнёра","Вкладываетесь в отношения всем сердцем","Быстро замечаете, что в паре что-то не так"],minus:["Склонность «накручивать» себя по мелочам","Желание получить подтверждение здесь и сейчас может давить на партнёра"],love:"Говорите о своей потребности прямо: «мне спокойнее, когда ты пишешь, что задерживаешься». Это работает лучше проверок и намёков. И помните: тревога — это чувство, а не факт."},
+ V:{tag:"Близко, но со своим пространством",d:"Вы цените независимость и привыкли рассчитывать на себя. Когда отношения становятся слишком интенсивными, хочется отойти, побыть одному, «перезагрузиться». Говорить о чувствах бывает неловко, зато вы проявляете любовь делами и надёжностью.",plus:["Самостоятельны и устойчивы","Не делаете драмы из мелочей","Уважаете границы — свои и чужие"],minus:["Привычка справляться в одиночку оставляет партнёра «за бортом»","Отстранение в ссоре партнёр может прочитать как равнодушие"],love:"Когда нужно пространство, называйте это и обозначайте срок: «мне нужен час побыть одному, потом поговорим». Так партнёр знает, что вы вернётесь, и не будет догонять."},
+ F:{tag:"Хочу ближе — и боюсь этого",d:"Внутри вас два желания: сблизиться и защититься от боли. Поэтому отношения могут ощущаться как качели: то тянет к партнёру, то хочется отстраниться. Часто за этим стоит прошлый опыт, когда близость была небезопасной.",plus:["Глубоко чувствуете и понимаете чужую боль","Очень цените доверие, когда оно появилось","Хорошо распознаёте неискренность"],minus:["Сложно доверять, даже когда партнёр надёжен","Можете оттолкнуть человека именно тогда, когда он нужен больше всего"],love:"Двигайтесь маленькими шагами и называйте происходящее: «я сейчас отстраняюсь, потому что мне страшно, но ты мне дорог(а)». Если качели сильно мешают, хорошо помогает работа с психологом."}};
+const AH={S:"Открытый разговор и честность. Надёжному партнёру легко, когда с ним прямо говорят о том, что происходит.",N:"Предсказуемость: предупреждать о задержках, отвечать на сообщения, прямо говорить о чувствах. Это успокаивает лучше любых доводов.",V:"Пространство без давления. Не догонять и не требовать разговора немедленно, договариваться о времени вместе заранее. О чувствах легче говорить «бок о бок» — на прогулке, в дороге.",F:"Стабильность и терпение. Мягко называть, что происходит, и не воспринимать отстранение как отказ: обычно за ним стоит страх."};
+const AP={SS:"Вы оба чувствуете себя спокойно в близости. Это самая устойчивая основа: вы умеете и сближаться, и давать друг другу свободу.",SN:"Надёжный партнёр может стать для тревожного «тихой гаванью». Помогают предсказуемость и прямые слова о чувствах. Исследования показывают, что в устойчивых отношениях привязанность со временем становится надёжнее.",SV:"Надёжному партнёру важно не принимать потребность в пространстве на свой счёт, а избегающему — замечать, что близость здесь безопасна. Договаривайтесь и о времени вместе, и о времени для себя.",SF:"Надёжный партнёр помогает стабильностью. Тому, кто то тянется, то отстраняется, полезно называть, что происходит: «мне сейчас страшно, но я не ухожу».",NN:"Вы оба очень цените близость и чутко реагируете на признаки отдаления. Много тепла, но есть риск взаимной ревности и «накручивания». Договоритесь прямо говорить о тревоге, а не проверять друг друга.",NV:"Самое известное сочетание — «преследование и отступление»: чем больше один просит близости, тем сильнее другой отходит, и наоборот. Помогает правило: тревожный говорит о чувстве («мне тебя не хватает»), а не обвиняет; избегающий обещает вернуться к разговору и выполняет обещание.",NF:"Обоим важна близость, и обоим бывает тревожно. Поддерживайте друг друга ясностью: что я чувствую, что мне нужно, когда я вернусь к разговору.",VV:"Вы оба цените независимость. Конфликтов мало, но близость может незаметно таять. Заводите совместные ритуалы и иногда рискуйте первыми говорить о чувствах.",VF:"Обоим бывает непросто подпускать близко. Двигайтесь маленькими шагами: короткие разговоры о чувствах, но регулярно.",FF:"Вы оба хотите близости и одновременно опасаетесь её. Помогают предсказуемость, мягкость и договорённость не уходить молча во время ссоры."};
+const T_ATT={
+ id:"att",group:"pair",format:"dots",icon:"secure",fmtLabel:"кружки-шкала",kicker:"Как вы ведёте себя в близости?",title:"Тип привязанности",min:3,
+ short:"Надёжный, тревожный или избегающий: как вы переживаете близость и разлуку и что помогает вашей паре.",
+ source:"опросник ECR-S",scale:{n:7,lo:"Совсем не согласен(на)",hi:"Полностью согласен(на)"},
+ intro:["Утверждения ниже — о том, как вы чувствуете себя в романтических отношениях. Отвечайте о том, как вы <b>обычно</b> переживаете близость, а не только о нынешних отношениях.","Отмечайте кружок: большие оранжевые слева — «не согласен», большие фиолетовые справа — «согласен», маленькие в центре — «отчасти»."],
+ parts:chunk(ECR.map((e,i)=>({id:"A"+i,text:e[1],key:e[0],rev:e[2]})),6,"Насколько вы согласны?"),
+ score(ans){const s={anx:0,av:0};this.parts.forEach(p=>p.items.forEach(it=>{const v=+ans[it.id];s[it.key]+=it.rev?8-v:v}));const r={anx:s.anx/6,av:s.av/6};r.type=r.anx>=4?(r.av>=4?"F":"N"):(r.av>=4?"V":"S");return r},
+ summary:r=>AT[r.type],
+ chart(sc){const X=v=>40+(v-1)/6*260,Y=v=>300-(v-1)/6*260;
+   let svg=`<svg class="map" viewBox="0 0 340 340" role="img" aria-label="Карта привязанности"><rect x="40" y="40" width="260" height="260" class="grid"/><line x1="${X(4)}" y1="40" x2="${X(4)}" y2="300" class="ax"/><line x1="40" y1="${Y(4)}" x2="300" y2="${Y(4)}" class="ax"/><text x="${X(2.5)}" y="${Y(2.5)+4}" text-anchor="middle" class="ql">Надёжный</text><text x="${X(5.5)}" y="${Y(2.5)+4}" text-anchor="middle" class="ql">Тревожный</text><text x="${X(2.5)}" y="${Y(5.5)+4}" text-anchor="middle" class="ql">Избегающий</text><text x="${X(5.5)}" y="${Y(5.5)-4}" text-anchor="middle" class="ql">Тревожно-</text><text x="${X(5.5)}" y="${Y(5.5)+12}" text-anchor="middle" class="ql">избегающий</text><text x="170" y="326" text-anchor="middle">Тревожность →</text><text x="16" y="170" text-anchor="middle" transform="rotate(-90 16 170)">Избегание →</text>`;
+   const off=sc.a&&sc.b&&Math.abs(sc.a.anx-sc.b.anx)<.3&&Math.abs(sc.a.av-sc.b.av)<.3?8:0;
+   if(sc.a)svg+=dotSvg(X(sc.a.anx)-off,Y(sc.a.av),"a");if(sc.b)svg+=dotSvg(X(sc.b.anx)+off,Y(sc.b.av),"b");
+   return legend(sc)+svg+"</svg>"+bars([{label:"Тревожность",sub:"страх быть брошенным, потребность в подтверждениях",val:r=>({pct:(r.anx-1)/6*100,txt:r1(r.anx)+" / 7"})},{label:"Избегание",sub:"дискомфорт от близости и зависимости",val:r=>({pct:(r.av-1)/6*100,txt:r1(r.av)+" / 7"})}],sc)},
+ person(r){const near=Math.abs(r.anx-4)<.5||Math.abs(r.av-4)<.5,o=ATY[r.type];
+   return{ill:ill(AILL[r.type]),title:AT[r.type],tag:o.tag,body:secs(o,`<section class="w"><h3>Что помогает вам</h3><p>${AH[r.type]}</p></section>`)+(near?`<p class="note" style="margin-top:18px">Ваша точка на карте близко к границе: стиль смешанный, черты соседнего типа тоже есть.</p>`:"")}},
+ pair(sc){let h=`<p class="callout">${AP[pairKey(sc.a.type,sc.b.type,"SNVF")]}</p>`;["a","b"].forEach(w=>h+=`<h3>Что помогает: ${esc(nm(w))} (${AT[sc[w].type].toLowerCase()})</h3><p>${AH[sc[w].type]}</p>`);return h},
+ sim:(a,b)=>clamp(100-Math.hypot(a.anx-b.anx,a.av-b.av)/8.49*100,0,100),
+ talk:["Что помогает вам почувствовать себя в безопасности в наших отношениях?","Что происходит у вас внутри, когда партнёр долго не отвечает?","Что вам нужно во время ссоры: чтобы партнёр остался рядом или дал паузу?","Какие слова партнёра успокаивают вас лучше всего?","Был ли момент, когда вам хотелось отстраниться? Что тогда происходило?"],
+ method:"<p>Краткая версия опросника «Опыт близких отношений» — ECR-S (Wei, Russell, Mallinckrodt, Vogel, 2007), созданная на основе ECR (Brennan, Clark, Shaver, 1998). 12 утверждений, две шкалы — тревожность и избегание, по 6 пунктов. Четыре пункта считаются в обратную сторону. Перевод выполнен для этого сайта.</p><p>Баллы — среднее по шкале от 1 до 7. Тип определяется по модели Бартоломью и Горовица (1991), граница проведена по середине шкалы (4). Это упрощение, поэтому смотрите на положение точки, а не только на название.</p><p>Привязанность не приговор: она меняется с опытом, особенно в устойчивых отношениях.</p>"
+};
+
+/* =========================================================
+   3. СТИЛЬ В КОНФЛИКТЕ — модель Томаса–Килманна
+   ========================================================= */
+const CM={K:"Соперничество",C:"Сотрудничество",M:"Компромисс",A:"Избегание",P:"Приспособление"};
+const CILL={K:"trophy",C:"bulb",M:"scales",A:"turtle",P:"flag"};
+const CTY={
+ K:{tag:"Я знаю, как лучше",d:"В споре вы прямо отстаиваете свою позицию и стремитесь к результату. Вы не боитесь конфликтов, умеете аргументировать и быстро принимать решения. В экстренной ситуации это незаменимо: кто-то должен взять ответственность.",plus:["Решительность и смелость","Умеете защитить важное","Не копите недовольство — говорите сразу"],minus:["Партнёр может чувствовать себя проигравшим, даже если вы правы","Победа в споре иногда обходится дороже самого вопроса"],love:"Перед спором спросите себя: «Мне важнее быть правым или быть вместе?» Если вопрос не критичен, дайте партнёру выиграть. Это тоже сила."},
+ C:{tag:"Найдём решение, где выиграют оба",d:"Вы относитесь к конфликту как к общей задаче. Вам важно разобраться, что стоит за позициями, и найти вариант, который полностью устроит обоих. Это самый зрелый, но и самый затратный способ: нужны время, силы и готовность второй стороны.",plus:["Слушаете и учитываете интересы другого","Ищете творческие решения","Укрепляете доверие в паре"],minus:["Можете затягивать обсуждение мелочей","Устаёте, если партнёр не готов к долгому разговору"],love:"Берегите силы: глубокие обсуждения — для важных вопросов, а для бытовых мелочей хватит быстрого компромисса или очереди."},
+ M:{tag:"Встретимся посередине",d:"Вы предпочитаете быстро договориться: немного уступить самому и попросить того же у другого. Это экономит силы и сохраняет мир. Вы прагматичны и понимаете, что идеальное решение бывает редко.",plus:["Гибкость и реализм","Умеете быстро снять напряжение","Справедливость: никто не уходит обиженным"],minus:["«Пополам» иногда значит, что никто не получил то, что важно","Можете уступать там, где стоило бы постоять за себя"],love:"Перед компромиссом уточните, что для каждого действительно важно. Иногда лучше «целиком по-твоему в этот раз, по-моему — в следующий», чем по половине и там и там."},
+ A:{tag:"Давай не сейчас",d:"Вы не любите ссоры и предпочитаете не раскачивать лодку: отложить разговор, сменить тему, дать ситуации остыть. Иногда это мудро: многие мелочи действительно решаются сами, а в пылу можно наговорить лишнего.",plus:["Умеете не обострять","Не реагируете импульсивно","Чувствуете, какие споры не стоят сил"],minus:["Нерешённые вопросы копятся и всплывают позже","Партнёр может решить, что его проблемы вам неважны"],love:"Избегайте не разговора, а неудачного момента для него. Скажите: «Давай обсудим это вечером, мне нужно подумать», — и обязательно вернитесь к теме."},
+ P:{tag:"Пусть будет по-твоему",d:"Отношения для вас важнее победы в споре. Вы легко уступаете, если видите, что для партнёра вопрос важнее, и умеете сгладить напряжение. Это проявление заботы и великодушия.",plus:["Щедрость и забота","Умеете сохранить тепло даже в споре","Признаёте свою неправоту"],minus:["Если уступать всегда, копится скрытая обида","Партнёр может не знать, чего вы хотите на самом деле"],love:"Иногда говорите «а я хочу вот так» — даже в мелочах. Партнёру важно знать ваши желания, а не только видеть согласие."}};
+const CPOOL={
+ K:["Я твёрдо отстаиваю свою точку зрения.","Я стараюсь добиться своего.","Я привожу аргументы, пока собеседник не согласится.","Если я уверен(а) в своей правоте, я не уступаю.","Мне важно выиграть спор.","Я настаиваю на своём решении.","Я прямо говорю, чего хочу, и добиваюсь этого.","Я убеждаю другого в преимуществах моей позиции.","Я не отступаю, даже если разговор становится напряжённым.","Я беру решение на себя, если считаю, что знаю, как лучше.","Я стараюсь доказать, что моё мнение логичнее.","Я защищаю свои интересы до конца."],
+ C:["Я сразу выкладываю на стол все проблемы и опасения — и свои, и чужие.","Я ищу решение, которое полностью устроит нас обоих.","Я предлагаю вместе разобраться, в чём на самом деле разногласие.","Я делюсь своими идеями и прошу другого поделиться своими.","Я стараюсь понять, что на самом деле важно для другого человека.","Я готов(а) долго обсуждать, чтобы найти лучший вариант для всех.","Я ищу, в чём наши интересы совпадают.","Я открыто говорю о своих чувствах и спрашиваю о чувствах другого.","Я стараюсь, чтобы решение учитывало желания обоих полностью, а не наполовину.","Я предлагаю обсуждать, пока мы оба не будем довольны.","Я пытаюсь соединить свою идею и идею другого в одну общую.","Я прошу другого вместе со мной поискать решение."],
+ M:["Я предлагаю найти золотую середину.","Я готов(а) уступить в чём-то, если другой уступит в другом.","Я предлагаю: немного по-моему, немного по-твоему.","Я ищу быстрое решение, где каждый что-то получает.","Я стараюсь договориться так, чтобы никто не остался в проигрыше.","Я соглашаюсь на часть того, чего хочу, если это решит вопрос.","Я предлагаю делить всё поровну.","Я отказываюсь от части требований ради договорённости.","Я торгуюсь, пока мы не сойдёмся где-то посередине.","Я считаю, что честный обмен уступками лучше долгого спора.","Я предлагаю чередовать: сегодня по-моему, завтра по-твоему.","Я ищу вариант, на который оба могут согласиться, пусть и не идеальный."],
+ A:["Я стараюсь не обострять ситуацию и откладываю спор.","Я предпочитаю не поднимать тему, которая может привести к ссоре.","Я стараюсь уйти от неприятного разговора.","Я думаю, что из-за разногласий не стоит переживать.","Я даю ситуации время, чтобы она решилась сама.","Я не высказываю свою позицию, чтобы избежать напряжения.","Я меняю тему, когда разговор становится острым.","Мне проще промолчать, чем спорить.","Я откладываю решение, пока не обдумаю всё в одиночку.","Я держусь в стороне от спорных вопросов.","Я стараюсь не брать на себя неприятное решение.","Я считаю, что многие разногласия не стоят обсуждения."],
+ P:["Я стараюсь успокоить другого и сохранить хорошие отношения.","Я уступаю, если для другого это важнее.","Я соглашаюсь с другим, чтобы не портить отношения.","Я готов(а) отказаться от своего желания ради партнёра.","Я стараюсь не задеть чувства другого, даже в ущерб себе.","Я поддерживаю идею другого, даже если сомневаюсь в ней.","Мне важнее мир между нами, чем моя правота.","Я иду навстречу, даже если считаю себя правым(ой).","Я легко уступаю, когда вижу, что человек расстроен.","Я делаю так, как хочет другой, чтобы ему было хорошо.","Я подстраиваюсь под настроение и желания другого.","Я жертвую своими интересами ради согласия."]};
+const CPAIR={KK:"Два соперника: споры бывают жаркими, и каждый хочет победить. Договоритесь о стоп-слове для паузы на 20 минут и спрашивайте себя не «кто прав?», а «что важно для нас обоих?».",KC:"Один давит, другой ищет общее решение. Сотрудничающему стоит прямо называть свои интересы, а соревнующемуся — сначала задавать вопросы, а потом убеждать.",KM:"Один стремится победить, другой быстро предлагает середину. Следите, чтобы «середина» не сдвигалась каждый раз в одну сторону.",KA:"Самое уязвимое сочетание: один наступает, другой уходит, и чем сильнее напор, тем дальше отступление. Помогает договорённость обсуждать трудное в удобное для обоих время и спокойным тоном.",KP:"Один почти всегда побеждает, другой почти всегда уступает. Снаружи тихо, но у уступающего копится обида. Спрашивайте друг друга: «Насколько это важно для тебя от 1 до 10?»",CC:"Вы оба ищете решение, которое устроит всех. Отличная основа. Единственный риск — долгие обсуждения мелочей; для них хватит и быстрого компромисса.",CM:"Хорошее сочетание: один ищет идеальное решение, другой — быстрое и справедливое. Важные вопросы решайте глубоко, бытовые — компромиссом.",CA:"Один хочет всё обсудить, другой — не трогать тему. Дайте избегающему время подготовиться: «Давай обсудим это вечером», — и вернитесь к разговору.",CP:"Один ищет общее решение, другой легко уступает. Сотрудничающему стоит спрашивать мнение партнёра и проверять, что тот соглашается не только ради мира.",MM:"Вы оба быстро договариваетесь «пополам». Споры короткие, но иногда стоит копнуть глубже и спросить, чего каждый хочет на самом деле.",MA:"Один предлагает быстро договориться, другой откладывает разговор. Назначайте время для обсуждения и приходите на него с готовыми вариантами.",MP:"Мирная пара: споров мало, решения находятся быстро. Следите, чтобы тот, кто чаще уступает, тоже говорил о своих желаниях.",AA:"Вы оба бережёте мир и обходите острые темы. Ссор мало, но нерешённое копится. Раз в неделю устраивайте спокойный разговор «что нас беспокоит».",AP:"Очень мягкая пара: один уходит от спора, другой уступает. Иногда сознательно поднимайте неудобные темы, иначе важные потребности остаются невысказанными.",PP:"Вы оба готовы уступать друг другу. Много заботы, но бывают ситуации «мне всё равно, решай ты». Пробуйте по очереди говорить честное «я хочу»."};
+const CONFLICT_ITEMS=(()=>{const R=rng(20261106),cnt={K:0,C:0,M:0,A:0,P:0},pairs=[],combos=[["K","C"],["K","M"],["K","A"],["K","P"],["C","M"],["C","A"],["C","P"],["M","A"],["M","P"],["A","P"]];
+ for(let r=0;r<3;r++)combos.forEach(c=>pairs.push([{k:c[0],t:CPOOL[c[0]][cnt[c[0]]++]},{k:c[1],t:CPOOL[c[1]][cnt[c[1]]++]}]));
+ for(let i=pairs.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]]}
+ return pairs.map((p,i)=>{if(R()<.5)p=[p[1],p[0]];return{id:"C"+i,a:p[0],b:p[1]}})})();
+const T_CONF={
+ id:"conf",group:"pair",format:"vs",icon:"scales",fmtLabel:"это или то",kicker:"Как вы ведёте себя в споре?",title:"Стиль в конфликте",min:6,
+ short:"Соперничество, сотрудничество, компромисс, избегание или приспособление: как вы спорите и как ваши стили сочетаются.",
+ source:"по модели Томаса–Килманна",
+ intro:["Перед вами <b>30 пар утверждений</b> о том, как люди ведут себя в разногласиях — с близкими, друзьями, коллегами.","В каждой паре нажмите на то, что больше на вас похоже. Если ни одно не подходит идеально, выберите более близкое."],
+ parts:chunk(CONFLICT_ITEMS,10,"Что вы скорее сделаете?"),
+ score(ans){const r={K:0,C:0,M:0,A:0,P:0};this.parts.forEach(p=>p.items.forEach(it=>{const v=ans[it.id];if(v)r[it[v].k]++}));const o="KCMAP".split("").sort((x,y)=>r[y]-r[x]);r.top=o[0];r.low=o[4];r.ties=o.filter(k=>r[k]===r[o[0]]);return r},
+ summary:r=>CM[r.top],
+ chart:sc=>legend(sc)+bars("CKMPA".split("").map(k=>({label:CM[k],val:r=>({pct:r[k]/12*100,txt:r[k]+" из 12"})})),sc),
+ person(r){const lvl=v=>v>=8?"часто":v>=4?"иногда":"редко",o=CTY[r.top];
+   return{ill:ill(CILL[r.top]),title:r.ties.map(k=>CM[k]).join(" + "),tag:o.tag,body:secs(o)+`<p class="note" style="margin-top:18px">Реже всего вы используете «${CM[r.low]}» (${lvl(r[r.low])}).${r.ties.length>1?" Несколько стилей у вас на равных — значит, вы гибко переключаетесь.":""}</p>`}},
+ pair:sc=>`<p class="callout">${CPAIR[pairKey(sc.a.top,sc.b.top,"KCMAP")]}</p><p>Хорошего или плохого стиля нет: каждый уместен в своей ситуации. Сильнее всего паре помогает умение переключаться, особенно в сторону сотрудничества, когда вопрос важен для обоих.</p>`,
+ sim:(a,b)=>clamp(100-"KCMAP".split("").reduce((s,k)=>s+Math.abs(a[k]-b[k]),0)/60*100,0,100),
+ talk:["Из-за чего мы спорим чаще всего? Что на самом деле стоит за этими спорами?","Что вам помогает остыть во время ссоры?","Какую фразу партнёра в споре вы бы хотели больше никогда не слышать?","Вспомните спор, который мы решили хорошо. Что тогда сработало?","Придумайте вместе стоп-слово для паузы в ссоре."],
+ method:"<p>Модель пяти стилей поведения в конфликте предложили Кеннет Томас и Ральф Килманн (1974) на основе двух осей: насколько вы отстаиваете свои интересы и насколько учитываете интересы другого.</p><p>Формат как в оригинальной методике: 30 пар утверждений, каждый стиль встречается 12 раз и сравнивается с каждым другим трижды. Сами утверждения составлены для этого сайта: оригинальный текст методики защищён авторским правом.</p><p>Балл стиля — сколько раз вы его выбрали (0–12). Ориентир: 8 и выше — используете часто, 3 и ниже — редко.</p>"
+};
+
+/* =========================================================
+   4. УДОВЛЕТВОРЁННОСТЬ — RAS (S. Hendrick, 1988)
+   ========================================================= */
+const RAS=[["Насколько хорошо партнёр удовлетворяет ваши потребности?","Плохо","Отлично",0],["В целом, насколько вы довольны вашими отношениями?","Недоволен(на)","Очень доволен(на)",0],["Насколько ваши отношения хороши по сравнению с большинством других?","Хуже","Намного лучше",0],["Как часто вы жалеете, что вступили в эти отношения?","Никогда","Очень часто",1],["В какой мере ваши отношения оправдали ваши первоначальные ожидания?","Совсем не оправдали","Полностью оправдали",0],["Насколько сильно вы любите партнёра?","Не очень","Очень сильно",0],["Сколько проблем в ваших отношениях?","Очень мало","Очень много",1]];
+const RLV=[
+ {t:"Низкая",tag:"Пора поговорить",d:"Сейчас многое в отношениях вас не устраивает. Это важный сигнал, а не приговор: удовлетворённость меняется, когда пара начинает говорить о том, что не так.",tips:["Выберите спокойный момент и расскажите, чего вам не хватает, — через «я чувствую», а не «ты всегда»","Вспомните вместе, что раньше делало вас счастливыми, и верните хотя бы одну такую вещь","Если разговор не получается, семейный психолог поможет услышать друг друга"]},
+ {t:"Умеренная",tag:"Есть над чем поработать",d:"Кое-что в отношениях вас не устраивает. Возможно, накопилась усталость или какие-то потребности давно не обсуждались. Хорошая новость: это обычно решается разговором и небольшими изменениями.",tips:["Назовите одну конкретную вещь, которую хотелось бы изменить","Запланируйте время только для двоих — без быта и телефонов","Благодарите партнёра за мелочи: это заметно поднимает удовлетворённость"]},
+ {t:"Хорошая",tag:"В целом всё хорошо",d:"Вы довольны отношениями, хотя есть моменты, которые хотелось бы улучшить. Это нормальная картина: идеальных отношений не бывает, а ваши крепко стоят на ногах.",tips:["Обсудите тот вопрос, где ваша оценка была ниже всего","Добавьте новизны: новое место, новое хобби, новое приключение вдвоём","Говорите о хорошем вслух — партнёру важно знать, что он делает правильно"]},
+ {t:"Высокая",tag:"Вам хорошо вместе",d:"Отношения дают вам то, что нужно: вы довольны, чувствуете любовь и не жалеете о выборе. Это не значит, что всё идеально, — скорее, хорошего в отношениях заметно больше, чем трудностей.",tips:["Продолжайте то, что работает, и назовите вслух, что именно вам нравится","Новые общие впечатления помогут сохранить искру надолго","В трудные периоды вспоминайте этот результат: у вас крепкая основа"]}];
+const rasLvl=m=>m>=4.3?3:m>=4?2:m>=3.5?1:0;
+const T_RAS={
+ id:"ras",group:"pair",format:"faces",icon:"gauge",fmtLabel:"смайлики",kicker:"Насколько вам хорошо вместе?",title:"Довольны ли вы отношениями",min:2,
+ short:"Семь вопросов о том, насколько отношения дают вам то, что нужно. Покажет, где ваши ощущения совпадают и где расходятся.",
+ source:"шкала RAS С. Хендрик",scale:{n:5},
+ intro:["Семь коротких вопросов о ваших отношениях <b>сейчас</b>. Отвечайте смайликом. Будьте честны: партнёр не увидит результат, пока не пройдёт тест сам.","Когда пройдёте оба, вы увидите вопросы, где ответы сильно разошлись. Это не повод для ссоры, а хорошая тема для спокойного разговора."],
+ parts:[{title:"Ваши отношения сейчас",items:RAS.map((e,i)=>({id:"R"+i,text:e[0],lo:e[1],hi:e[2],rev:e[3]}))}],
+ score(ans){let s=0;this.parts[0].items.forEach(it=>{const v=+ans[it.id];s+=it.rev?6-v:v});return{mean:s/7}},
+ summary:r=>r1(r.mean)+" из 5",
+ chart:sc=>legend(sc)+bars([{label:"Удовлетворённость",sub:"среднее по 7 вопросам, от 1 до 5",val:r=>({pct:(r.mean-1)/4*100,txt:r1(r.mean)})}],sc),
+ person(r){const k=rasLvl(r.mean),o=RLV[k];return{ill:ill("gauge",k),big:`<span data-count="${r.mean}" data-dec="1">${r1(r.mean)}</span>`,title:o.t+" удовлетворённость",tag:o.tag,body:`<div class="secs"><section class="w"><h3>Что это значит</h3><p>${o.d}</p></section><section class="w"><h3>Что поможет</h3><ul class="tips">${li(o.tips)}</ul></section></div>`}},
+ pair(sc,raw){const items=this.parts[0].items,d=Math.abs(sc.a.mean-sc.b.mean);
+   let h=`<p class="callout">${d<.3?"Вы оцениваете отношения почти одинаково — вы хорошо чувствуете друг друга.":d<.7?"Ваши оценки немного различаются: одному из вас чуть больше чего-то не хватает.":"Ваши оценки заметно различаются. Важно спокойно выяснить, что видит каждый, — без поиска виноватых."}</p>`;
+   const diffs=items.filter(it=>Math.abs(raw.a[it.id]-raw.b[it.id])>=2);
+   if(diffs.length)h+=`<h3>Где ответы разошлись</h3><div class="diff">${diffs.map(it=>`<div><p>${it.text}</p><span><i class="dot a"></i>${esc(nm("a"))}: ${raw.a[it.id]} из 5</span><span><i class="dot b"></i>${esc(nm("b"))}: ${raw.b[it.id]} из 5</span></div>`).join("")}</div><p class="note">У каждого вопроса своя шкала, подписи были на её краях. Начните разговор с вопроса: «Почему ты ответил(а) так?»</p>`;
+   else h+=`<p>По каждому вопросу ваши ответы отличаются не больше чем на 1 балл.</p>`;
+   return h},
+ sim:(a,b)=>clamp(100-Math.abs(a.mean-b.mean)/4*100,0,100),
+ talk:["Что в наших отношениях сейчас нравится вам больше всего?","Чего вам не хватает в последнее время?","Когда вы чувствовали себя в паре счастливее всего? Что тогда было иначе?","Каких ожиданий от отношений у вас было больше всего в начале? Какие оправдались?","Какое одно маленькое изменение сделает нашу следующую неделю лучше?"],
+ method:"<p>Шкала оценки отношений (Relationship Assessment Scale, RAS) — короткий опросник удовлетворённости партнёрскими отношениями, который предложила Сьюзан Хендрик (1988). Семь вопросов, ответы от 1 до 5, два вопроса считаются в обратную сторону (поэтому в них весёлый смайлик слева). Перевод выполнен для этого сайта.</p><p>Итог — среднее значение. В исследованиях у довольных пар оно обычно около 4 и выше, у пар, обратившихся за помощью, — ниже 3,5. Границы уровней здесь ориентировочные.</p>"
+};
+
+/* =========================================================
+   5. СТИЛИ ЛЮБВИ — LAS-SF (Hendrick, Hendrick, Dicke, 1998)
+   ========================================================= */
+const LAS={
+ E:["У нас с партнёром есть настоящая «химия».","Мне кажется, мы с партнёром созданы друг для друга.","Мы с партнёром действительно понимаем друг друга.","Партнёр соответствует моему идеалу внешней привлекательности."],
+ Lu:["Я считаю: то, чего партнёр обо мне не знает, ему не повредит.","Иногда мне приходилось скрывать от партнёра других поклонников.","Партнёр расстроился бы, узнав кое-что о моих отношениях с другими людьми.","Мне нравится играть в «игру любви» — и с партнёром, и с другими."],
+ St:["Наша любовь — лучшая, потому что выросла из долгой дружбы.","Наша дружба постепенно переросла в любовь.","Наша любовь — это прежде всего глубокая дружба, а не загадочное чувство.","Наши отношения приносят столько радости, потому что выросли из хорошей дружбы."],
+ Pr:["Выбирая партнёра, я думал(а) о том, как он(а) впишется в мою семью.","Выбирая партнёра, я думал(а) о том, каким(ой) он(а) будет родителем.","Выбирая партнёра, я думал(а) о том, как это отразится на моей карьере.","Прежде чем серьёзно увлечься, я прикидывал(а), насколько мы совместимы для будущей семьи."],
+ Ma:["Когда партнёр не обращает на меня внимания, мне физически плохо.","С тех пор как я влюбился(лась), мне трудно сосредоточиться на чём-то другом.","Я не могу расслабиться, если подозреваю, что партнёр с кем-то другим.","Если партнёр какое-то время меня игнорирует, я иногда делаю глупости, чтобы вернуть его внимание."],
+ Ag:["Я лучше буду страдать сам(а), чем позволю страдать партнёру.","Я не могу быть счастлив(а), если не ставлю счастье партнёра выше своего.","Я обычно готов(а) пожертвовать своими желаниями ради желаний партнёра.","Ради партнёра я вынесу всё что угодно."]};
+const LASK=["E","Lu","St","Pr","Ma","Ag"];
+const LASN={E:"Эрос",Lu:"Людус",St:"Сторге",Pr:"Прагма",Ma:"Мания",Ag:"Агапе"};
+const LASILL={E:"eros",Lu:"dice",St:"plant",Pr:"calendar",Ma:"mania",Ag:"agape"};
+const LASTY={
+ E:{tag:"Страстная любовь",d:"Любовь для вас — это химия, притяжение и ощущение, что вы созданы друг для друга. Вам важны физическая привлекательность, романтика и глубокое понимание. Эрос — один из стилей, сильнее всего связанных с удовлетворённостью отношениями.",plus:["Страсть и романтика","Открытость в чувствах","Умение восхищаться партнёром"],minus:["Ожидание вечной «искры»: со временем страсть меняет форму, и это нормально"],love:"Поддерживайте химию новизной: свидания, сюрпризы, новые места и впечатления вдвоём."},
+ Lu:{tag:"Любовь-игра",d:"Вы воспринимаете любовь легко, как увлекательную игру: флирт, свобода, отсутствие драмы. Вам важно не терять себя и не растворяться в партнёре.",plus:["Лёгкость","Чувство юмора","Независимость"],minus:["Партнёру может не хватать ощущения серьёзности и уверенности в вас","Игра ранит, если правила знает только один"],love:"Обсудите, что значит серьёзность отношений для каждого. Ваша лёгкость — ценность, если партнёр при этом чувствует себя в безопасности."},
+ St:{tag:"Любовь-дружба",d:"Для вас любовь вырастает из дружбы: доверия, общих интересов, спокойной привязанности. Без бурь и фейерверков, зато надолго. Партнёр для вас — прежде всего лучший друг.",plus:["Глубокое доверие","Стабильность","Общие интересы"],minus:["Можете недооценивать романтику и страсть"],love:"Не забывайте о романтике: иногда превращайте дружеский вечер в настоящее свидание."},
+ Pr:{tag:"Любовь с умом",d:"Вы подходите к любви практично: важны совместимость, общие цели, надёжность, взгляды на семью и будущее. Голова и сердце работают вместе.",plus:["Реалистичность","Ответственность","Умение строить будущее"],minus:["Партнёр может почувствовать себя «пунктом в списке», если не показывать чувства"],love:"Говорите не только о планах, но и о чувствах: «я с тобой, потому что люблю», а не только «потому что мы подходим»."},
+ Ma:{tag:"Одержимая любовь",d:"Вы любите горячо и тревожно: партнёр занимает все мысли, его внимание очень важно, а отдаление переживается болезненно. Эмоции зашкаливают — и в радости, и в ревности.",plus:["Сильные чувства","Преданность","Полная вовлечённость"],minus:["Ревность и тревога выматывают обоих","Настроение сильно зависит от поведения партнёра"],love:"Мания тесно связана с тревожной привязанностью. Помогают ясные договорённости и собственные интересы вне пары."},
+ Ag:{tag:"Жертвенная любовь",d:"Вы любите бескорыстно: благополучие партнёра для вас важнее собственного, вы готовы отдавать, ничего не требуя взамен.",plus:["Щедрость","Забота","Безусловное принятие"],minus:["Риск забыть о себе и своих потребностях","Партнёру бывает неловко «быть в долгу»"],love:"Позволяйте и партнёру заботиться о вас. Отношения — это обмен, а не только отдача."}};
+const LASITEMS=(()=>{const out=[];for(let i=0;i<4;i++)LASK.forEach(k=>out.push({id:"S"+k+i,text:LAS[k][i],key:k}));return out})();
+const T_LAS={
+ id:"las",group:"pair",format:"hearts",icon:"eros",fmtLabel:"сердечки",isNew:true,kicker:"Как вы любите?",title:"Стили любви",min:4,
+ short:"Эрос, людус, сторге, прагма, мания или агапе: шесть стилей любви по теории Джона Ли — какой ваш и как они сочетаются.",
+ source:"шкала LAS Хендриков",scale:{n:5,lo:"Совсем не про меня",hi:"Точно про меня"},
+ intro:["24 утверждения о ваших нынешних отношениях. Оценивайте сердечками: одно — «совсем не про меня», пять — «точно про меня».","Некоторые утверждения звучат провокационно — так задумано авторами методики. Партнёр увидит только итоговые стили, а не ответы на отдельные вопросы."],
+ parts:chunk(LASITEMS,8,"Насколько это про вас?"),
+ score(ans){const r={};LASK.forEach(k=>r[k]=avg(LASITEMS.filter(it=>it.key===k).map(it=>+ans[it.id])));const o=LASK.slice().sort((x,y)=>r[y]-r[x]);r.top=o[0];r.second=o[1];return r},
+ summary:r=>LASN[r.top],
+ chart:sc=>legend(sc)+bars(LASK.map(k=>({label:LASN[k],sub:LASTY[k].tag.toLowerCase(),val:r=>({pct:(r[k]-1)/4*100,txt:r1(r[k])})})),sc),
+ person(r){const o=LASTY[r.top];return{ill:ill(LASILL[r.top]),title:LASN[r.top],tag:o.tag,body:secs(o,`<section class="w"><h3>Второй по силе стиль</h3><p><b>${LASN[r.second]}</b> — ${LASTY[r.second].tag.toLowerCase()}. ${LASTY[r.second].d.split(". ")[0]}.</p></section>`)}},
+ pair(sc){let h=sc.a.top===sc.b.top?`<p class="callout">Ваш главный стиль совпадает — <b>${LASN[sc.a.top]}</b>. Исследования Хендриков показывают, что партнёры часто похожи по стилям любви, и это облегчает взаимопонимание.</p>`:`<p class="callout">У вас разные главные стили: <b>${LASN[sc.a.top]}</b> и <b>${LASN[sc.b.top]}</b>. Это значит, что вы немного по-разному понимаете, «какой должна быть любовь». Обсудите это — разница часто дополняет пару.</p>`;
+   const both=k=>sc.a[k]>=3.5&&sc.b[k]>=3.5;
+   if(both("E"))h+=`<h3>Эрос у обоих</h3><p>У вас обоих сильная страсть и романтика — это одна из самых устойчивых основ для удовлетворённости.</p>`;
+   if(sc.a.Ma>=3.5||sc.b.Ma>=3.5)h+=`<h3>Внимание к мании</h3><p>У одного из вас (или обоих) заметна мания — тревожная, ревнивая любовь. Помогают ясность, договорённости и отсутствие «проверок».</p>`;
+   if(sc.a.Lu>=3.5||sc.b.Lu>=3.5)h+=`<h3>Внимание к людусу</h3><p>У одного из вас заметна игровая любовь. Обсудите, что значит верность и серьёзность для каждого, чтобы игра оставалась весёлой для обоих.</p>`;
+   if(Math.abs(sc.a.St-sc.b.St)>=1.2)h+=`<h3>Дружба и романтика</h3><p>Для одного любовь — прежде всего дружба, для другого это менее важно. Совместные интересы и романтика помогут встретиться посередине.</p>`;
+   return h},
+ sim:(a,b)=>clamp(100-avg(LASK.map(k=>Math.abs(a[k]-b[k])))/4*100,0,100),
+ talk:["Как начинались наши отношения: со страсти, с дружбы или с чего-то ещё?","Что для вас важнее в любви: искра или надёжность?","Ревнуете ли вы? Что в такой момент помогает?","Хватает ли в наших отношениях игры и лёгкости?","Чем вы готовы пожертвовать ради партнёра — и чем нет?"],
+ method:"<p>Теорию шести стилей любви предложил социолог Джон Ли (1973). Шкала отношения к любви (Love Attitudes Scale) — Клайд и Сьюзан Хендрик; здесь краткая версия LAS-SF (Hendrick, Hendrick, Dicke, 1998): 24 утверждения, по 4 на стиль. Перевод выполнен для этого сайта.</p><p>Балл стиля — среднее от 1 до 5. Эрос и агапе обычно связаны с удовлетворённостью отношениями, людус — наоборот. Стили — не «типы»: у каждого человека есть все шесть в разной пропорции, и они меняются со временем.</p>"
+};
+
+/* =========================================================
+   6. ТРЕУГОЛЬНИК СТЕРНБЕРГА
+   ========================================================= */
+const STI=[
+ ["I","Я могу рассказать партнёру о самом личном."],["P","Я часто думаю о партнёре в течение дня."],["C","Я уверен(а), что хочу быть с партнёром и дальше."],
+ ["I","Я чувствую, что партнёр действительно меня понимает."],["P","Меня сильно тянет к партнёру физически."],["C","Я считаю наши отношения надёжными и прочными."],
+ ["I","Я могу рассчитывать на поддержку партнёра в трудную минуту."],["P","Наши отношения очень романтичны."],["C","Я готов(а) вкладываться в отношения, даже когда трудно."],
+ ["I","Мне тепло и спокойно рядом с партнёром."],["P","Даже взгляд партнёра может меня взволновать."],["C","Я вижу партнёра в своих планах на будущее."],
+ ["I","Мы делимся друг с другом мыслями и переживаниями."],["P","Я с нетерпением жду каждой встречи с партнёром."],["C","Наши отношения — мой осознанный выбор."]];
+const STN={I:"Близость",P:"Страсть",C:"Обязательство"};
+const STTY={
+ IPC:{t:"Совершенная любовь",tag:"Близость, страсть и обязательство",d:"Все три компонента на высоте: вы близки, вас тянет друг к другу и вы уверены в будущем. Стернберг называл это идеалом, к которому стремятся многие пары. Достичь его непросто, а сохранить — ещё сложнее.",love:"Берегите то, что есть: страсть со временем естественно ослабевает, поэтому подпитывайте её новизной, а близость — разговорами."},
+ IP:{t:"Романтическая любовь",tag:"Близость и страсть",d:"Вы близки и сильно влюблены, но уверенность в общем будущем пока не на первом месте. Так часто выглядят яркие отношения в начале пути.",love:"Поговорите о будущем: чего каждый ждёт от отношений через год?"},
+ IC:{t:"Дружеская любовь",tag:"Близость и обязательство",d:"Глубокая близость и прочная преданность при спокойной страсти. Так часто выглядят долгие крепкие отношения: вы как лучшие друзья и надёжная команда.",love:"Добавьте романтики: свидания, флирт и сюрпризы помогают разжечь страсть заново."},
+ PC:{t:"Безрассудная любовь",tag:"Страсть и обязательство",d:"Страсть и решимость быть вместе сильны, а глубокая близость ещё не сложилась. Так бывает при стремительных романах.",love:"Узнавайте друг друга глубже: разговоры о прошлом, страхах и мечтах."},
+ I:{t:"Симпатия",tag:"Близость",d:"Вы чувствуете тепло и близость, но страсть и уверенность в будущем сейчас приглушены. Это похоже на крепкую дружбу.",love:"Подумайте вместе, чего вам не хватает больше — романтики или ясности о будущем."},
+ P:{t:"Влюблённость",tag:"Страсть",d:"Сейчас ведущая сила — страсть и притяжение. Близость и обязательства ещё впереди.",love:"Используйте этот огонь, чтобы лучше узнать друг друга."},
+ C:{t:"Любовь-обязательство",tag:"Обязательство",d:"Вы настроены сохранять отношения, но близость и страсть сейчас приглушены. Такое бывает в периоды стресса, усталости или рутины.",love:"Это сигнал вложиться в близость: время вдвоём, разговоры, прикосновения."},
+ "":{t:"Всё приглушено",tag:"Компоненты ниже среднего",d:"Сейчас все три компонента ниже середины шкалы. Возможно, вы отвечали в тяжёлый период или отношения только начинаются.",love:"Не делайте выводов по одному тесту: обсудите, что происходит, и пройдите его снова через какое-то время."}};
+const stCode=r=>["I","P","C"].filter(k=>r[k]>=6).join("");
+const triPts=(r,cx,cy,R)=>{const dir={I:-90,P:150,C:30};return["I","P","C"].map(k=>{const a=dir[k]*Math.PI/180,d=(r[k]/9)*R;return n2(cx+d*Math.cos(a))+","+n2(cy+d*Math.sin(a))}).join(" ")};
+const T_STERN={
+ id:"stern",group:"pair",format:"tiles",icon:"stern",fmtLabel:"шкала 1–9",isNew:true,kicker:"Из чего сделана ваша любовь?",title:"Треугольник любви",min:3,
+ short:"Близость, страсть и обязательство по теории Роберта Стернберга. Два ваших треугольника накладываются друг на друга.",
+ source:"по теории Р. Стернберга",scale:{n:9,lo:"Совсем нет",hi:"Абсолютно да"},
+ intro:["15 утверждений о ваших нынешних отношениях. Оцените каждое по шкале от <b>1</b> (совсем нет) до <b>9</b> (абсолютно да), как в оригинальной шкале Стернберга.","В результате у каждого получится свой треугольник любви, и вы увидите, насколько они совпадают."],
+ parts:chunk(STI.map((e,i)=>({id:"T"+i,text:e[1],key:e[0]})),5,"Насколько это про ваши отношения?"),
+ score(ans){const r={};["I","P","C"].forEach(k=>{const its=this.parts.flatMap(p=>p.items).filter(it=>it.key===k);r[k]=avg(its.map(it=>+ans[it.id]))});r.code=stCode(r);return r},
+ summary:r=>STTY[r.code].t,
+ chart(sc){let svg=`<svg class="map" viewBox="0 0 320 300" role="img" aria-label="Треугольник любви"><polygon points="${triPts({I:9,P:9,C:9},160,170,120)}" class="grid"/><polygon points="${triPts({I:6,P:6,C:6},160,170,120)}" class="dash"/><line x1="160" y1="170" x2="160" y2="50" class="dash"/><line x1="160" y1="170" x2="56" y2="230" class="dash"/><line x1="160" y1="170" x2="264" y2="230" class="dash"/><text x="160" y="38" text-anchor="middle" class="ql">Близость</text><text x="48" y="256" text-anchor="middle" class="ql">Страсть</text><text x="272" y="256" text-anchor="middle" class="ql">Обязательство</text>`;
+   ["a","b"].forEach(w=>{if(sc[w])svg+=`<polygon points="${triPts(sc[w],160,170,120)}" class="tri ${w}"/>`});
+   return legend(sc)+svg+`</svg><p class="note" style="text-align:center;margin:-8px 0 20px">Пунктир — уровень 6 из 9: выше него компонент считается выраженным.</p>`+bars(["I","P","C"].map(k=>({label:STN[k],val:r=>({pct:(r[k]-1)/8*100,txt:r1(r[k])+" / 9"})})),sc)},
+ person(r,w){const o=STTY[r.code];I=0;
+   const own=`<svg class="ill" viewBox="0 0 160 160" aria-hidden="true"><circle class="bgc" cx="80" cy="84" r="56"/><polygon class="ln" pathLength="1" style="--i:0" points="${triPts({I:9,P:9,C:9},80,92,62)}"/><polygon class="fl" points="${triPts(r,80,92,62)}" style="fill:var(--p${w==="a"?1:2});fill-opacity:.25"/><polygon class="ln" pathLength="1" style="--i:4;stroke:var(--p${w==="a"?1:2})" points="${triPts(r,80,92,62)}"/></svg>`;
+   return{ill:own,title:o.t,tag:o.tag,body:`<div class="secs"><section class="w"><h3>Что это значит</h3><p>${o.d}</p></section><section><h3>Ваши компоненты</h3><ul class="plus">${li(["I","P","C"].map(k=>`${STN[k]} — ${r1(r[k])} из 9`))}</ul></section><section><h3>Совет</h3><p>${o.love}</p></section></div>`}},
+ pair(sc){const d=["I","P","C"].map(k=>({k,d:sc.a[k]-sc.b[k]})).sort((x,y)=>Math.abs(y.d)-Math.abs(x.d));
+   let h=`<p class="callout">${sc.a.code===sc.b.code?`Ваши треугольники одного типа — «${STTY[sc.a.code].t.toLowerCase()}». Вы похоже переживаете эти отношения.`:`Ваши треугольники разные: «${STTY[sc.a.code].t.toLowerCase()}» и «${STTY[sc.b.code].t.toLowerCase()}». Стернберг считал, что чем больше совпадают треугольники партнёров, тем выше удовлетворённость.`}</p>`;
+   if(Math.abs(d[0].d)>=1.5){const more=d[0].d>0?"a":"b";h+=`<h3>Самое большое расхождение — ${STN[d[0].k].toLowerCase()}</h3><p>${esc(nm(more))} оценивает ${STN[d[0].k].toLowerCase()} выше, чем ${esc(nm(oth(more)))}. ${{I:"Больше разговоров по душам и совместного времени помогут выровнять ощущение близости.",P:"Свидания, флирт и новые впечатления помогают поддерживать страсть.",C:"Обсудите планы на будущее: что для каждого значит «мы вместе надолго»."}[d[0].k]}</p>`}
+   else h+=`<p>По всем трём компонентам ваши оценки близки — ваши треугольники почти совпадают.</p>`;
+   return h},
+ sim:(a,b)=>clamp(100-avg(["I","P","C"].map(k=>Math.abs(a[k]-b[k])))/8*100,0,100),
+ talk:["Какой компонент в наших отношениях сейчас самый сильный?","Чего бы вам хотелось больше: близости, страсти или уверенности в будущем?","Что разжигает между нами страсть?","Каким вы видите нас через пять лет?","Когда вы поняли, что это серьёзно?"],
+ method:"<p>Треугольную теорию любви предложил психолог Роберт Стернберг (1986): любовь складывается из близости, страсти и обязательства, а их сочетания дают восемь типов любви. Оригинальная шкала Стернберга содержит 45 утверждений; здесь 15 утверждений, составленных для этого сайта по описанию компонентов, со шкалой 1–9, как в оригинале.</p><p>Балл компонента — среднее от 1 до 9. Компонент считается выраженным при среднем от 6. Это ориентир, а не строгая норма.</p>"
+};
+
+/* =========================================================
+   7. УГАДАЙ ПАРТНЁРА — по мотивам «карт любви» Готтмана
+   ========================================================= */
+const GQ=[
+ ["Идеальный выходной",["Дома под пледом","Прогулка или поездка","Встреча с друзьями","Новое приключение"]],
+ ["Что поднимает настроение после плохого дня",["Вкусная еда","Сон","Разговор с близким","Побыть одному"]],
+ ["Какую суперсилу я бы выбрал(а)",["Телепортация","Чтение мыслей","Остановка времени","Невидимость"]],
+ ["Отпуск мечты",["Море и пляж","Горы и природа","Большой город","Путешествие на машине"]],
+ ["Что раздражает меня сильнее",["Опоздания","Громкое чавканье","Беспорядок","Когда перебивают"]],
+ ["Моё любимое время суток",["Утро","День","Вечер","Ночь"]],
+ ["Ужин на свидании",["Итальянская кухня","Японская кухня","Домашняя еда","Бургеры"]],
+ ["Кем я буду в зомби-апокалипсисе",["Лидером группы","Тем, кто добывает еду","Тем, кто первым убежит","Тем, кто всех смешит"]],
+ ["Какой подарок обрадует меня больше",["Впечатление","Вещь из вишлиста","Сделанное своими руками","Сюрприз без повода"]],
+ ["Чего я боюсь больше",["Пауков","Высоты","Выступать перед людьми","Одиночества"]],
+ ["Как я веду себя в ссоре",["Вспыхиваю","Замолкаю","Сразу всё обсуждаю","Перевожу в шутку"]],
+ ["Что я сделаю, если выиграю миллион",["Путешествие","Жильё","Вложу и приумножу","Порадую близких"]]];
+const guessScore=(self,guess)=>GQ.reduce((s,q,i)=>s+(self["G"+i+"s"]===guess["G"+i+"g"]?1:0),0);
+const knowT=n=>n>=11?["Читает мысли","Вы знаете партнёра почти идеально — даже в мелочах."]:n>=8?["Отлично знает","Вы хорошо ориентируетесь во вкусах и привычках партнёра."]:n>=5?["Хорошо знает","Многое угадано, но есть что открыть."]:["Есть что узнать","Отличный повод для долгого разговора и новых вопросов."];
+const T_GUESS={
+ id:"guess",group:"pair",format:"guess",icon:"target",fmtLabel:"игра-угадайка",isNew:true,needsBoth:true,kicker:"Насколько вы знаете друг друга?",title:"Угадай партнёра",min:4,
+ short:"Игра: каждый отвечает про себя и угадывает ответы партнёра. В конце — счёт, победитель и самые неожиданные ответы.",
+ source:"по мотивам «карт любви» Дж. Готтмана",
+ intro:["12 вопросов. В каждом сначала отметьте <b>свой ответ</b>, а потом — <b>как, по-вашему, ответит партнёр</b>.","Когда пройдёте оба, игра подсчитает, кто лучше знает другого. Не подглядывайте!"],
+ parts:[{title:"Про себя и про партнёра",items:GQ.slice(0,6).map((q,i)=>({id:"G"+i,text:q[0],opts:q[1]}))},{title:"Ещё шесть вопросов",items:GQ.slice(6).map((q,i)=>({id:"G"+(i+6),text:q[0],opts:q[1]}))}],
+ score:ans=>({ans}),
+ summary:()=>"",
+ chart:()=>"",
+ pair(sc,raw){const ga=guessScore(raw.b,raw.a),gb=guessScore(raw.a,raw.b);
+   const win=ga===gb?null:(ga>gb?"a":"b");
+   let h=`<div class="score2">${[["a",ga],["b",gb]].map(([w,s])=>`<div class="sc2 ${w}"><div class="pc-n"><i class="dot ${w}"></i>${esc(nm(w))} угадывает</div><p class="pc-big"><span data-count="${s}">${s}</span> / 12</p><b>${knowT(s)[0]}</b><p class="note">${knowT(s)[1]}</p></div>`).join("")}</div>`;
+   h+=`<p class="callout" style="margin-top:20px">${win?`Победитель — <b>${esc(nm(win))}</b>! Разница ${Math.abs(ga-gb)} ${plural(Math.abs(ga-gb),["очко","очка","очков"])}.`:"Ничья! Вы знаете друг друга одинаково хорошо."}</p>`;
+   h+=`<h3>Ответ за ответом</h3><div class="gtab">${GQ.map((q,i)=>{const sa=raw.a["G"+i+"s"],sb=raw.b["G"+i+"s"],gA=raw.a["G"+i+"g"],gB=raw.b["G"+i+"g"];
+     return `<div class="gt"><p class="gt-q">${q[0]}</p><div class="gt-r"><span><i class="dot a"></i> ${esc(nm("a"))}: ${q[1][sa]} · ${esc(nm("b"))} думал(а): ${q[1][gB]} <span class="${sa===gB?"ok-y":"ok-n"}">${sa===gB?"✓":"✗"}</span></span><span><i class="dot b"></i> ${esc(nm("b"))}: ${q[1][sb]} · ${esc(nm("a"))} думал(а): ${q[1][gA]} <span class="${sb===gA?"ok-y":"ok-n"}">${sb===gA?"✓":"✗"}</span></span></div></div>`}).join("")}</div>`;
+   const same=GQ.filter((q,i)=>raw.a["G"+i+"s"]===raw.b["G"+i+"s"]).length;
+   h+=`<p>Кстати, в ${same} ${plural(same,["вопросе","вопросах","вопросах"])} из 12 ваши собственные ответы совпали.</p>`;
+   return h},
+ sim:(a,b,raw)=>(guessScore(raw.b,raw.a)+guessScore(raw.a,raw.b))/24*100,
+ talk:["Какой ответ партнёра удивил вас больше всего?","Расскажите историю за одним из своих ответов.","Придумайте по три своих вопроса друг для друга.","Что ещё вы хотели бы узнать о партнёре?","Какую мечту партнёра вы знаете — и как можете помочь её исполнить?"],
+ method:"<p>Психолог Джон Готтман называет знание внутреннего мира партнёра — его вкусов, страхов, мечтаний и привычек — «картой любви» и считает её одной из основ крепкого брака («Семь принципов счастливого брака», 1999).</p><p>Это игра, а не психологический тест: вопросы составлены для этого сайта. Очко засчитывается, если догадка совпала с ответом партнёра о себе.</p>"
+};
+
+/* =========================================================
+   8. БОЛЬШАЯ ПЯТЁРКА — IPIP-50
+   ========================================================= */
+const B5={
+ E:[["Я — душа компании.",1],["Я немногословен(на).",-1],["Мне комфортно среди людей.",1],["Я держусь в тени.",-1],["Я сам(а) начинаю разговоры.",1],["Мне мало что есть сказать.",-1],["На вечеринках я общаюсь со множеством разных людей.",1],["Я не люблю привлекать к себе внимание.",-1],["Я не против быть в центре внимания.",1],["Я молчалив(а) с незнакомыми людьми.",-1]],
+ A:[["Меня мало волнуют другие люди.",-1],["Мне интересны люди.",1],["Я могу оскорбить человека.",-1],["Я сочувствую переживаниям других.",1],["Мне неинтересны чужие проблемы.",-1],["У меня мягкое сердце.",1],["На самом деле другие мне не очень интересны.",-1],["Я нахожу время для других.",1],["Я чувствую эмоции других людей.",1],["Рядом со мной людям спокойно и легко.",1]],
+ C:[["Я всегда подготовлен(а).",1],["Я оставляю свои вещи где попало.",-1],["Я внимателен(на) к деталям.",1],["Я часто всё порчу и путаю.",-1],["Я делаю домашние дела сразу, не откладывая.",1],["Я часто забываю класть вещи на место.",-1],["Я люблю порядок.",1],["Я уклоняюсь от своих обязанностей.",-1],["Я живу по расписанию.",1],["Я требователен(на) к качеству своей работы.",1]],
+ N:[["Я легко поддаюсь стрессу.",1],["Большую часть времени я расслаблен(а).",-1],["Я часто беспокоюсь.",1],["Мне редко бывает грустно.",-1],["Меня легко выбить из колеи.",1],["Я легко расстраиваюсь.",1],["Моё настроение часто меняется.",1],["У меня бывают частые перепады настроения.",1],["Я легко раздражаюсь.",1],["Мне часто бывает тоскливо.",1]],
+ O:[["У меня богатый словарный запас.",1],["Мне трудно понимать абстрактные идеи.",-1],["У меня яркое воображение.",1],["Мне неинтересны абстрактные идеи.",-1],["Мне приходят отличные идеи.",1],["У меня слабое воображение.",-1],["Я быстро всё схватываю.",1],["Я использую сложные слова.",1],["Я провожу время в размышлениях.",1],["Я полон(на) идей.",1]]};
+const B5K=["E","A","C","ES","O"];
+const B5N={E:"Экстраверсия",A:"Доброжелательность",C:"Добросовестность",ES:"Эмоциональная стабильность",O:"Открытость опыту"};
+const B5ILL={E:"party",A:"care",C:"clip",ES:"mountain",O:"planet"};
+const B5D={
+ E:[["Вы интроверт: энергию восстанавливаете в тишине и предпочитаете глубокий разговор с одним человеком шумной вечеринке.","Вам нужно время наедине с собой — это не охлаждение к партнёру, а способ перезарядиться."],["Вы амбиверт: можете зажечь в компании, но и одиночество вам в радость.","Вам легко находить баланс между выходами в свет и тихими вечерами."],["Вы экстраверт: заряжаетесь от людей, движения и новых впечатлений, легко знакомитесь.","Вам важно делиться событиями и проводить время активно; скучные вечера могут угнетать."]],
+ A:[["Вы прямолинейны и критичны, умеете отстаивать свои интересы и не боитесь спорить.","Честность — ваш плюс, но смягчайте формулировки: партнёр может слышать критику там, где вы просто высказали мнение."],["Вы дружелюбны, но не в ущерб себе: умеете и помочь, и сказать «нет».","Вы хорошо балансируете между заботой о партнёре и своими интересами."],["Вы мягкий и эмпатичный человек: сочувствуете, помогаете, готовы уступить.","Вы — источник тепла в паре. Следите, чтобы забота о других не вытесняла ваши собственные желания."]],
+ C:[["Вы спонтанны и гибки, не любите жёстких планов и рамок.","С вами весело и непредсказуемо, но партнёру может не хватать надёжности в быту — договоритесь, что берёте на себя."],["Вы организованны, когда это важно, но без перфекционизма.","Умеете и спланировать, и отпустить контроль."],["Вы организованны, ответственны и доводите дела до конца.","На вас можно положиться. Не требуйте того же порядка от партнёра — у него может быть другая норма."]],
+ ES:[["Вы глубоко чувствуете: переживания бывают сильными, настроение меняется. Зато вы тонко замечаете нюансы.","Вам важна поддержка в трудные моменты. Скажите партнёру, что помогает: выслушать, обнять или отвлечь."],["Обычно вы спокойны, но стресс иногда выбивает из колеи.","Вы умеете и сопереживать, и сохранять голову холодной."],["Вы спокойны и устойчивы, быстро восстанавливаетесь после неприятностей.","Вы — «тихая гавань» для партнёра. Не обесценивайте его переживания, даже если вам они кажутся мелочью."]],
+ O:[["Вы практичны и цените проверенное: конкретику, традиции, понятные решения.","Вы стабильны и предсказуемы. Иногда соглашайтесь на эксперименты партнёра — это освежает отношения."],["Вам интересно новое, но вы цените и привычное.","У вас хороший баланс новизны и стабильности."],["Вы любознательны, с богатым воображением: любите идеи, искусство, новый опыт.","С вами интересно. Новые общие впечатления — ваш способ поддерживать искру."]]};
+const B5PAIR={E:"Одному нужно больше людей, другому — тишины. Договоритесь о балансе: вечеринка в пятницу, тихий вечер в субботу. И не обижайтесь, если партнёр уходит пораньше.",A:"Один мягче, другой прямолинейнее. Прямому стоит смягчать формулировки, мягкому — не копить несогласие и говорить о нём.",C:"Один любит порядок и планы, другой спонтанность. Разделите зоны ответственности и оставьте место для импровизации.",ES:"Один переживает острее. Спокойному не стоит обесценивать («да не парься»), а чувствительному полезно говорить, какая поддержка нужна прямо сейчас.",O:"Один тянется к новому, другой к проверенному. Чередуйте: новое место — любимое место, эксперимент — традиция."};
+const B5ITEMS=(()=>{const out=[];for(let i=0;i<10;i++)["E","A","C","N","O"].forEach(f=>out.push({id:"B"+f+i,text:B5[f][i][0],key:f,sign:B5[f][i][1]}));return out})();
+const b5L=v=>v<40?0:v<=60?1:2;
+const T_B5={
+ id:"b5",group:"self",format:"dots",icon:"planet",fmtLabel:"кружки-шкала",kicker:"Из чего состоит ваш характер?",title:"Большая пятёрка",min:8,
+ short:"Самая научно признанная модель личности: экстраверсия, доброжелательность, добросовестность, эмоциональная стабильность, открытость.",
+ source:"опросник IPIP-50",scale:{n:5,lo:"Совсем неверно",hi:"Совершенно верно"},
+ intro:["50 коротких утверждений. Оцените, насколько точно каждое описывает вас <b>сейчас</b>, а не каким вы хотели бы быть.","Сравнивайте себя с людьми своего пола и примерно своего возраста. Отвечайте честно: результат увидите только вы двое."],
+ parts:chunk(B5ITEMS,10,"Насколько это про вас?"),
+ score(ans){const s={E:0,A:0,C:0,N:0,O:0};B5ITEMS.forEach(it=>{const v=+ans[it.id];s[it.key]+=it.sign>0?v:6-v});const p=x=>Math.round((x-10)/40*100);return{E:p(s.E),A:p(s.A),C:p(s.C),ES:100-p(s.N),O:p(s.O)}},
+ summary(r){const k=B5K.slice().sort((x,y)=>r[y]-r[x])[0];return "ярче всего: "+B5N[k].toLowerCase()},
+ chart:sc=>legend(sc)+bars(B5K.map(k=>({label:B5N[k],val:r=>({pct:r[k],txt:r[k]+"%"})})),sc),
+ person(r,w){const top=B5K.slice().sort((x,y)=>r[y]-r[x])[0],LW=["низкая","средняя","высокая"];
+   return{ill:ill(B5ILL[top]),title:B5N[top],tag:"Ваша самая яркая черта",body:B5K.map(k=>{const l=b5L(r[k]);return `<div class="trait"><div class="trait-h"><span>${B5N[k]}</span><span class="chipl">${LW[l]} · ${r[k]}%</span></div><div class="track"><div class="fill ${w}" style="width:${clamp(r[k],2,100)}%"></div></div><p>${B5D[k][l][0]}</p><p class="note">В отношениях: ${B5D[k][l][1]}</p></div>`}).join("")}},
+ pair(sc){const sim=[],dif=[];B5K.forEach(k=>{const d=Math.abs(sc.a[k]-sc.b[k]);if(d<15)sim.push(k);else if(d>=30)dif.push(k)});let h="";
+   if(sim.length)h+=`<p class="callout">Больше всего вы похожи по шкал${sim.length>1?"ам":"е"}: <b>${sim.map(k=>B5N[k].toLowerCase()).join(", ")}</b>. Здесь вам легко понимать друг друга.</p>`;
+   if(dif.length)dif.forEach(k=>h+=`<h3>${B5N[k]}: вы разные</h3><p>${B5PAIR[k]}</p>`);else h+=`<p>Сильных различий (больше 30 пунктов) у вас нет: ваши характеры в целом созвучны.</p>`;
+   return h+`<p class="note">По данным метаанализа (Malouff и соавт., 2010), с удовлетворённостью отношениями сильнее всего связаны эмоциональная стабильность, доброжелательность и добросовестность партнёра, а не похожесть характеров.</p>`},
+ sim:(a,b)=>clamp(100-avg(B5K.map(k=>Math.abs(a[k]-b[k]))),0,100),
+ talk:["Какая из ваших черт сильнее всего влияет на наши отношения?","В чём мы совсем разные — и как это нам помогает?","Удивил ли вас результат партнёра? Чем?","Какую черту партнёра вы бы хотели позаимствовать?","Как каждому из нас лучше всего восстанавливаться после тяжёлого дня?"],
+ method:"<p>50 пунктов из открытого банка IPIP — «Маркеры пяти факторов» Льюиса Голдберга (1992), находятся в общественном достоянии (ipip.ori.org). По 10 утверждений на каждую черту, часть считается в обратную сторону. Перевод выполнен для этого сайта.</p><p>Процент — положение на шкале от минимума до максимума (10–50 баллов), а не процентиль среди людей. Эмоциональная стабильность — обратная сторона нейротизма. Уровни: до 40% — низкий, 40–60% — средний, выше 60% — высокий.</p>"
+};
+
+/* =========================================================
+   9. ТЕМПЕРАМЕНТ — EPQR-S
+   ========================================================= */
+const EP={
+ E:[["У вас много разных увлечений?",1],["Вы разговорчивый человек?",1],["Вы довольно живой и подвижный человек?",1],["Вам нравится знакомиться с новыми людьми?",1],["Можете ли вы расслабиться и от души повеселиться на шумной вечеринке?",1],["Вы обычно сами делаете первый шаг при знакомстве?",1],["Можете ли вы легко оживить довольно скучную компанию?",1],["На общих мероприятиях вы обычно держитесь в стороне?",0],["Вам нравится быть среди людей?",1],["Вам нравится, когда вокруг много суеты и движения?",1],["В компании вы чаще молчите?",0],["Другие считают вас очень энергичным человеком?",1]],
+ N:[["Ваше настроение часто меняется от хорошего к плохому?",1],["Бывает ли, что вам тоскливо без всякой причины?",1],["Вы раздражительный человек?",1],["Вас легко обидеть?",1],["Часто ли вам кажется, что всё надоело?",1],["Можете ли вы назвать себя нервным человеком?",1],["Вы часто беспокоитесь?",1],["Вы бы назвали себя напряжённым, «взвинченным» человеком?",1],["Долго ли вы переживаете после неловкой ситуации?",1],["Бывают ли у вас проблемы с нервами?",1],["Часто ли вы чувствуете себя одиноко?",1],["Часто ли вас мучает чувство вины?",1]],
+ L:[["Если вы что-то пообещали, вы всегда выполняете обещание, как бы неудобно это ни было?",1],["Бывало ли, что вы жадничали и брали себе больше, чем положено?",0],["Случалось ли вам обвинять другого в том, в чём на самом деле были виноваты вы?",0],["Все ваши привычки хорошие и правильные?",1],["Брали ли вы когда-нибудь чужую вещь, пусть даже булавку или пуговицу?",0],["Ломали или теряли ли вы когда-нибудь чужую вещь?",0],["Говорили ли вы когда-нибудь о ком-то плохо?",0],["В детстве вы когда-нибудь дерзили родителям?",0],["Вы всегда поступаете так, как советуете другим?",1],["Пользовались ли вы когда-нибудь кем-то в своих интересах?",0],["Бывает ли, что вы рассуждаете о вещах, в которых не разбираетесь?",0],["Вы всегда моете руки перед едой?",1]]};
+const TN={CH:"Холерик",SA:"Сангвиник",PH:"Флегматик",ME:"Меланхолик"};
+const TILL={CH:"flame",SA:"sun",PH:"tea",ME:"cloud"};
+const TTY={
+ CH:{tag:"Огонь и движение",d:"Вы энергичны, эмоциональны и быстры. Загораетесь идеей мгновенно и заражаете ею других. Эмоции яркие: можете вспыхнуть, но так же быстро остываете и не держите зла.",plus:["Энергия и инициативность","Решительность","Искренность — по вам всё видно"],minus:["Нетерпеливость","Резкость в споре, о которой потом жалеете"],love:"С вами страстно и ярко. Партнёру важно знать, что вспышка — не про него, а вам — делать паузу перед резким словом."},
+ SA:{tag:"Солнце в компании",d:"Вы общительны, жизнерадостны и легко переключаетесь. Быстро находите общий язык с людьми, не унываете из-за неудач и любите новые впечатления.",plus:["Оптимизм","Лёгкость в общении","Умение приспосабливаться"],minus:["Быстро теряете интерес к рутине","Можете браться за многое и не доводить до конца"],love:"С вами легко и весело. Поддерживайте интерес новыми общими делами, а в рутине договоритесь, кто за что отвечает."},
+ PH:{tag:"Спокойствие и надёжность",d:"Вы спокойны, уравновешенны и последовательны. Вас сложно вывести из себя, решения вы принимаете обдуманно, а начатое доводите до конца. Медленно раскачиваетесь, зато надолго.",plus:["Стрессоустойчивость","Надёжность","Терпение"],minus:["Медлительность в решениях","Можете казаться безэмоциональным, хотя чувствуете глубоко"],love:"Вы — опора в паре. Иногда показывайте чувства ярче: партнёру важно видеть, что он вам не безразличен."},
+ ME:{tag:"Глубина и чуткость",d:"Вы глубоко чувствующий, впечатлительный и вдумчивый человек. Тонко замечаете детали, настроение людей, красоту вокруг. Сильные переживания утомляют, поэтому вам важно время на восстановление.",plus:["Эмпатия и чуткость","Внимание к деталям","Творческое восприятие мира"],minus:["Склонность переживать и накручивать","Быстрее устаёте от людей и шума"],love:"Вы любите глубоко и преданно. Говорите партнёру, что вас тревожит, не держите в себе — и берегите время на тишину."}};
+const EPITEMS=(()=>{const out=[];for(let i=0;i<12;i++)["E","N","L"].forEach(f=>out.push({id:"E"+f+i,text:EP[f][i][0],key:f,yes:EP[f][i][1]}));return out})();
+const temper=r=>{const e=r.E-6,n=r.N-6,q=(ee,nn)=>ee>0?(nn>0?"CH":"SA"):(nn>0?"ME":"PH");
+ if(e===0&&n===0)return{name:"Смешанный тип",code:"SA",mix:["CH","SA","PH","ME"]};
+ if(e===0)return{name:TN[q(1,n)]+" / "+TN[q(-1,n)],code:q(1,n),mix:[q(1,n),q(-1,n)]};
+ if(n===0)return{name:TN[q(e,1)]+" / "+TN[q(e,-1)],code:q(e,1),mix:[q(e,1),q(e,-1)]};
+ return{name:TN[q(e,n)],code:q(e,n),mix:[q(e,n)]}};
+const T_EPQ={
+ id:"epq",group:"self",format:"swipe",icon:"flame",fmtLabel:"свайпы",kicker:"Какой у вас темперамент?",title:"Темперамент Айзенка",min:4,
+ short:"Холерик, сангвиник, флегматик или меланхолик: классический опросник Айзенка и круг темпераментов для вас двоих.",
+ source:"опросник EPQR-S",
+ intro:["36 вопросов на карточках. Смахните карточку <b>вправо — «да»</b>, <b>влево — «нет»</b>. Можно нажимать кнопки или стрелки на клавиатуре.","Не задумывайтесь долго: первая реакция обычно точнее. Часть вопросов проверяет искренность, поэтому отвечайте как есть, а не как «правильно»."],
+ parts:chunk(EPITEMS,12,"Да или нет?"),
+ score(ans){const r={E:0,N:0,L:0};EPITEMS.forEach(it=>{const v=ans[it.id];if(v===undefined)return;if((+v===1)===(it.yes===1))r[it.key]++});return r},
+ summary:r=>temper(r).name,
+ chart(sc){const X=e=>160+(e-6)/6*125,Y=n=>160-(n-6)/6*125;
+   let svg=`<svg class="map" viewBox="0 0 320 320" role="img" aria-label="Круг темпераментов"><circle cx="160" cy="160" r="125" class="grid"/><line x1="20" y1="160" x2="300" y2="160" class="ax"/><line x1="160" y1="20" x2="160" y2="300" class="ax"/><text x="225" y="95" text-anchor="middle" class="ql">Холерик</text><text x="225" y="235" text-anchor="middle" class="ql">Сангвиник</text><text x="95" y="235" text-anchor="middle" class="ql">Флегматик</text><text x="95" y="95" text-anchor="middle" class="ql">Меланхолик</text><text x="160" y="12" text-anchor="middle">Нестабильность</text><text x="160" y="316" text-anchor="middle">Стабильность</text><text x="302" y="150" text-anchor="end">Экстраверт</text><text x="18" y="150">Интроверт</text>`;
+   const off=sc.a&&sc.b&&sc.a.E===sc.b.E&&sc.a.N===sc.b.N?9:0;
+   if(sc.a)svg+=dotSvg(X(sc.a.E)-off,Y(sc.a.N),"a");if(sc.b)svg+=dotSvg(X(sc.b.E)+off,Y(sc.b.N),"b");
+   return legend(sc)+svg+"</svg>"+bars([{label:"Экстраверсия",sub:"общительность, активность",val:r=>({pct:r.E/12*100,txt:r.E+" из 12"})},{label:"Нейротизм",sub:"эмоциональная чувствительность",val:r=>({pct:r.N/12*100,txt:r.N+" из 12"})}],sc)},
+ person(r){const t=temper(r),o=TTY[t.code];
+   let extra=t.mix.length>1?`<section class="w"><h3>Вы на границе</h3><p>В вас есть черты нескольких темпераментов: ${t.mix.map(c=>`<b>${TN[c].toLowerCase()}</b> (${TTY[c].tag.toLowerCase()})`).join(", ")}. Ниже — описание ближайшего.</p></section>`:"";
+   extra+=`<section class="w"><h3>Ваши шкалы</h3><p>${r.E>=7?"Экстраверт":r.E<=5?"Интроверт":"Амбиверт"} (${r.E} из 12), ${r.N>=7?"эмоционально чувствительны":r.N<=5?"эмоционально устойчивы":"средняя эмоциональность"} (${r.N} из 12).</p>${r.L>=8?`<p class="note">Шкала искренности: ${r.L} из 12. Похоже, вы отвечали так, как «правильно», поэтому результат может быть неточным.</p>`:""}</section>`;
+   return{ill:ill(TILL[t.code]),title:t.name,tag:o.tag,body:secs(o,extra)}},
+ pair(sc){const a=sc.a,b=sc.b;let h=`<p class="callout">${esc(nm("a"))} — ${temper(a).name.toLowerCase()}, ${esc(nm("b"))} — ${temper(b).name.toLowerCase()}.</p>`;
+   if(Math.abs(a.E-b.E)>=4){const ex=a.E>b.E?"a":"b";h+=`<h3>Общение и отдых</h3><p>${esc(nm(ex))} заряжается от людей и событий, ${esc(nm(oth(ex)))} — от спокойствия. Это нормально: обсуждайте планы на выходные заранее и не обижайтесь, если одному хочется уйти с праздника пораньше.</p>`}
+   else h+=`<h3>Общение и отдых</h3><p>Ваша потребность в общении похожа — вам легко планировать совместный отдых.</p>`;
+   if(a.N>=7&&b.N>=7)h+=`<h3>Эмоции</h3><p>Вы оба эмоционально чувствительны, и ссоры могут разгораться быстро. Помогает правило паузы: остыть 20 минут и вернуться к разговору.</p>`;
+   else if(a.N<=6&&b.N<=6)h+=`<h3>Эмоции</h3><p>Вы оба довольно устойчивы к стрессу — в трудные моменты вы хорошая команда. Не забывайте всё же говорить о чувствах, даже когда «всё нормально».</p>`;
+   else{const hi=a.N>b.N?"a":"b";h+=`<h3>Эмоции</h3><p>${esc(nm(oth(hi)))} спокойнее и может быть опорой, когда ${esc(nm(hi))} переживает. Главное — не отмахиваться («да ладно тебе»), а выслушать.</p>`}
+   return h},
+ sim:(a,b)=>clamp(100-(Math.abs(a.E-b.E)+Math.abs(a.N-b.N))/24*100,0,100),
+ talk:["Как каждый из нас ведёт себя, когда злится? Что помогает?","Сколько общения в неделю вам нужно, чтобы быть счастливым, — и сколько тишины?","Что вас быстрее всего выводит из себя?","Как понять, что партнёр устал, даже если он(а) молчит?","В какой ситуации наши темпераменты отлично дополняют друг друга?"],
+ method:"<p>Сокращённый пересмотренный опросник Айзенка EPQR-S (H. Eysenck, S. Eysenck, P. Barrett, 1985). Использованы три шкалы по 12 вопросов: экстраверсия, нейротизм и шкала лжи (искренности). Шкала психотизма для темперамента не нужна и пропущена. Перевод выполнен для этого сайта.</p><p>Темперамент определяется по кругу Айзенка: выше 6 баллов — экстраверсия или нестабильность, ниже 6 — интроверсия или стабильность, ровно 6 — граница. Шкала лжи 8 и выше говорит о желании выглядеть лучше.</p><p>В чистом виде темпераменты встречаются редко: Айзенк описывал их как две непрерывные шкалы.</p>"
+};
+
+/* =========================================================
+   10. 16 ТИПОВ — OEJTS
+   ========================================================= */
+const OJ=[["Составляю списки дел","Полагаюсь на память","JP","J"],["Скептичен(на)","Хочу верить","TF","T"],["Скучаю, когда один(на)","Мне нужно время наедине с собой","EI","E"],["Принимаю вещи такими, какие они есть","Меня не устраивает, как всё устроено","SN","S"],["В моей комнате чисто","Кладу вещи куда попало","JP","J"],["«Робот» для меня — оскорбление","Стремлюсь мыслить точно, как механизм","TF","F"],["Энергичный(ая)","Спокойный(ая), неторопливый(ая)","EI","E"],["Предпочитаю тест с вариантами ответа","Предпочитаю развёрнутый ответ","SN","S"],["Хаотичный(ая)","Организованный(ая)","JP","P"],["Меня легко обидеть","Я толстокожий(ая)","TF","F"],["Лучше работаю в группе","Лучше работаю один(на)","EI","E"],["Сосредоточен(а) на настоящем","Сосредоточен(а) на будущем","SN","S"],["Планирую заранее","Планирую в последний момент","JP","J"],["Хочу, чтобы меня уважали","Хочу, чтобы меня любили","TF","T"],["Устаю от вечеринок","Заряжаюсь на вечеринках","EI","I"],["Вписываюсь","Выделяюсь","SN","S"],["Оставляю варианты открытыми","Беру обязательства","JP","P"],["Хочу уметь чинить вещи","Хочу уметь помогать людям","TF","T"],["Больше говорю","Больше слушаю","EI","E"],["Рассказывая о событии, говорю, что произошло","Рассказывая о событии, говорю, что это значило","SN","S"],["Делаю работу сразу","Откладываю на потом","JP","J"],["Следую за сердцем","Следую за разумом","TF","F"],["Остаюсь дома","Иду гулять в город","EI","I"],["Хочу видеть общую картину","Хочу знать детали","SN","N"],["Импровизирую","Готовлюсь","JP","P"],["Мораль для меня — это справедливость","Мораль для меня — это сострадание","TF","T"],["Мне трудно громко закричать","Мне легко окликнуть кого-то издалека","EI","I"],["Теоретик","Практик","SN","N"],["Много работаю","Много отдыхаю и веселюсь","JP","J"],["Мне неуютно с эмоциями","Я ценю эмоции","TF","T"],["Люблю выступать перед людьми","Избегаю публичных выступлений","EI","E"],["Хочу знать «кто? что? когда?»","Хочу знать «почему?»","SN","S"]];
+const DIMS=[["EI","E","I","Экстраверсия","Интроверсия"],["SN","S","N","Ощущение","Интуиция"],["TF","T","F","Мышление","Чувство"],["JP","J","P","Суждение","Восприятие"]];
+const TYPES={
+ INTJ:["Стратег","Независимый ум с планом на годы вперёд. Видите систему там, где другие видят хаос, цените компетентность и честность и не любите пустых разговоров.",["Стратегическое мышление","Самостоятельность","Честность"],"Любите вдумчиво и надолго. Партнёру важно чаще слышать о ваших чувствах, а не только видеть заботу в делах."],
+ INTP:["Исследователь","Любознательный аналитик, живущий в мире идей. Любите разбираться, как всё устроено, и спорить ради истины, а не ради победы.",["Оригинальность мышления","Объективность","Спокойствие"],"Ваша любовь — это интерес к человеку. Не забывайте выходить из своих мыслей и замечать бытовые потребности партнёра."],
+ ENTJ:["Командир","Решительный лидер, который видит цель и ведёт к ней людей. Цените эффективность, быстро принимаете решения и не боитесь ответственности.",["Лидерство","Целеустремлённость","Уверенность"],"Вы надёжный партнёр, строящий общее будущее. Помните, что в любви не нужно побеждать — иногда достаточно выслушать."],
+ ENTP:["Изобретатель","Остроумный генератор идей. Обожаете споры, мозговые штурмы и новые проекты, быстро загораетесь и так же быстро ищете следующую цель.",["Находчивость","Чувство юмора","Смелость мысли"],"С вами не бывает скучно. Партнёру важна стабильность — доводите до конца хотя бы общие планы."],
+ INFJ:["Наставник","Глубокий, чуткий человек с сильными ценностями. Хорошо понимаете людей, видите их потенциал и хотите сделать мир чуть лучше.",["Эмпатия","Интуиция","Преданность"],"Ищете родственную душу и глубокую связь. Говорите о своих потребностях прямо: не все умеют читать между строк так же, как вы."],
+ INFP:["Мечтатель","Идеалист с богатым внутренним миром. Верны своим ценностям, творческий человек, очень чувствительный к фальши.",["Искренность","Творчество","Доброта"],"Любите романтично и глубоко. Важно, чтобы реальный партнёр не проигрывал идеалу в вашей голове."],
+ ENFJ:["Вдохновитель","Тёплый лидер, который чувствует людей и умеет их объединять. Вам важна гармония, и вы искренне радуетесь успехам близких.",["Харизма","Забота","Умение вдохновлять"],"Вы вкладываетесь в отношения всей душой. Не забывайте заботиться и о себе, а не только о партнёре."],
+ ENFP:["Искра","Энергичный, открытый человек, полный идей и энтузиазма. Легко сходитесь с людьми и ищете смысл и приключение во всём.",["Энтузиазм","Креативность","Тёплая общительность"],"С вами весело и вдохновляюще. Рутину лучше разделить с партнёром, а не избегать."],
+ ISTJ:["Хранитель","Надёжный и ответственный человек. Цените порядок, традиции и факты; если что-то пообещали — сделаете.",["Надёжность","Последовательность","Практичность"],"Ваша любовь — в постоянстве. Иногда добавляйте спонтанности и тёплых слов: партнёру приятны сюрпризы."],
+ ISFJ:["Защитник","Заботливый и внимательный к мелочам человек. Тихо поддерживаете близких и помните, что важно для каждого.",["Забота","Внимательность","Преданность"],"Вы создаёте уют и безопасность. Не стесняйтесь говорить о своих желаниях — вы тоже заслуживаете заботы."],
+ ESTJ:["Организатор","Практичный и деятельный человек, который любит ясность и результат. Берёте ответственность и наводите порядок.",["Организованность","Решительность","Честность"],"С вами надёжно. Помните, что партнёр — не подчинённый: спрашивайте его мнение, прежде чем решать."],
+ ESFJ:["Душа дома","Общительный и заботливый человек, создаёте уют и праздник для всех. Вам важно, чтобы людям рядом было хорошо.",["Теплота","Отзывчивость","Умение объединять"],"Вы внимательный и нежный партнёр. Не принимайте близко к сердцу, если ваши старания заметили не сразу."],
+ ISTP:["Мастер","Спокойный практик, который понимает, как всё работает. Цените свободу, действуете по ситуации и не любите лишних слов.",["Хладнокровие","Практичность","Независимость"],"Ваша любовь — в делах и готовности помочь. Иногда говорите о чувствах словами: партнёру это нужно."],
+ ISFP:["Художник","Мягкий, чувственный человек, живущий моментом и красотой. Выражаете себя скорее поступками и творчеством, чем словами.",["Чуткость","Эстетический вкус","Открытость"],"Вы нежный и преданный партнёр. Не уходите в себя при конфликте — ваше мнение важно."],
+ ESTP:["Человек действия","Энергичный и смелый, любите риск и движение. Решаете проблемы на ходу и легко заводите других.",["Смелость","Находчивость","Энергия"],"С вами захватывающе. Партнёру важно чувствовать стабильность — показывайте, что вы рядом надолго."],
+ ESFP:["Звезда","Весёлый, спонтанный человек, который любит людей и внимание. Умеете превращать обычный день в праздник.",["Жизнерадостность","Щедрость","Обаяние"],"Вы приносите в отношения радость. Не убегайте от серьёзных разговоров — они тоже часть близости."]};
+const GRP=c=>c[1]==="N"?(c[2]==="T"?["NT","Аналитики","gear"]:["NF","Дипломаты","star"]):(c[3]==="J"?["SJ","Хранители","shield"]:["SP","Искатели","bolt"]);
+const DIMPAIR={EI:"Экстраверту нужно думать вслух и делиться сразу, интроверту — время, чтобы обдумать. Не торопите ответ и не принимайте молчание за обиду.",SN:"Один смотрит на факты и детали, другой — на смыслы и возможности. Вместе вы видите и лес, и деревья; просто договаривайтесь, о каком уровне сейчас разговор.",TF:"Один решает головой, другой сердцем. В споре сначала признайте чувства, потом переходите к логике — так вас услышат оба.",JP:"Один любит план, другой свободу. Договоритесь: важное планируем заранее, а выходные оставляем гибкими."};
+const T_MBTI={
+ id:"mbti",group:"self",format:"bipolar",icon:"gear",fmtLabel:"между полюсами",kicker:"Кто вы из 16 типов?",title:"16 типов личности",min:6,
+ short:"Популярная типология по Юнгу: четыре буквы, ваш тип и где ваши «буквы» совпадают и различаются.",
+ source:"открытая шкала OEJTS",
+ intro:["32 пары противоположных описаний. Отметьте точку между ними: ближе к той стороне, которая больше про вас. Маленький кружок в центре — если подходит одинаково.","Это популярная типология. Научно она проверена слабее, чем Большая пятёрка, поэтому относитесь к результату как к поводу для разговора, а не как к диагнозу."],
+ parts:chunk(OJ.map((e,i)=>({id:"M"+i,left:e[0],right:e[1],dim:e[2],lp:e[3]})),8,"Где вы на этой шкале?"),
+ score(ans){const s={EI:0,SN:0,TF:0,JP:0},pct={},bord=[];let code="";
+   this.parts.forEach(p=>p.items.forEach(it=>{const v=+ans[it.id],first=DIMS.find(d=>d[0]===it.dim)[1];s[it.dim]+=it.lp===first?6-v:v}));
+   DIMS.forEach(d=>{const x=s[d[0]];pct[d[0]]=Math.round((x-8)/32*100);if(x===24)bord.push(d[0]);code+=x>=24?d[1]:d[2]});return{code,pct,bord}},
+ summary:r=>r.code+" · "+TYPES[r.code][0],
+ chart:sc=>legend(sc)+`<div class="bars">${DIMS.map(d=>`<div class="brow"><div class="bip-l"><span>${d[3]} (${d[1]})</span><span>${d[4]} (${d[2]})</span></div><div class="bip" role="img" aria-label="${d[3]} или ${d[4]}">${["a","b"].filter(w=>sc[w]).map(w=>`<i class="${w}" style="left:${100-sc[w].pct[d[0]]}%" title="${esc(nm(w))}"></i>`).join("")}</div></div>`).join("")}</div>`,
+ person(r){const t=TYPES[r.code],g=GRP(r.code);
+   return{ill:ill(g[2]),big:r.code,title:t[0],tag:"Группа: "+g[1].toLowerCase(),body:secs({d:t[1],plus:t[2],love:t[3]})+(r.bord.length?`<p class="note" style="margin-top:18px">По шкал${r.bord.length>1?"ам ":"е "}${r.bord.map(k=>k.split("").join("/")).join(", ")} вы ровно посередине, поэтому соседний тип вам тоже может подойти.</p>`:"")}},
+ pair(sc){let same=0;DIMS.forEach((d,i)=>{if(sc.a.code[i]===sc.b.code[i])same++});
+   let h=`<p class="callout">${sc.a.code} и ${sc.b.code}: совпадает ${same} ${plural(same,["буква","буквы","букв"])} из 4. ${same>=3?"Вы очень похожи и легко понимаете ход мыслей друг друга.":same===2?"Вы похожи наполовину: есть и общая почва, и чему поучиться друг у друга.":"Вы очень разные и дополняете друг друга. Различия — это не несовместимость, а повод договориться."}</p>`;
+   DIMS.forEach((d,i)=>{if(sc.a.code[i]!==sc.b.code[i])h+=`<h3>${d[1]} и ${d[2]}</h3><p>${DIMPAIR[d[0]]}</p>`});return h},
+ sim:(a,b)=>clamp(avg(DIMS.map(d=>100-Math.abs(a.pct[d[0]]-b.pct[d[0]]))),0,100),
+ talk:["Согласны ли вы со своим типом? Что в описании про вас, а что нет?","Как каждый из нас принимает решения: головой или сердцем?","Что вас заряжает: люди или одиночество?","Как мы планируем выходные — и устраивает ли это обоих?","В какой ситуации наши различия нам помогли?"],
+ method:"<p>Open Extended Jungian Type Scales (OEJTS 1.2) — открытая альтернатива MBTI, которую разработал Эрик Йоргенсон (2015, openpsychometrics.org). 32 биполярных пункта, по 8 на каждую из четырёх шкал. Перевод выполнен для этого сайта; описания и названия типов написаны для сайта.</p><p>Балл шкалы — сумма от 8 до 40, граница — 24. Типология популярна, но у неё слабая доказательная база: люди редко чётко делятся на «типы», большинство находится ближе к середине шкал.</p>"
+};
+
+/* =========================================================
+   11. СТИЛЬ ЮМОРА — HSQ (Martin et al., 2003)
+   ========================================================= */
+const HSQ=[["Af","Я обычно мало смеюсь и шучу с другими людьми.",1],["Se","Если мне грустно, я обычно могу развеселить себя юмором.",0],["Ag","Если кто-то ошибся, я часто его поддразниваю.",0],["Sd","Я позволяю людям смеяться надо мной больше, чем следовало бы.",0],["Af","Мне не нужно стараться, чтобы рассмешить людей, — у меня это получается само.",0],["Se","Даже наедине с собой меня часто забавляют нелепости жизни.",0],["Ag","Мой юмор никогда никого не обижает и не задевает.",1],["Sd","Я часто увлекаюсь, высмеивая себя, если это смешит семью или друзей.",0],["Af","Я редко смешу людей забавными историями о себе.",1],["Se","Когда я расстроен(а), я стараюсь найти в ситуации что-то смешное, чтобы стало легче.",0],["Ag","Когда я шучу, меня не особо волнует, как это воспримут другие.",0],["Sd","Я часто стараюсь понравиться людям, шутя над своими слабостями и промахами.",0],["Af","Я много смеюсь и шучу с близкими друзьями.",0],["Se","Юмор помогает мне не расстраиваться слишком сильно из-за неприятностей.",0],["Ag","Мне не нравится, когда юмор используют, чтобы покритиковать или унизить кого-то.",1],["Sd","Я нечасто шучу, принижая себя.",1],["Af","Я обычно не люблю рассказывать анекдоты или развлекать людей.",1],["Se","Если мне одиноко и грустно, я стараюсь вспомнить что-то смешное, чтобы приободриться.",0],["Ag","Иногда мне в голову приходит что-то настолько смешное, что я не могу удержаться, даже если это неуместно.",0],["Sd","Я часто перегибаю палку, высмеивая себя в шутках.",0],["Af","Мне нравится смешить людей.",0],["Se","Когда мне грустно или я расстроен(а), я обычно теряю чувство юмора.",1],["Ag","Я никогда не смеюсь над другими, даже если смеются все мои друзья.",1],["Sd","В кругу друзей или семьи надо мной чаще всего подшучивают.",0],["Af","Я нечасто шучу с друзьями.",1],["Se","По моему опыту, если подумать о забавной стороне ситуации, справиться с проблемой гораздо легче.",0],["Ag","Если человек мне не нравится, я часто поддеваю его шутками.",0],["Sd","Когда у меня проблемы, я часто прикрываю их шутками, так что даже близкие не знают, как мне на самом деле.",0],["Af","Обычно мне не приходит в голову ничего остроумного, когда я с людьми.",1],["Se","Мне не нужна компания, чтобы повеселиться, — я нахожу поводы для смеха и наедине с собой.",0],["Ag","Даже если мне очень смешно, я не стану смеяться или шутить, если это кого-то обидит.",1],["Sd","Позволять другим смеяться надо мной — мой способ поднять настроение друзьям и семье.",0]];
+const HK=["Af","Se","Ag","Sd"];
+const HN={Af:"Объединяющий",Se:"Поддерживающий",Ag:"Колкий",Sd:"Самоироничный"};
+const HNORM={Af:5.7,Se:4.7,Ag:3.6,Sd:3.3};
+const HILL={Af:"laugh",Se:"umbrella",Ag:"burst",Sd:"clown"};
+const HTY={
+ Af:{tag:"Смешно вместе",d:"Вы шутите, чтобы сблизить людей и разрядить обстановку: рассказываете смешные истории, легко смеётесь вместе с другими. Такой юмор связан с общительностью, хорошим настроением и крепкими отношениями.",plus:["Легко сближаетесь с людьми","Снимаете напряжение","С вами весело"],minus:["Можете отшучиваться, когда партнёр хочет серьёзного разговора"],love:"Смех — ваш клей в паре. Общие шутки и мемы создают «ваш» язык, понятный только двоим."},
+ Se:{tag:"Улыбка против стресса",d:"Вы умеете находить смешное в трудных ситуациях и подбадривать себя шуткой. Это здоровый способ справляться со стрессом: юмор помогает посмотреть на проблему со стороны.",plus:["Стрессоустойчивость","Оптимизм","Умение видеть ситуацию со стороны"],minus:["Иногда стоит позволить себе просто погрустить"],love:"В кризисах вы помогаете паре не терять лёгкость. Следите, чтобы шутка не заменяла разговор, когда партнёру нужно серьёзно."},
+ Ag:{tag:"Острый язык",d:"Вам нравятся сарказм, подколы и острые шутки — иногда за чужой счёт. Вы остроумны, но не всегда замечаете, что шутка задела.",plus:["Остроумие","Смелость","Умение высмеять несправедливость"],minus:["Шутки могут ранить, особенно в ссоре","Сарказм в конфликте сильно вредит отношениям"],love:"Подколы в паре — нормально, пока смешно обоим. Договоритесь о «запретных темах», которые точно не для шуток."},
+ Sd:{tag:"Посмеюсь над собой первым",d:"Вы часто шутите над собой и позволяете другим смеяться над вами, чтобы понравиться или разрядить обстановку. Лёгкая самоирония — плюс, но если её много, она может скрывать неуверенность или грусть.",plus:["Самоирония","Умение не принимать себя слишком всерьёз","Способность разрядить неловкость"],minus:["Может скрывать настоящие чувства","Постоянное принижение себя бьёт по самооценке"],love:"Партнёру можно показывать и грусть, не прикрывая её шуткой. Вы ценны не только тогда, когда смешите."}};
+const T_HUM={
+ id:"humor",group:"self",format:"stack",icon:"laugh",fmtLabel:"по одной карточке",isNew:true,kicker:"Над чем вы смеётесь?",title:"Стиль юмора",min:5,
+ short:"Объединяющий, поддерживающий, колкий или самоироничный: как вы используете юмор и подходят ли ваши шутки друг другу.",
+ source:"опросник HSQ Р. Мартина",scale:{n:7,lo:"Совсем не согласен(на)",hi:"Полностью согласен(на)"},
+ intro:["32 утверждения о юморе. Они будут появляться <b>по одному</b>: нажмите кружок, и сразу откроется следующее.","Отвечайте о том, как вы обычно шутите и реагируете на шутки, а не как хотелось бы."],
+ parts:[{title:"Юмор",items:HSQ.map((e,i)=>({id:"H"+i,text:e[1],key:e[0],rev:e[2]}))}],
+ score(ans){const r={};HK.forEach(k=>r[k]=avg(this.parts[0].items.filter(it=>it.key===k).map(it=>{const v=+ans[it.id];return it.rev?8-v:v})));r.top=HK.slice().sort((x,y)=>(r[y]-HNORM[y])-(r[x]-HNORM[x]))[0];return r},
+ summary:r=>HN[r.top],
+ chart:sc=>legend(sc)+bars(HK.map(k=>({label:HN[k]+" юмор",sub:HTY[k].tag.toLowerCase(),val:r=>({pct:(r[k]-1)/6*100,txt:r1(r[k])})})),sc),
+ person(r){const o=HTY[r.top];return{ill:ill(HILL[r.top]),title:HN[r.top]+" юмор",tag:o.tag,body:secs(o,`<section class="w"><h3>Ваш профиль</h3><p>${HK.map(k=>`${HN[k]} — ${r1(r[k])}${r[k]>HNORM[k]+.5?" (выше среднего)":r[k]<HNORM[k]-.5?" (ниже среднего)":""}`).join("; ")}.</p><p class="note">Первые два стиля исследователи считают полезными для отношений, вторые два — потенциально вредными, если их много.</p></section>`)}},
+ pair(sc){let h=sc.a.top===sc.b.top?`<p class="callout">У вас общий ведущий стиль — <b>${HN[sc.a.top].toLowerCase()}</b>. Вы смеётесь над одним и тем же, и это сближает.</p>`:`<p class="callout">Ваши ведущие стили разные: <b>${HN[sc.a.top].toLowerCase()}</b> и <b>${HN[sc.b.top].toLowerCase()}</b>. Узнайте, какие шутки партнёру приятны, а какие задевают.</p>`;
+   if(sc.a.Af>=5&&sc.b.Af>=5)h+=`<h3>Смех как общий язык</h3><p>Вы оба любите шутить вместе — исследования связывают это с большей удовлетворённостью отношениями.</p>`;
+   if(sc.a.Ag>=4.5||sc.b.Ag>=4.5){const w=sc.a.Ag>=sc.b.Ag?"a":"b";h+=`<h3>Осторожно с подколами</h3><p>${esc(nm(w))} любит острые шутки. В ссоре сарказм особенно ранит, поэтому договоритесь: в споре — без колкостей.</p>`}
+   if(sc.a.Sd>=4.5||sc.b.Sd>=4.5){const w=sc.a.Sd>=sc.b.Sd?"a":"b";h+=`<h3>За шуткой может прятаться грусть</h3><p>${esc(nm(w))} часто шутит над собой. Иногда стоит спросить: «А как ты на самом деле?»</p>`}
+   return h},
+ sim:(a,b)=>clamp(100-avg(HK.map(k=>Math.abs(a[k]-b[k])))/6*100,0,100),
+ talk:["Над чем мы смеёмся вместе чаще всего?","Есть ли шутки, которые вас задевают? Скажите о них честно.","Помогает ли юмор нам мириться после ссоры?","Вспомните самый смешной момент наших отношений.","Бывает ли, что вы шутите, когда на самом деле грустно?"],
+ method:"<p>Опросник стилей юмора (Humor Styles Questionnaire, HSQ) — Род Мартин и соавторы (2003). 32 утверждения, по 8 на каждый из четырёх стилей, шкала от 1 до 7; 11 пунктов считаются в обратную сторону. Перевод выполнен для этого сайта.</p><p>Балл стиля — среднее от 1 до 7. Ведущий стиль определяется по тому, насколько ваш балл выше типичного среднего в исследованиях (ориентировочно: объединяющий ~5,7, поддерживающий ~4,7, колкий ~3,6, самоироничный ~3,3).</p>"
+};
+
+const TESTS=[T_LOVE,T_ATT,T_CONF,T_RAS,T_LAS,T_STERN,T_GUESS,T_B5,T_EPQ,T_MBTI,T_HUM];
+const tById=id=>TESTS.find(t=>t.id===id);
+const flat=t=>t.parts.flatMap(p=>p.items);
+const count=t=>flat(t).length;
+const res=(t,w)=>S.res[t.id]&&S.res[t.id][w];
+const draft=(t,w)=>S.drafts[t.id]&&S.drafts[t.id][w];
+const scores=t=>{const sc={},raw={};["a","b"].forEach(w=>{const r=res(t,w);sc[w]=r?t.score(r.ans):null;raw[w]=r?r.ans:null});return{sc,raw}};
+const both=t=>res(t,"a")&&res(t,"b");
+const simOf=t=>{const d=scores(t);return Math.round(t.sim(d.sc.a,d.sc.b,d.raw))};
+
+/* ================= демо-режим: случайные ответы ================= */
+const rint=n=>Math.floor(Math.random()*n);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rint(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+function randAns(t,partner){const ans={};
+ t.parts.forEach(p=>{const pf=p.fmt||t.format;
+  if(pf==="points"){let left=10;const its=shuffle(p.items);its.forEach((it,i)=>{const v=i===its.length-1?left:rint(Math.min(left,6)+1);ans[it.id]=v;left-=v})}
+  else if(pf==="rank")shuffle([0,1,2,3,4]).forEach((v,i)=>ans[p.items[i].id]=v);
+  else p.items.forEach(it=>{
+   if(pf==="vs")ans[it.id]=Math.random()<.5?"a":"b";
+   else if(pf==="swipe")ans[it.id]=rint(2);
+   else if(pf==="tiles")ans[it.id]=3+rint(7);
+   else if(pf==="faces")ans[it.id]=it.rev?1+rint(3):3+rint(3);
+   else if(pf==="guess"){ans[it.id+"s"]=rint(4);ans[it.id+"g"]=partner&&Math.random()<.6?partner[it.id+"s"]:rint(4)}
+   else ans[it.id]=1+rint(pf==="bipolar"||pf==="hearts"?5:t.scale.n)})});
+ return ans}
+function enterDemo(){REAL=S;DEMO=true;
+ S={names:{a:(REAL.names.a||"").trim()||"Саша",b:(REAL.names.b||"").trim()||"Женя"},res:{},drafts:{},talk:{}};
+ TESTS.forEach(t=>{const a=randAns(t),b=randAns(t,a);if(t.format==="guess")GQ.forEach((q,i)=>{if(Math.random()<.6)a["G"+i+"g"]=b["G"+i+"s"]});S.res[t.id]={a:{ans:a,date:Date.now()},b:{ans:b,date:Date.now()}}})}
+function exitDemo(){S=REAL;DEMO=false}
+
+/* ================= обмен ответами между телефонами (код без сервера) ================= */
+const encV=v=>v===undefined?"-":v===10?"A":String(v);
+const decV=c=>c==="-"?undefined:c==="A"?10:/\d/.test(c)?+c:c;
+function exportCode(w){
+ const parts=[];TESTS.forEach(t=>{const r=res(t,w);if(!r)return;let s="";flat(t).forEach(it=>{s+=it.opts?encV(r.ans[it.id+"s"])+encV(r.ans[it.id+"g"]):encV(r.ans[it.id])});parts.push(t.id+":"+s)});
+ return parts.length?btoa("DUO1|"+encodeURIComponent(nm(w))+"|"+parts.join(",")):null}
+function parseCode(code){
+ try{const raw=atob(String(code).replace(/[^A-Za-z0-9+/=]/g,""));if(!raw.startsWith("DUO1|"))return null;
+  const seg=raw.split("|"),out={name:decodeURIComponent(seg[1]||""),tests:{}};
+  (seg[2]||"").split(",").forEach(x=>{const i=x.indexOf(":"),t=tById(x.slice(0,i)),s=x.slice(i+1);if(!t)return;const its=flat(t);
+   if(s.length!==its.reduce((k,it)=>k+(it.opts?2:1),0))return;const ans={};let p=0;
+   its.forEach(it=>{if(it.opts){const a=decV(s[p++]),b=decV(s[p++]);if(a!==undefined)ans[it.id+"s"]=a;if(b!==undefined)ans[it.id+"g"]=b}else{const v=decV(s[p++]);if(v!==undefined)ans[it.id]=v}});
+   out.tests[t.id]=ans});
+  return Object.keys(out.tests).length?out:null}catch(e){return null}}
+const doneCount=w=>TESTS.filter(t=>res(t,w)).length;
+function syncHTML(){const s=ui.sync;let b="";
+ if(s.step==="export-pick")b=`<h2 class="sh-t">Отправить мои ответы</h2><p>Кто вы на этом телефоне?</p><div class="pick" style="margin:0">${["a","b"].map(w=>{const n=doneCount(w);return `<button class="pk ${w}" data-act="sync-exp" data-who="${w}"${n?"":" disabled"}><span class="pk-n"><i class="dot ${w}"></i>${esc(nm(w))}</span><span class="pk-s">${n?`пройдено: ${n} ${plural(n,["тест","теста","тестов"])}`:"пока нет пройденных тестов"}</span></button>`}).join("")}</div>`;
+ else if(s.step==="export-show")b=`<h2 class="sh-t">Ваш код</h2><p>Скопируйте код и отправьте партнёру в мессенджер. Партнёр откроет эту же ссылку у себя, нажмёт «Добавить ответы партнёра» и вставит код.</p><textarea id="sync-code" class="code" readonly aria-label="Код с ответами">${s.code}</textarea><div class="btns" style="margin:0"><button class="btn" data-act="sync-copy">Скопировать код</button><span id="copy-msg" class="note"></span></div><p class="note">Прошли ещё тесты — отправьте новый код, он обновит ответы у партнёра.</p>`;
+ else if(s.step==="import-paste")b=`<h2 class="sh-t">Добавить ответы партнёра</h2><p>Вставьте код, который прислал партнёр.</p><textarea id="sync-in" class="code" placeholder="Вставьте код сюда" aria-label="Код партнёра">${esc(s.val||"")}</textarea>${s.msg?`<p class="err">${s.msg}</p>`:""}<div class="btns" style="margin:0"><button class="btn" data-act="sync-read">Добавить</button></div>`;
+ else if(s.step==="import-pick"){const p=s.parsed,n=Object.keys(p.tests).length;
+   b=`<h2 class="sh-t">Код принят</h2><p>Это ответы: <b>${esc(p.name)}</b>, ${n} ${plural(n,["тест","теста","тестов"])}. Чьё место им занять на этом телефоне?</p><div class="pick" style="margin:0">${["a","b"].map(w=>{const k=doneCount(w);return `<button class="pk ${w}" data-act="sync-apply" data-who="${w}"><span class="pk-n"><i class="dot ${w}"></i>${esc(nm(w))}</span><span class="pk-s">${k?`здесь уже есть ответы (${k}) — они заменятся`:"свободно"}</span></button>`}).join("")}</div>`}
+ return `<div class="ov" role="dialog" aria-label="Обмен ответами"><button class="ov-bg" data-act="sync-close" aria-label="Закрыть"></button><div class="sheet">${b}<button class="btn link" data-act="sync-close" style="justify-self:start;padding-left:0">Закрыть</button></div></div>`}
+const syncBlock=()=>`<div class="demo-cta"><div><b>Проходите на разных телефонах?</b><p class="note" style="margin-top:4px">Каждый открывает эту ссылку у себя и проходит тесты за себя. Потом один отправляет другому код с ответами — и результаты складываются вместе.</p></div><div class="btns" style="margin:0"><button class="btn ghost sm" data-act="sync-out">Отправить мои ответы</button><button class="btn ghost sm" data-act="sync-in">Добавить ответы партнёра</button></div></div>`;
+const demoBar=()=>`<div class="demo"><span><b>Демо-режим.</b> Все тесты заполнены случайными ответами за двоих — открывайте любой и смотрите результаты. Ничего не сохраняется, ваши настоящие ответы не тронуты.</span><span class="btns" style="margin:0"><button class="btn sm b" data-act="demo-reroll">Новые случайные ответы</button><button class="btn sm ghost" data-act="demo-off">Выйти из демо</button></span></div>`;
+
+/* ================= состояние ================= */
+let ui={view:"home"};
+const app=document.getElementById("app");
+const go=(v,keep)=>{Object.assign(ui,v);render();if(!keep)window.scrollTo(0,0)};
+const one=t=>t.format==="swipe"||t.format==="stack";
+
+/* ================= главная ================= */
+const statusHTML=t=>["a","b"].map(w=>{const r=res(t,w),d=draft(t,w),c=r?"ok":d?"go":"";return `<span class="st ${c}"><i class="ring ${w}"></i><span data-name="${w}">${esc(nm(w))}</span>${r?" ✓":d?" …":""}</span>`}).join("");
+const h1Anim=txt=>`<h1 aria-label="${txt}">${txt.split(" ").map(w=>`<span style="display:inline-block;white-space:nowrap">${[...w].map(ch=>`<span class="ch" aria-hidden="true" style="--i:${I++}">${ch}</span>`).join("")}</span>`).join(" ")}</h1>`;
+function homeHTML(){
+ I=0;
+ let h=`<p class="kicker">Психологические тесты для пары</p>${h1Anim("Тесты на двоих")}
+  <div class="lead"><p>Одиннадцать тестов и одна игра на основе настоящих психологических методик. Проходите по очереди на одном устройстве, а потом смотрите результаты рядом: в чём вы похожи, где различаетесь и что с этим делать.</p><p>Результаты одного скрыты, пока тест не пройдёт второй, — чтобы не подстраиваться друг под друга.</p></div>
+  <div class="names"><label class="field"><i class="dot a"></i><input id="name-a" data-nm="a" maxlength="24" placeholder="Первое имя" value="${esc(S.names.a)}" aria-label="Имя первого партнёра"></label><label class="field"><i class="dot b"></i><input id="name-b" data-nm="b" maxlength="24" placeholder="Второе имя" value="${esc(S.names.b)}" aria-label="Имя второго партнёра"></label></div>`;
+ if(ui.flash){h+=`<p class="flash">✓ ${ui.flash}</p>`;ui.flash=null}
+ h+=syncBlock();
+ if(!DEMO)h+=`<div class="demo-cta"><div><b>Хотите сначала оценить, как всё выглядит?</b><p class="note" style="margin-top:4px">Демо-режим заполнит все тесты случайными ответами за двоих: сразу откроются результаты, итог пары и карточки для сторис. Ваши настоящие ответы не пострадают.</p></div><button class="btn" data-act="demo-on">Открыть демо</button></div>`;
+ const bothDone=TESTS.filter(both);
+ if(bothDone.length)h+=`<h2 class="sec left">Итог пары</h2><button class="cta" data-act="summary">${ill("pair","","stat")}<div><p class="cta-t">Ваш общий портрет</p><p class="row-d">Пройдено вдвоём: ${bothDone.length} из ${TESTS.length}. Похожесть, самые совпадающие и самые разные стороны, карточка для сторис.</p></div></button>`;
+ [["pair","Про ваши отношения"],["self","Про каждого из вас"]].forEach(([g,title])=>{
+  h+=`<h2 class="sec left">${title}</h2><div class="list">${TESTS.filter(t=>t.group===g).map(t=>`<button class="row" data-act="intro" data-test="${t.id}">${ill(t.icon,t.id==="ras"?3:undefined,"stat")}<div><div class="row-t">${t.title}${t.isNew?'<span class="tag-new">новое</span>':""}</div><p class="row-d">${t.short}</p><p class="row-m">${count(t)} ${plural(count(t),["вопрос","вопроса","вопросов"])} · около ${t.min} мин · ${t.fmtLabel}</p></div><div class="row-s">${statusHTML(t)}</div></button>`).join("")}</div>`});
+ const done=TESTS.filter(t=>res(t,"a")||res(t,"b"));
+ if(done.length)h+=`<h2 class="sec left">Кто что прошёл</h2><div class="scroll"><table class="prof"><thead><tr><th>Тест</th><th><span data-name="a">${esc(nm("a"))}</span></th><th><span data-name="b">${esc(nm("b"))}</span></th></tr></thead><tbody>${done.map(t=>{const s=scores(t).sc,bb=s.a&&s.b;const cell=w=>s[w]?(bb?(t.needsBoth?"сыграно ✓":esc(t.summary(s[w]))):"пройдено, ждём пару"):"—";return `<tr data-act="result" data-test="${t.id}"><td>${t.title}</td><td>${cell("a")}</td><td>${cell("b")}</td></tr>`}).join("")}</tbody></table></div>`;
+ h+=`<div class="foot"><p>Это тесты для самопознания и разговора, а не медицинская диагностика. Ответы хранятся только в этом браузере на этом устройстве.</p>${ui.confirmReset?`<div class="btns" style="margin-top:0"><span>Стереть имена и все ответы?</span><button class="btn b" data-act="reset-yes">Да, стереть</button><button class="btn link" data-act="reset-no">Отмена</button></div>`:`<div><button class="btn link" data-act="reset" style="padding-left:0">Стереть все ответы</button></div>`}</div>`;
+ return h}
+
+/* ================= вступление ================= */
+function introHTML(t){
+ const n=count(t);
+ let h=`<button class="back" data-act="home">← Все тесты</button><div class="intro-top"><div><p class="kicker">${t.kicker}</p><h1>${t.title}</h1></div>${ill(t.icon,t.id==="ras"?3:undefined)}</div><div class="lead">${t.intro.map(p=>`<p>${p}</p>`).join("")}</div>
+  <p class="meta" style="margin-top:16px">${n} ${plural(n,["вопрос","вопроса","вопросов"])} · около ${t.min} мин · ${t.fmtLabel} · ${t.source}</p>
+  <h2 class="sec left">Кто проходит сейчас?</h2><div class="pick">${["a","b"].map(w=>{const r=res(t,w),d=draft(t,w);const st=r?"Пройдено ✓ · пройти заново":d?`Продолжить: отвечено ${Object.keys(d.ans).length} из ${n}`:"Ещё не проходил(а)";return `<button class="pk ${w}" data-act="start" data-test="${t.id}" data-who="${w}"><span class="pk-n"><i class="dot ${w}"></i>${esc(nm(w))}</span><span class="pk-s">${st}</span></button>`}).join("")}</div>`;
+ if(res(t,"a")||res(t,"b"))h+=`<div class="btns"><button class="btn ghost" data-act="result" data-test="${t.id}">${both(t)?"Смотреть результаты":"Результаты"}</button></div>`;
+ return h}
+
+/* ================= способы ответа ================= */
+const faceSvg=m=>{const c=(m-2)*4.5;return `<svg viewBox="0 0 44 44"><circle class="f" cx="22" cy="22" r="19"/><circle class="fe" cx="15.5" cy="18" r="2.2"/><circle class="fe" cx="28.5" cy="18" r="2.2"/><path class="fm" d="M14 ${28-c/3} Q22 ${28+c} 30 ${28-c/3}"/></svg>`};
+const heartSvg=`<svg viewBox="0 0 44 44"><path d="${HD(22,23,11)}"/></svg>`;
+const ansOK=it=>it.opts?(ui.ans[it.id+"s"]!==undefined&&ui.ans[it.id+"g"]!==undefined):ui.ans[it.id]!==undefined;
+const radio=(id,v,cur,cls,inner,label)=>`<button type="button" role="radio" aria-checked="${cur===v}" class="${cls}${cur===v?" on":""}" data-set="${id}" data-v="${v}"${label?` aria-label="${esc(label)}"`:""}>${inner}</button>`;
+function itemHTML(t,it,num,pf){
+ const v=ui.ans[it.id];let h=`<div class="q" data-q="${it.id}">`;
+ const qt=`<p class="q-t"><span class="q-n">${num}.</span> ${it.text}</p>`;
+ if(pf==="points"){const x=+v||0;h+=qt+`<div class="rng"><input type="range" min="0" max="10" step="1" id="r-${it.id}" data-pt="${it.id}" value="${x}" style="--v:${x*10}%" aria-label="Баллы: ${esc(it.text)}"><div class="ticks">${[...Array(11).keys()].map(i=>`<button type="button" data-tick="${it.id}" data-v="${i}" class="${i===x?"on":""}" tabindex="-1">${i}</button>`).join("")}</div></div>`}
+ else if(pf==="dots"){const n=t.scale.n,sz=n===7?[40,34,28,22,28,34,40]:[40,32,24,32,40],mid=(n-1)/2;
+   h+=qt+`<div class="dots" role="radiogroup" aria-label="${esc(it.text)}">${sz.map((s,k)=>`<button type="button" role="radio" aria-checked="${v===k+1}" aria-label="${k+1} из ${n}" class="dt ${k<mid?"neg":k>mid?"pos":"mid"}${v===k+1?" on":""}" style="--s:${s}px" data-set="${it.id}" data-v="${k+1}"></button>`).join("")}</div><div class="anch"><span>${t.scale.lo}</span><span>${t.scale.hi}</span></div>`}
+ else if(pf==="faces"){h+=qt+`<div class="faces" role="radiogroup">${[1,2,3,4,5].map(k=>radio(it.id,k,v,"fc",faceSvg(it.rev?5-k:k-1),`${k} из 5`)).join("")}</div><div class="anch"><span>${it.lo}</span><span>${it.hi}</span></div>`}
+ else if(pf==="hearts"){h+=qt+`<div class="hearts" role="radiogroup">${[1,2,3,4,5].map(k=>`<button type="button" role="radio" aria-checked="${v===k}" aria-label="${k} из 5" class="hrt${v>=k?" on":""}" style="--k:${k}" data-set="${it.id}" data-v="${k}">${heartSvg}</button>`).join("")}</div><div class="anch" style="max-width:270px"><span>${t.scale.lo}</span><span>${t.scale.hi}</span></div>`}
+ else if(pf==="tiles"){h+=qt+`<div class="tiles" role="radiogroup">${[...Array(9).keys()].map(k=>radio(it.id,k+1,v,"tl"+(v!==undefined&&k+1<v?" lo":""),k+1)).join("")}</div><div class="anch" style="max-width:460px"><span>${t.scale.lo}</span><span>${t.scale.hi}</span></div>`}
+ else if(pf==="vs"){h+=`<p class="q-t q-n">${num}.</p><div class="vs" role="radiogroup">${radio(it.id,"a",v,"vt"+(v==="b"?" off":""),`<b>А</b><span>${it.a.t}</span>`)}<span class="vs-or">или</span>${radio(it.id,"b",v,"vt"+(v==="a"?" off":""),`<b>Б</b><span>${it.b.t}</span>`)}</div>`}
+ else if(pf==="bipolar"){h+=`<div class="bp"><span class="bp-l">${it.left}</span><div class="bps" role="radiogroup" aria-label="${esc(it.left+" или "+it.right)}">${[1,2,3,4,5].map(j=>radio(it.id,j,v,"opt s"+j,"",["полностью слева","скорее слева","посередине","скорее справа","полностью справа"][j-1])).join("")}</div><span class="bp-r">${it.right}</span></div>`}
+ else if(pf==="guess"){const o=oth(ui.who),vs=ui.ans[it.id+"s"],vg=ui.ans[it.id+"g"];
+   h=`<div class="q gq" data-q="${it.id}"><p class="gq-t">${num}. ${it.text}</p><div class="gr"><span class="gr-l"><i class="dot ${ui.who}"></i>Мой ответ</span><div class="chips" role="radiogroup">${it.opts.map((x,k)=>radio(it.id+"s",k,vs,"chip",esc(x))).join("")}</div></div><div class="gr g"><span class="gr-l"><i class="dot ${o}"></i>Как ответит ${esc(nm(o))}?</span><div class="chips" role="radiogroup">${it.opts.map((x,k)=>radio(it.id+"g",k,vg,"chip",esc(x))).join("")}</div></div>`}
+ return h+"</div>"}
+function rankHTML(p){
+ const rk=it=>ui.ans[it.id]===undefined?null:5-ui.ans[it.id];
+ return `<p class="hint" style="margin-bottom:16px">Нажимайте на утверждения по порядку: сначала самое важное для вас. Нажмите ещё раз, чтобы убрать.</p><div class="rk" id="rk">${p.items.map(it=>{const r=rk(it);return `<button type="button" class="rk-i${r?" on r"+r:""}" data-rank="${it.id}"><span class="rk-b">${r||""}</span><span>${it.text}</span></button>`}).join("")}</div><button class="btn link" data-act="rank-reset" style="padding-left:0;margin-top:6px">Сбросить порядок</button>`}
+function fixRank(p){const vals=p.items.map(it=>ui.ans[it.id]).filter(v=>v!==undefined);const okv=vals.every(v=>v>=0&&v<=4)&&new Set(vals).size===vals.length;if(!okv)p.items.forEach(it=>delete ui.ans[it.id])}
+
+function quizHTML(t){
+ const p=t.parts[ui.part],pf=p.fmt||t.format;let start=0;for(let i=0;i<ui.part;i++)start+=t.parts[i].items.length;
+ if(pf==="rank")fixRank(p);
+ let h=`<button class="back" data-act="intro" data-test="${t.id}">← К описанию теста</button><p class="kicker">${t.kicker}</p><h1 class="sm">${t.title}</h1><span class="who ${ui.who}"><i class="dot ${ui.who}"></i>Отвечает: ${esc(nm(ui.who))}</span>${t.parts.length>1?`<p class="partno">${ui.part+1} часть из ${t.parts.length}</p>`:""}<h2 class="sec">${p.title}</h2>`;
+ h+=pf==="rank"?rankHTML(p):`<div class="qs">${p.items.map((it,k)=>itemHTML(t,it,start+k+1,pf)).join("")}</div>`;
+ h+=`<div class="bar"><div class="bar-in">${ui.part>0?'<button class="btn link" data-act="prev">← Назад</button>':""}${DEMO?'<button class="btn link" data-act="demo-fill">Заполнить случайно</button>':""}<span class="bar-t" id="bar-t"></span><button class="btn" id="next" data-act="next">${ui.part===t.parts.length-1?"Готово":"Далее"}</button></div></div>`;
+ return h}
+function barState(t){
+ const p=t.parts[ui.part],pf=p.fmt||t.format;
+ if(pf==="points"){const left=10-p.items.reduce((s,it)=>s+(+ui.ans[it.id]||0),0);return{ok:left===0,txt:`Осталось ${left} ${plural(left,["балл","балла","баллов"])} из 10`}}
+ if(pf==="rank"){const n=p.items.filter(it=>ui.ans[it.id]!==undefined).length;return{ok:n===p.items.length,txt:`Расставлено ${n} из ${p.items.length}`}}
+ const n=p.items.filter(ansOK).length;return{ok:n===p.items.length,txt:`Отвечено ${n} из ${p.items.length}`}}
+let lastOk=null;
+function updBar(){const t=tById(ui.test),s=barState(t),nx=document.getElementById("next");document.getElementById("bar-t").textContent=s.txt;if(nx.disabled===s.ok){nx.disabled=!s.ok}}
+function saveDraft(){S.drafts[ui.test]=S.drafts[ui.test]||{};S.drafts[ui.test][ui.who]={ans:ui.ans,part:ui.part,idx:ui.idx||0};save()}
+
+/* ---- по одной карточке ---- */
+function oneHTML(t){
+ const items=flat(t),N=items.length,i=ui.idx,it=items[i],v=ui.ans[it.id];
+ let h=`<button class="back" data-act="intro" data-test="${t.id}">← К описанию теста</button><p class="kicker">${t.kicker}</p><h1 class="sm">${t.title}</h1><span class="who ${ui.who}"><i class="dot ${ui.who}"></i>Отвечает: ${esc(nm(ui.who))}</span><div class="prog"><div class="prog-f" style="width:${i/N*100}%"></div></div><p class="prog-t">Вопрос ${i+1} из ${N}</p>`;
+ if(t.format==="swipe"){const nx=items[i+1];
+   h+=`<div class="sw">${nx?`<div class="sw-card sw-next" aria-hidden="true"><p class="sw-q">${nx.text}</p></div>`:""}<div class="sw-card sw-top" id="swc"><span class="sw-y">Да</span><span class="sw-x">Нет</span><p class="sw-n">Вопрос ${i+1}</p><p class="sw-q">${it.text}</p>${v!==undefined?`<p class="sw-was">Ваш ответ был: ${+v===1?"да":"нет"}</p>`:""}</div></div><div class="swbs"><button class="swb no" data-act="sw" data-v="0" aria-label="Нет">✕ Нет</button><button class="swb yes" data-act="sw" data-v="1" aria-label="Да">✓ Да</button></div><p class="hint" style="text-align:center;margin-top:14px">Смахните вправо — «да», влево — «нет»</p>`}
+ else{const n=t.scale.n,sz=[40,34,28,22,28,34,40],mid=3;
+   h+=`<div class="stk"><div class="stk-card" id="stc"><p class="sw-q" style="text-align:left">${it.text}</p><div class="dots" role="radiogroup">${sz.map((s,k)=>`<button type="button" role="radio" aria-checked="${v===k+1}" aria-label="${k+1} из ${n}" class="dt ${k<mid?"neg":k>mid?"pos":"mid"}${v===k+1?" on":""}" style="--s:${s}px" data-one="${k+1}"></button>`).join("")}</div><div class="anch" style="max-width:440px"><span>${t.scale.lo}</span><span>${t.scale.hi}</span></div></div></div>`}
+ if(i>0||DEMO)h+=`<div class="one-back">${i>0?'<button class="btn link" data-act="one-prev">← Предыдущий вопрос</button>':""}${DEMO?'<button class="btn link" data-act="demo-fill">Заполнить случайно</button>':""}</div>`;
+ return h}
+let busy=false;
+function oneAnswer(v,dir){
+ if(busy)return;const t=tById(ui.test),items=flat(t),it=items[ui.idx];
+ ui.ans[it.id]=v;saveDraft();busy=true;
+ const card=document.getElementById(t.format==="swipe"?"swc":"stc");
+ if(card&&!RM){card.style.transform="";card.classList.add(dir>0?"out-r":"out-l")}
+ setTimeout(()=>{busy=false;if(ui.idx<items.length-1){ui.idx++;saveDraft();render()}else finish()},RM?0:260)}
+
+/* ---- свайп ---- */
+let drag=null;
+app.addEventListener("pointerdown",e=>{const c=e.target.closest("#swc");if(!c||busy)return;drag={x:e.clientX,y:e.clientY,c,dx:0};c.setPointerCapture(e.pointerId);c.classList.add("drag")});
+app.addEventListener("pointermove",e=>{if(!drag)return;drag.dx=e.clientX-drag.x;const dx=drag.dx;drag.c.style.transform=`translateX(${dx}px) rotate(${dx/14}deg)`;drag.c.querySelector(".sw-y").style.opacity=clamp(dx/90,0,1);drag.c.querySelector(".sw-x").style.opacity=clamp(-dx/90,0,1)});
+const endDrag=()=>{if(!drag)return;const {c,dx}=drag;drag=null;c.classList.remove("drag");
+ if(Math.abs(dx)>90){c.style.transition="transform .25s ease, opacity .25s";c.style.transform=`translateX(${dx>0?600:-600}px) rotate(${dx>0?30:-30}deg)`;c.style.opacity="0";const t=tById(ui.test),it=flat(t)[ui.idx];ui.ans[it.id]=dx>0?1:0;saveDraft();busy=true;setTimeout(()=>{busy=false;const items=flat(t);if(ui.idx<items.length-1){ui.idx++;saveDraft();render()}else finish()},230)}
+ else{c.style.transition="transform .3s cubic-bezier(.2,.9,.3,1.3)";c.style.transform="";c.querySelectorAll(".sw-y,.sw-x").forEach(s=>s.style.opacity=0);setTimeout(()=>c.style.transition="",300)}};
+app.addEventListener("pointerup",endDrag);app.addEventListener("pointercancel",endDrag);
+document.addEventListener("keydown",e=>{if(ui.view!=="quiz")return;const t=tById(ui.test);if(!t||t.format!=="swipe"||e.target.tagName==="INPUT")return;if(e.key==="ArrowRight"){e.preventDefault();oneAnswer(1,1)}else if(e.key==="ArrowLeft"){e.preventDefault();oneAnswer(0,-1)}});
+
+function finish(){const t=tById(ui.test);S.res[t.id]=S.res[t.id]||{};S.res[t.id][ui.who]={ans:ui.ans,date:Date.now()};if(S.drafts[t.id])delete S.drafts[t.id][ui.who];save();
+ if(res(t,oth(ui.who))){go({view:"result",tab:"pair",celebrate:true,story:null})}else go({view:"done"})}
+
+/* ================= после прохождения ================= */
+const doneHTML=t=>{const o=oth(ui.who);return `<div class="done-wrap"><div><p class="kicker">${t.title}</p><p class="done-h">Готово, ${esc(nm(ui.who))}!</p></div>${ill("pair")}</div><div class="lead"><p>Ответы сохранены. Чтобы не влиять друг на друга, общий результат откроется, когда <b>${esc(nm(o))}</b> тоже пройдёт тест.</p><p>Передайте телефон и не подглядывайте. А если ${esc(nm(o))} проходит на своём телефоне — отправьте свои ответы кодом.</p></div><div class="btns"><button class="btn ${o==="b"?"b":""}" data-act="start" data-test="${t.id}" data-who="${o}">Пройти: ${esc(nm(o))}</button>${t.needsBoth?"":`<button class="btn ghost" data-act="result" data-test="${t.id}" data-tab="${ui.who}">Показать только мой результат</button>`}<button class="btn link" data-act="sync-out">Отправить ответы кодом</button><button class="btn link" data-act="home">К списку тестов</button></div>`};
+
+/* ================= результаты ================= */
+const simWord=s=>s>=80?"очень похожи":s>=60?"во многом похожи":s>=40?"похожи наполовину":"очень разные";
+function resultHTML(t){
+ const d=scores(t);
+ let h=`<button class="back" data-act="home">← Все тесты</button><p class="kicker">Результаты</p><h1 class="sm">${t.title}</h1>`;
+ if(!d.sc.a&&!d.sc.b)return h+"<p>Этот тест ещё никто не прошёл.</p>";
+ const miss=!d.sc.a?"a":!d.sc.b?"b":null;
+ const waitB=miss?`<div class="wait"><p>Когда <b>${esc(nm(miss))}</b> тоже пройдёт ${t.needsBoth?"игру":"тест"}, здесь появится ${t.needsBoth?"счёт и разбор ответов":"сравнение, разбор для пары и вопросы для разговора"}.</p><span class="btns" style="margin:0"><button class="btn ${miss==="b"?"b":""}" data-act="start" data-test="${t.id}" data-who="${miss}">Пройти: ${esc(nm(miss))}</button><button class="btn ghost" data-act="sync-in">Добавить ответы кодом</button></span></div>`:"";
+ if(t.needsBoth&&miss)return h+waitB;
+ h+=t.chart(d.sc,d.raw);
+ const tabs=[...["a","b"].filter(w=>d.sc[w]&&t.person),...(miss?[]:["pair"])];
+ if(!tabs.includes(ui.tab))ui.tab=tabs.includes("pair")?"pair":tabs[0];
+ if(tabs.length>1)h+=`<div class="tabs" role="tablist">${tabs.map(k=>`<button class="tab ${k}${ui.tab===k?" on":""}" role="tab" aria-selected="${ui.tab===k}" data-act="tab" data-tab="${k}">${k==="pair"?"♥ Вдвоём":`<i class="dot ${k}"></i>${esc(nm(k))}`}</button>`).join("")}</div>`;
+ else h+=`<div style="height:30px"></div>`;
+ h+=`<div class="tabp">`;
+ if(ui.tab==="pair"){const s=simOf(t);
+   h+=`<div class="simm"><p class="simm-n"><span data-count="${s}">${s}</span>%</p><div><p class="simm-l">${t.needsBoth?"угадано вместе":"похожесть ваших ответов · "+simWord(s)}</p><div class="track big" style="margin-top:8px"><div class="fill pair" style="width:${clamp(s,2,100)}%"></div></div></div></div><div class="pair">${t.pair(d.sc,d.raw)}</div>
+   <div class="blk" style="margin-top:30px;max-width:72ch"><h3>Вопросы для разговора</h3><p class="note" style="margin:6px 0 10px">Обсудите вдвоём и отмечайте, что уже обсудили.</p><div class="talk">${t.talk.map((q,i)=>{const on=S.talk[t.id]&&S.talk[t.id][i];return `<button class="tq${on?" on":""}" data-act="talk" data-test="${t.id}" data-i="${i}" aria-pressed="${!!on}"><span class="tq-c">${on?"✓":""}</span><span>${q}</span></button>`}).join("")}</div></div>
+   ${t.needsBoth?"":`<div class="btns"><button class="btn" data-act="story" data-who="pair">Карточка для сторис</button></div>`}`}
+ else{const w=ui.tab,p=t.person(d.sc[w],w,d.raw);
+   h+=`<div class="rhero"><div class="rill">${p.ill}</div><div class="rhead ${w}"><p class="pc-n"><i class="dot ${w}"></i>${esc(nm(w))}</p>${p.big?`<p class="pc-big">${p.big}</p>`:""}<h2 class="res-t">${p.title}</h2><p class="res-tag">${p.tag}</p><button class="btn ghost sm" data-act="story" data-who="${w}">Карточка для сторис</button></div></div>${p.body}`}
+ h+=`</div>${waitB}<div class="btns">${["a","b"].filter(w=>d.sc[w]).map(w=>`<button class="btn link" data-act="start" data-test="${t.id}" data-who="${w}">Пройти заново: ${esc(nm(w))}</button>`).join("")}<button class="btn ghost" data-act="home">К другим тестам</button></div>${method(t.method)}`;
+ return h}
+
+/* ================= итог пары ================= */
+function summaryData(){const done=TESTS.filter(t=>both(t)&&!t.needsBoth).map(t=>({t,s:simOf(t),d:scores(t)}));const g=both(T_GUESS)?simOf(T_GUESS):null;return{done,g,avgS:done.length?Math.round(avg(done.map(x=>x.s))):null}}
+function summaryHTML(){
+ const {done,g,avgS}=summaryData();
+ let h=`<button class="back" data-act="home">← Все тесты</button><p class="kicker">Итог пары</p><h1 class="sm">${esc(nm("a"))} + ${esc(nm("b"))}</h1>`;
+ if(!done.length&&g===null)return h+`<p>Пройдите вдвоём хотя бы один тест, и здесь появится ваш общий портрет.</p>`;
+ const word=avgS===null?"":avgS>=80?"Вы удивительно похожи: смотрите на многое одинаково и легко понимаете друг друга. Не забывайте только, что новизну в пару иногда приносят как раз различия.":avgS>=60?"У вас много общего, а различия скорее дополняют друг друга. Это хорошее сочетание: есть общая почва и есть чему учиться.":avgS>=40?"Вы во многом разные. Это повод узнавать и учиться друг у друга, а в трудные моменты — договариваться, а не переделывать.":"Вы очень разные люди. Различия не означают несовместимость, но требуют больше разговоров и договорённостей.";
+ h+=`<div class="sum-hero">${ill("pair")}<div>${avgS!==null?`<p class="simm-l">средняя похожесть по ${done.length} ${plural(done.length,["тесту","тестам","тестам"])}</p><p class="pc-big" style="font-size:clamp(56px,12vw,104px)"><span data-count="${avgS}">${avgS}</span>%</p><p style="margin-top:10px;max-width:56ch">${word}</p>`:""}${g!==null?`<p style="margin-top:12px"><b>Знание друг друга в игре:</b> ${Math.round(g)}%</p>`:""}</div></div>`;
+ if(done.length>1){const sorted=done.slice().sort((x,y)=>y.s-x.s);h+=`<div class="hl"><div><small>Больше всего совпадаете</small><b>${sorted[0].t.title}</b><span class="note">${sorted[0].s}% похожести</span></div><div><small>Больше всего различаетесь</small><b>${sorted[sorted.length-1].t.title}</b><span class="note">${sorted[sorted.length-1].s}% похожести</span></div></div>`}
+ if(done.length)h+=`<h2 class="sec left">Тест за тестом</h2><div>${done.map(({t,s,d})=>`<button class="srow" data-act="result" data-test="${t.id}" data-tab="pair"><span class="srow-t">${t.title}</span><span><i class="dot a"></i> ${esc(t.summary(d.sc.a))}</span><span><i class="dot b"></i> ${esc(t.summary(d.sc.b))}</span><span class="sv">${s}%<span class="track"><span class="fill pair" style="display:block;width:${clamp(s,2,100)}%"></span></span></span></button>`).join("")}</div>`;
+ const left=TESTS.filter(t=>!both(t));if(left.length)h+=`<p class="note" style="margin-top:18px">Ещё не пройдено вдвоём: ${left.map(t=>t.title).join(", ")}.</p>`;
+ h+=`<div class="btns"><button class="btn" data-act="story" data-who="summary">Карточка для сторис</button></div><p class="note" style="margin-top:24px;max-width:66ch">Похожесть — это не совместимость. Исследования показывают, что сходство характеров слабо предсказывает счастье пары; гораздо важнее, как вы обращаетесь с различиями.</p>`;
+ return h}
+
+/* ================= карточка для сторис ================= */
+function storyHTML(){
+ const st=ui.story;let inner="";
+ if(st==="summary"){const {done,g,avgS}=summaryData();const top=done.slice().sort((x,y)=>y.s-x.s);
+   inner=`<p class="st-k">Итог пары</p><div class="st-ill">${ill("pair")}</div><div><p class="st-n">${esc(nm("a"))} + ${esc(nm("b"))}</p>${avgS!==null?`<p class="st-big">${avgS}%</p><p class="st-g">похожи по ${done.length} ${plural(done.length,["тесту","тестам","тестам"])}</p>`:""}${g!==null?`<p class="st-g">знаем друг друга на ${Math.round(g)}%</p>`:""}</div><div class="st-two">${top.slice(0,3).map(x=>`<div><b>${x.t.title}</b> · ${x.s}%</div>`).join("")}</div>`}
+ else{const t=tById(ui.test),d=scores(t);
+   if(st==="pair"){const s=simOf(t);inner=`<p class="st-k">${t.title}</p><div><p class="st-n">${esc(nm("a"))} + ${esc(nm("b"))}</p><p class="st-big">${s}%</p><p class="st-g">похожесть · ${simWord(s)}</p></div><div class="st-two">${["a","b"].map(w=>{const p=t.person?t.person(d.sc[w],w,d.raw):null;return `<div><p class="st-n">${esc(nm(w))}</p><p class="st-t" style="font-size:clamp(16px,3vh,26px)">${p?p.title:esc(t.summary(d.sc[w]))}</p></div>`}).join("")}</div>`}
+   else{const p=t.person(d.sc[st],st,d.raw);inner=`<p class="st-k">${t.title}</p><div class="st-ill">${p.ill}</div><div><p class="st-n">${esc(nm(st))}</p>${p.big?`<p class="st-big">${p.big}</p>`:""}<p class="st-t">${p.title}</p><p class="st-g" style="margin-top:8px">${p.tag}</p></div>`}}
+ return `<div class="ov" role="dialog" aria-label="Карточка для сторис"><button class="ov-bg" data-act="story-close" aria-label="Закрыть"></button><div class="story">${inner}<p class="st-f"><span>Тесты на двоих</span><span>♥</span></p></div><div class="ov-b"><span>Сделайте скриншот экрана</span><button class="btn sm" data-act="story-close">Закрыть</button></div></div>`}
+
+/* ================= эффекты ================= */
+function countUp(){if(RM)return;app.querySelectorAll("[data-count]").forEach(el=>{const to=+el.dataset.count,dec=+el.dataset.dec||0,t0=performance.now(),D=900;const step=now=>{const k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,3),v=to*e;el.textContent=dec?r1(v):Math.round(v);if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)})}
+function confetti(){if(RM)return;const fx=document.getElementById("fx"),cols=["var(--p1)","var(--p2)","var(--accent)"],chars=["♥","♥","✦","●"];
+ for(let i=0;i<46;i++){const s=document.createElement("span");s.textContent=chars[i%4];s.style.left=Math.random()*100+"vw";s.style.color=cols[i%3];s.style.fontSize=(14+Math.random()*18)+"px";fx.appendChild(s);
+  const dx=(Math.random()-.5)*200,rot=(Math.random()-.5)*720,dur=1600+Math.random()*1400;
+  s.animate([{transform:"translate(0,0) rotate(0)",opacity:1},{transform:`translate(${dx}px,${innerHeight+60}px) rotate(${rot}deg)`,opacity:.9}],{duration:dur,delay:Math.random()*400,easing:"cubic-bezier(.3,.6,.5,1)",fill:"forwards"}).onfinish=()=>s.remove()}}
+
+/* ================= отрисовка ================= */
+function fit(){document.querySelectorAll(".res-t,.st-t,#app h1,.done-h").forEach(el=>{el.style.fontSize="";let fs=parseFloat(getComputedStyle(el).fontSize),n=0;while(el.scrollWidth>el.clientWidth+1&&fs>13&&n++<60){fs-=1;el.style.fontSize=fs+"px"}})}
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(fit,150)});
+function render(){
+ const t=ui.test?tById(ui.test):null;const isQ=ui.view==="quiz"&&t&&!one(t);app.classList.toggle("has-bar",isQ);
+ let h="";
+ if(ui.view==="home")h=homeHTML();
+ else if(ui.view==="intro")h=introHTML(t);
+ else if(ui.view==="quiz")h=one(t)?oneHTML(t):quizHTML(t);
+ else if(ui.view==="done")h=doneHTML(t);
+ else if(ui.view==="result")h=resultHTML(t);
+ else if(ui.view==="summary")h=summaryHTML();
+ const anim=ui.view!=="quiz"||!one(t);
+ app.innerHTML=(DEMO&&ui.view!=="quiz"?demoBar():"")+`<div class="${anim&&!ui.noAnim?"view":""}">${h}</div>`+(ui.story?storyHTML():"")+(ui.sync?syncHTML():"");
+ ui.noAnim=false;
+ if(isQ)updBar();
+ fit();countUp();
+ if(ui.celebrate){ui.celebrate=false;setTimeout(confetti,250)}
+}
+const parseV=s=>/^-?\d+$/.test(s)?+s:s;
+
+app.addEventListener("click",e=>{
+ const el=e.target.closest("[data-act],[data-set],[data-tick],[data-rank],[data-one]");if(!el)return;
+ if(el.hasAttribute("data-set")){
+  const id=el.dataset.set,v=parseV(el.dataset.v);ui.ans[id]=v;const q=el.closest(".q");
+  q.querySelectorAll(`[data-set="${id}"]`).forEach(b=>{const bv=parseV(b.dataset.v);let on=bv===v;
+   if(b.classList.contains("hrt"))on=bv<=v;
+   b.classList.toggle("on",on);b.setAttribute("aria-checked",bv===v);
+   if(b.classList.contains("tl"))b.classList.toggle("lo",bv<v);
+   if(b.classList.contains("vt"))b.classList.toggle("off",bv!==v)});
+  if(!el.classList.contains("hrt")&&!el.classList.contains("vt")){el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop")}
+  if(el.classList.contains("hrt"))q.querySelectorAll(".hrt.on").forEach(b=>{b.style.animation="none";void b.offsetWidth;b.style.animation=""});
+  saveDraft();updBar();
+  const t=tById(ui.test),items=t.parts[ui.part].items,curIt=items.find(x=>x.id===q.dataset.q);
+  if(curIt&&ansOK(curIt)){const nx=q.nextElementSibling;if(nx){const nIt=items.find(x=>x.id===nx.dataset.q);if(nIt&&!ansOK(nIt)){const r=nx.getBoundingClientRect();if(r.bottom>innerHeight-120)nx.scrollIntoView({block:"center",behavior:RM?"auto":"smooth"})}}}
+  return}
+ if(el.hasAttribute("data-tick")){setPoints(document.getElementById("r-"+el.dataset.tick),+el.dataset.v);return}
+ if(el.hasAttribute("data-rank")){const t=tById(ui.test),p=t.parts[ui.part],id=el.dataset.rank;
+  if(ui.ans[id]!==undefined)delete ui.ans[id];
+  else{const used=p.items.filter(it=>ui.ans[it.id]!==undefined).map(it=>5-ui.ans[it.id]);let r=1;while(used.includes(r))r++;ui.ans[id]=5-r;
+   const rest=p.items.filter(it=>ui.ans[it.id]===undefined);if(rest.length===1){const u2=p.items.filter(it=>ui.ans[it.id]!==undefined).map(it=>5-ui.ans[it.id]);let r2=1;while(u2.includes(r2))r2++;ui.ans[rest[0].id]=5-r2}}
+  p.items.forEach(it=>{const b=app.querySelector(`[data-rank="${it.id}"]`),r=ui.ans[it.id]===undefined?null:5-ui.ans[it.id];b.className="rk-i"+(r?" on r"+r:"");b.querySelector(".rk-b").textContent=r||""});
+  saveDraft();updBar();return}
+ if(el.hasAttribute("data-one")){oneAnswer(+el.dataset.one,-1);return}
+ const act=el.dataset.act,tid=el.dataset.test;
+ if(act==="home")go({view:"home",test:null,confirmReset:false,story:null});
+ else if(act==="intro")go({view:"intro",test:tid,story:null});
+ else if(act==="result")go({view:"result",test:tid,tab:el.dataset.tab||null,story:null});
+ else if(act==="summary")go({view:"summary",story:null});
+ else if(act==="start"){const w=el.dataset.who,t=tById(tid),d=draft(t,w);go({view:"quiz",test:tid,who:w,part:d?Math.min(d.part||0,t.parts.length-1):0,idx:d?Math.min(d.idx||0,count(t)-1):0,ans:d?JSON.parse(JSON.stringify(d.ans)):{},story:null})}
+ else if(act==="prev"){ui.part--;saveDraft();go({})}
+ else if(act==="next"){const t=tById(ui.test);if(!barState(t).ok)return;if(ui.part<t.parts.length-1){ui.part++;saveDraft();go({})}else finish()}
+ else if(act==="one-prev"){if(ui.idx>0){ui.idx--;saveDraft();go({},true)}}
+ else if(act==="sw"){const v=+el.dataset.v;oneAnswer(v,v?1:-1)}
+ else if(act==="rank-reset"){const p=tById(ui.test).parts[ui.part];p.items.forEach(it=>delete ui.ans[it.id]);saveDraft();go({noAnim:true},true)}
+ else if(act==="tab")go({tab:el.dataset.tab,noAnim:true},true);
+ else if(act==="talk"){S.talk[tid]=S.talk[tid]||{};S.talk[tid][el.dataset.i]=!S.talk[tid][el.dataset.i];save();const on=S.talk[tid][el.dataset.i];el.classList.toggle("on",on);el.setAttribute("aria-pressed",on);el.querySelector(".tq-c").textContent=on?"✓":""}
+ else if(act==="story")go({story:el.dataset.who,noAnim:true},true);
+ else if(act==="story-close")go({story:null,noAnim:true},true);
+ else if(act==="sync-out")go({sync:{step:"export-pick"},noAnim:true},true);
+ else if(act==="sync-in")go({sync:{step:"import-paste"},noAnim:true},true);
+ else if(act==="sync-exp"){const code=exportCode(el.dataset.who);if(code)go({sync:{step:"export-show",code},noAnim:true},true)}
+ else if(act==="sync-copy"){const ta=document.getElementById("sync-code"),m=document.getElementById("copy-msg");
+  const fallback=()=>{ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);m.textContent="Код выделен — скопируйте его вручную"};
+  try{navigator.clipboard.writeText(ta.value).then(()=>{m.textContent="Скопировано ✓"},fallback)}catch(err){fallback()}}
+ else if(act==="sync-read"){const val=document.getElementById("sync-in").value,p=parseCode(val);
+  if(p)go({sync:{step:"import-pick",parsed:p},noAnim:true},true);
+  else go({sync:{step:"import-paste",val,msg:val.trim()?"Код не распознан. Скопируйте его целиком, без лишнего текста, и попробуйте ещё раз.":"Сначала вставьте код."},noAnim:true},true)}
+ else if(act==="sync-apply"){const w=el.dataset.who,p=ui.sync.parsed;Object.keys(p.tests).forEach(id=>{S.res[id]=S.res[id]||{};S.res[id][w]={ans:p.tests[id],date:Date.now(),imported:true}});if(p.name)S.names[w]=p.name;save();
+  const n=Object.keys(p.tests).length;go({view:"home",sync:null,test:null,story:null,flash:`Ответы ${esc(p.name||nm(w))} добавлены: ${n} ${plural(n,["тест","теста","тестов"])}. Открывайте тесты, где вы прошли оба, — результаты уже сложились.`})}
+ else if(act==="sync-close")go({sync:null,noAnim:true},true);
+ else if(act==="demo-on"){enterDemo();go({view:"home",confirmReset:false})}
+ else if(act==="demo-reroll"){const keep=ui.view;exitDemo();enterDemo();go({view:keep==="quiz"||keep==="done"?"home":keep,story:null})}
+ else if(act==="demo-off"){exitDemo();go({view:"home",test:null,story:null})}
+ else if(act==="demo-fill"){const t=tById(ui.test),p=res(t,oth(ui.who));ui.ans=randAns(t,p&&p.ans);finish()}
+ else if(act==="reset")go({confirmReset:true,noAnim:true},true);
+ else if(act==="reset-no")go({confirmReset:false,noAnim:true},true);
+ else if(act==="reset-yes"){S={names:{a:"",b:""},res:{},drafts:{},talk:{}};save();go({view:"home",confirmReset:false})}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&(ui.story||ui.sync))go({story:null,sync:null,noAnim:true},true)});
+function setPoints(inp,v){
+ const t=tById(ui.test),p=t.parts[ui.part],id=inp.dataset.pt;
+ const others=p.items.reduce((s,it)=>s+(it.id===id?0:(+ui.ans[it.id]||0)),0);
+ v=clamp(v,0,10-others);inp.value=v;inp.style.setProperty("--v",(v*10)+"%");ui.ans[id]=v;
+ inp.parentNode.querySelectorAll("[data-tick]").forEach(b=>b.classList.toggle("on",+b.dataset.v===v));
+ saveDraft();updBar()}
+app.addEventListener("input",e=>{const el=e.target;
+ if(el.hasAttribute("data-pt"))setPoints(el,+el.value);
+ else if(el.hasAttribute("data-nm")){const w=el.dataset.nm;S.names[w]=el.value;save();app.querySelectorAll(`[data-name="${w}"]`).forEach(s=>s.textContent=nm(w))}});
+render();
+})();
+</script>
+</body>
+</html>
